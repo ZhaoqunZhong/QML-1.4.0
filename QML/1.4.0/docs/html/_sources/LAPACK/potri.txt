@@ -1,0 +1,45 @@
+(S|D|C|Z)POTRI
+==============
+Single, double, single complex, and double complex POTRI.
+
+Description
+-----------
+Computes the inverse of a Hermitian positive definite matrix using Cholesky
+factorization.
+
+.. math::
+
+    \fvar{A} = \herm{\fvar{U}} \mult \fvar{U}
+
+.. math::
+
+    \fvar{A} = \fvar{L} \mult \herm{\fvar{L}}
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void spotri(const char *UPLO, const qml_long *N, float *A, const qml_long *LDA,
+        qml_long *INFO);
+    
+    void dpotri(const char *UPLO, const qml_long *N, double *A, const qml_long *LDA,
+        qml_long *INFO);
+    
+    void cpotri(const char *UPLO, const qml_long *N, qml_single_complex *A,
+        const qml_long *LDA, qml_long *INFO);
+    
+    void zpotri(const char *UPLO, const qml_long *N, qml_double_complex *A,
+        const qml_long *LDA, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Set to 'U' for upper triangular factorization, 'L' for lower
+N        Number of rows and columns of A
+A        Matrix of size N x N containing Cholesky factorization
+         as output by :doc:`POTRF<potrf>`
+LDA      Leading dimension of A
+INFO     0 on success, <0 for bad arguments, >0 if no inverse
+======   =====================================================================

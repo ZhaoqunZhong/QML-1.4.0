@@ -1,0 +1,14 @@
+QML Utility Functions
+======================
+QML provides a few utility functions that can be useful in diagnosing problems
+on a given machine.  These utility functions provide some insight into the runtime
+decisions the library is making as well as general information about the library.
+
+.. toctree::
+   :maxdepth: 1
+
+   qmlInfo
+   qmlVersionString
+   qmlGetNumThreads
+   qmlSetNumThreads
+   qmlIsSupported

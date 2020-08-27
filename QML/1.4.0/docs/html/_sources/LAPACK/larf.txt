@@ -1,0 +1,62 @@
+(S|D|C|Z)LARF
+=============
+Single, double, single complex, and double complex LARF.
+
+Description
+-----------
+Applies an elementary reflector to a rectangular matrix
+from the left or right.
+
+If SIDE is 'L',
+
+.. math::
+
+    C \assign H * C
+
+If SIDE is 'R',
+
+.. math::
+
+    C \assign C * H
+
+The reflector is:
+
+.. math::
+
+    H = I - \tau \mult v \mult \trans{v}
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void slarf(const char *SIDE, const qml_long *M, const qml_long *N, const float *V,
+        const qml_long *INCV, const float *TAU, float *C, const qml_long *LDC,
+        float *WORK);
+
+    void dlarf(const char *SIDE, const qml_long *M, const qml_long *N, const double *V,
+        const qml_long *INCV, const double *TAU, double *C, const qml_long *LDC,
+        double *WORK);
+
+    void clarf(const char *SIDE, const qml_long *M, const qml_long *N,
+        const qml_single_complex *V, const qml_long *INCV, const qml_single_complex *TAU,
+        qml_single_complex *C, const qml_long *LDC, qml_single_complex *WORK);
+
+    void zlarf(const char *SIDE, const qml_long *M, const qml_long *N,
+        const qml_double_complex *V, const qml_long *INCV, const qml_double_complex *TAU,
+        qml_double_complex *C, const qml_long *LDC, qml_double_complex *WORK);
+
+
+Arguments
+---------
+======   =====================================================================
+SIDE     Which side to mulplify reflector from, 'L' or 'R'
+M        Number of rows of C
+N        Number of columns of C
+V        Vector representing reflector
+INCV     Stride between elements in V
+TAU      Scale factor for elementary reflector
+C        Matrix of size M x N
+LDC      Leading dimension of C
+WORK     Work space of size at least N if SIDE is 'L', or M if SIDE is 'R'
+======   =====================================================================

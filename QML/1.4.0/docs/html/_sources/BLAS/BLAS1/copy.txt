@@ -1,0 +1,53 @@
+(S|D|C|Z)COPY
+=============
+Single, double, single complex, and double complex COPY.
+
+Description
+-----------
+Copies the contents of vector X to vector Y.
+
+BLAS Interface
+---------------
+.. code-block:: c
+
+    void scopy(const qml_long *N, const float *X, const qml_long *INCX,
+               float *Y, const qml_long *INCY);
+
+    void dcopy(const qml_long *N, const double *X, const qml_long *INCX,
+               double *Y, const qml_long *INCY);
+
+    void ccopy(const qml_long *N, const qml_single_complex *X,
+               const qml_long *INCX, qml_single_complex *Y,
+               const qml_long *INCY);
+
+    void zcopy(const qml_long *N, const qml_double_complex *X,
+               const qml_long *INCX, qml_double_complex *Y,
+               const qml_long *INCY);
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_scopy(const qml_long N, const float *X, const qml_long INCX,
+                     float *Y, const qml_long INCY);
+
+    void cblas_dcopy(const qml_long N, const double *X, const qml_long INCX,
+                     double *Y, const qml_long INCY);
+
+    void cblas_ccopy(const qml_long N, const qml_single_complex *X,
+                     const qml_long INCX, qml_single_complex *Y,
+                     const qml_long INCY);
+
+    void cblas_zcopy(const qml_long N, const qml_double_complex *X,
+                     const qml_long INCX, qml_double_complex *Y,
+                     const qml_long INCY);
+
+Arguments
+-----------
+====   =================================================
+N      Number of elements in X and Y
+X      First input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX   Distance between individual elements in X
+Y      Second input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCY}} + 1`
+INCY   Distance between individual elements in Y
+====   =================================================

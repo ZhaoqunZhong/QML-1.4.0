@@ -1,0 +1,28 @@
+(S|D)LAPY2
+==========
+Single and double LAPY2.
+
+Description
+-----------
+While avoiding overflow, computes:
+
+.. math::
+
+    \result = \sqrt{X^2 + Y^2}
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    float slapy2(const float *X, const float *Y);
+
+    double dlapy2(const double *X, const double *Y);
+
+
+Arguments
+---------
+======   =====================================================================
+X        X component of vector
+Y        Y component of vector
+Result   Magnitude of vector
+======   =====================================================================

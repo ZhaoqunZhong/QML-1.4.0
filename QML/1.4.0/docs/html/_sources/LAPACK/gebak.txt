@@ -1,0 +1,52 @@
+(S|D|C|Z)GEBAK
+==============
+Single, double, single complex, and double complex GEBAK.
+
+Description
+-----------
+Computes the transformed right and left eigenvectors for a balanced
+matrix using back transformation.
+
+This routine takes eigenvectors computed using a routine such as
+:doc:`TREVC<trevc>` together with the SCALE output of :doc:`GEBAL<gebal>` and
+performs back substitution to adjust the eigenvectors to account
+for the permutation and scaling operations done during balancing.
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void sgebak(const char *JOB, const char *SIDE, const qml_long *N,
+        const qml_long *ILO, const qml_long *IHI, float *SCALE,
+        const qml_long *M, float *V, const qml_long *LDV, qml_long *INFO);
+    
+    void dgebak(const char *JOB, const char *SIDE, const qml_long *N,
+        const qml_long *ILO, const qml_long *IHI, double *SCALE,
+        const qml_long *M, double *V, const qml_long *LDV, qml_long *INFO);
+    
+    void cgebak(const char *JOB, const char *SIDE, const qml_long *N,
+        const qml_long *ILO, const qml_long *IHI, float *SCALE,
+        const qml_long *M, qml_single_complex *V, const qml_long *LDV,
+        qml_long *INFO);
+    
+    void zgebak(const char *JOB, const char *SIDE, const qml_long *N,
+        const qml_long *ILO, const qml_long *IHI, double *SCALE,
+        const qml_long *M, qml_double_complex *V, const qml_long *LDV,
+        qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+JOB      Operations to perform, 'N' none, 'P' permute only, 'S' scale only, 'B' both
+SIDE     Choose 'R' right or 'L' left eigenvectors in V
+N        Number of rows of V
+ILO      Lower index
+IHI      Upper index, 1 <= ILO <= IHI <= N
+SCALE    Array of size N, permutation and scale factors of columns
+M        Number of columns of V
+V        Left or right eigenvectors, overwritten with transformed eigenvectors
+LDV      Leading dimension of V
+INFO     0 on success
+======   =====================================================================

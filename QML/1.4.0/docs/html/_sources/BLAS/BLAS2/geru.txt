@@ -1,0 +1,56 @@
+(C|Z)GERU
+=============
+Single complex and double complex GERU.
+
+Description
+-----------
+Computes the rank-1 operation:
+
+.. math::
+
+    A \assign \alpha x * \trans{y} + A
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void cgeru(const qml_long *M, const qml_long *N, const qml_single_complex *ALPHA,
+               const qml_single_complex *X, const qml_long *INCX,
+               const qml_single_complex *Y, const qml_long *INCY,
+               qml_single_complex *A, const qml_long *LDA);
+
+    void zgeru(const qml_long *M, const qml_long *N, const qml_double_complex *ALPHA,
+               const qml_double_complex *X, const qml_long *INCX,
+               const qml_double_complex *Y, const qml_long *INCY,
+               qml_double_complex *A, const qml_long *LDA);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_cgeru(const CBLAS_ORDER ORDER, const qml_long M, const qml_long N,
+                     const qml_single_complex *ALPHA, const qml_single_complex *X,
+                     const qml_long INCX, const qml_single_complex *Y,
+                     const qml_long INCY, qml_single_complex *A,
+                     const qml_long LDA);
+
+    void cblas_zgeru(const CBLAS_ORDER ORDER, const qml_long M, const qml_long N,
+                     const qml_double_complex *ALPHA, const qml_double_complex *X,
+                     const qml_long INCX, const qml_double_complex *Y,
+                     const qml_long INCY, qml_double_complex *A,
+                     const qml_long LDA);
+
+Arguments
+---------
+======   =====================================================================
+M        Number of rows of matrix A
+N        Number of columns of matrix A
+ALPHA    Scalar multiplied with the vector-vector product
+X        First input vector, must be at least: :math:`(\fvar{M}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+Y        Second input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCY}} + 1`
+INCY     Distance between individual elements in Y
+A        Input matrix A
+LDA      Leading dimension of matrix A
+======   =====================================================================

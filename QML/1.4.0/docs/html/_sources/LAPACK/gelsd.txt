@@ -1,0 +1,74 @@
+(S|D|C|Z)GELSD
+==============
+Single, double, single complex, and double complex GELSD.
+
+Description
+-----------
+Finds the minimum norm solution to a linear least-squares problem:
+
+.. math::
+
+    \min || b - A \mult x ||_2
+
+The matrix A is allowed to be rank deficient.
+
+This routine works by computing the SVD of A. Any singular values
+less than RCOND times the largest singular value are assumed to be
+zero. Passing RCOND<0 means machine precision will be used for the
+cutoff.
+
+The matrix B encodes multiple right-hand sides and produces multiple
+solution vectors encoded in the matrix X. Each column of B and column of X can
+be considered a single solution to
+
+.. math::
+
+    A \mult x = b
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void sgelsd(const qml_long *M, const qml_long *N, const qml_long *NRHS, float *A,
+        const qml_long *LDA, float *B, const qml_long *LDB, float *S,
+        const float *RCOND, qml_long *RANK, float *WORK, const qml_long *LWORK,
+        qml_long *IWORK, qml_long *INFO);
+    
+    void dgelsd(const qml_long *M, const qml_long *N, const qml_long *NRHS, double *A,
+        const qml_long *LDA, double *B, const qml_long *LDB, double *S,
+        const double *RCOND, qml_long *RANK, double *WORK,
+        const qml_long *LWORK, qml_long *IWORK, qml_long *INFO);
+    
+    void cgelsd(const qml_long *M, const qml_long *N, const qml_long *NRHS,
+        qml_single_complex *A, const qml_long *LDA, qml_single_complex *B,
+        const qml_long *LDB, float *S, const float *RCOND, qml_long *RANK,
+        qml_single_complex *WORK, const qml_long *LWORK, float *RWORK,
+        qml_long *IWORK, qml_long *INFO);
+    
+    void zgelsd(const qml_long *M, const qml_long *N, const qml_long *NRHS,
+        qml_double_complex *A, const qml_long *LDA, qml_double_complex *B,
+        const qml_long *LDB, double *S, const double *RCOND, qml_long *RANK,
+        qml_double_complex *WORK, const qml_long *LWORK, double *RWORK,
+        qml_long *IWORK, qml_long *INFO);
+    
+
+Arguments
+---------
+======   =====================================================================
+M        Number of rows of A
+N        Number of columns of A
+NRHS     Number of right hand sides, number of columns of B and X
+A        Matrix of size M x N, overwritten on exit
+LDA      Leading dimension of A
+B        Matrix of right hand side vectors, overwritten with X on exit
+LDB      Leading dimension of B
+S        On exit contains singular values in decreasing order, length `min(M, N)`
+RCOND    Determines which singular values to consider zero
+RANK     On exit contains effective rank of A
+WORK     Work space of size at least LWORK
+LWORK    Size of work space (-1 to query WORK and IWORK)
+RWORK    Work space (query size required with LWORK=-1)
+IWORK    Integer work space (query size required with LWORK=-1)
+INFO     0 on success, <0 for illegal arguments, >0 if SVD failed
+======   =====================================================================

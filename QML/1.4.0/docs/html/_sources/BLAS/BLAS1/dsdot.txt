@@ -1,0 +1,39 @@
+(D)SDOT
+==========
+Double with extended internal precision SDOT.
+
+Description
+-----------
+Performs a dot product of the input vectors X and Y using
+extended internal precision for accumulation.
+
+.. math::
+
+  \result = \sum_{i=1}^N {x_{i} \mult y_{i}}
+
+BLAS Interface
+---------------
+.. code-block:: c
+
+    double dsdot(const qml_long *N, const float *X, const qml_long *INCX,
+                 const float *Y, const qml_long *INCY);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    double cblas_dsdot(const qml_long N, const float *X, const qml_long INCX,
+                       const float *Y, const qml_long INCY);
+
+
+Arguments
+-----------
+======   =================================================
+N        Number of elements in X and Y
+X        First input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+Y        Second input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCY}} + 1`
+INCY     Distance between individual elements in Y
+Result   Result of the dot product
+======   =================================================

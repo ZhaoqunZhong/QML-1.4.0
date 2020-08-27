@@ -1,0 +1,51 @@
+(S|D|C|Z)SWAP
+=============
+Single, double, single complex, and double complex SWAP.
+
+Description
+-----------
+Swap the contents of vectors X and Y.
+
+BLAS Interface
+---------------
+.. code-block:: c
+
+    void sswap(const qml_long *N, float *X, const qml_long *INCX, float *Y,
+               const qml_long *INCY);
+
+    void dswap(const qml_long *N, double *X, const qml_long *INCX, double *Y,
+               const qml_long *INCY);
+
+    void cswap(const qml_long *N, qml_single_complex *X, const qml_long *INCX, 
+               qml_single_complex *Y, const qml_long *INCY);
+
+    void zswap(const qml_long *N, qml_double_complex *X, const qml_long *INCX, 
+               qml_double_complex *Y, const qml_long *INCY);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_sswap(const qml_long N, float *X, const qml_long INCX,
+                     float *Y, const qml_long INCY);
+
+    void cblas_dswap(const qml_long N, double *X, const qml_long INCX,
+                     double *Y, const qml_long INCY);
+
+    void cblas_cswap(const qml_long N, qml_single_complex *X, const qml_long INCX,
+                     qml_single_complex *Y, const qml_long INCY);
+
+    void cblas_zswap(const qml_long N, qml_double_complex *X, const qml_long INCX, 
+                     qml_double_complex *Y, const qml_long INCY);
+
+
+Arguments
+-----------
+====   =================================================
+N      Number of elements in X and Y
+X      First input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX   Distance between individual elements in X
+Y      Second input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCY}} + 1`
+INCY   Distance between individual elements in Y
+====   =================================================

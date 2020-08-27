@@ -1,0 +1,28 @@
+(C|Z)LACGV
+==========
+Single complex and double complex LACGV.
+
+Description
+-----------
+Conjugates a complex vector in place.
+
+.. math::
+
+    X \assign \conj{X}
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void clacgv(const qml_long *N, qml_single_complex *X, const qml_long *INCX);
+
+    void zlacgv(const qml_long *N, qml_double_complex *X, const qml_long *INCX);
+
+
+Arguments
+---------
+======   =====================================================================
+N        Length of vector X
+X        Vector of length N
+INCX     Stride between elements of X
+======   =====================================================================

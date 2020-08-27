@@ -1,0 +1,85 @@
+(S|D|C|Z)LARFB
+==============
+Single, double, single complex, and double complex LARFB.
+
+Description
+-----------
+Applies a block reflector to a rectangular matrix from the left or right.
+
+If SIDE is 'L',
+
+.. math::
+
+    C \assign H * C
+
+If SIDE is 'R',
+
+.. math::
+
+    C \assign C * H
+
+If TRANS is 'T' then :math:`\trans{H}` is used. If TRANS is 'C' then
+:math:`\herm{H}` is used.
+
+The block reflector matrix is formed as a product of elementary reflectors.
+When DIRECT is 'F':
+
+.. math::
+
+    H = H_1 \mult H_2 \mult \dots \mult H_k
+
+When DIRECT is 'B':
+
+.. math::
+
+    H = H_k \mult H_{k-1} \mult \dots \mult H_1
+
+The vectors that define each elementary reflector are stored either as
+rows or columns of a matrix V depending on STOREV.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void slarfb(const char *SIDE, const char *TRANS, const char *DIRECT, const char *STOREV,
+        const qml_long *M, const qml_long *N, const qml_long *K, const float *V,
+        const qml_long *LDV, const float *T, const qml_long *LDT, float *C,
+        const qml_long *LDC, float *WORK, const qml_long *LDWORK);
+
+    void dlarfb(const char *SIDE, const char *TRANS, const char *DIRECT, const char *STOREV,
+        const qml_long *M, const qml_long *N, const qml_long *K, const double *V,
+        const qml_long *LDV, const double *T, const qml_long *LDT, double *C,
+        const qml_long *LDC, double *WORK, const qml_long *LDWORK);
+
+    void clarfb(const char *SIDE, const char *TRANS, const char *DIRECT, const char *STOREV,
+        const qml_long *M, const qml_long *N, const qml_long *K,
+        const qml_single_complex *V, const qml_long *LDV, const qml_single_complex *T,
+        const qml_long *LDT, qml_single_complex *C, const qml_long *LDC,
+        qml_single_complex *WORK, const qml_long *LDWORK);
+
+    void zlarfb(const char *SIDE, const char *TRANS, const char *DIRECT, const char *STOREV,
+        const qml_long *M, const qml_long *N, const qml_long *K,
+        const qml_double_complex *V, const qml_long *LDV, const qml_double_complex *T,
+        const qml_long *LDT, qml_double_complex *C, const qml_long *LDC,
+        qml_double_complex *WORK, const qml_long *LDWORK);
+
+
+Arguments
+---------
+======   =====================================================================
+SIDE     Which side to mulplify reflector from, 'L' or 'R'
+TRANS    Whether to transpose reflector matrix, 'N', 'T', or 'C'
+DIRECT   Direction to apply elementary reflectors
+STOREV   Storage format of elementary reflector vectors
+M        Number of rows of C
+N        Number of columns of C
+K        The number of elementary reflectors in the block
+V        Matrix storing reflector vectors
+LDV      Leading dimension of V
+T        Triangular K x K matrix storing reflectors
+LDT      Leading dimension of T
+C        Matrix of size M x N
+LDC      Leading dimension of C
+WORK     Work space matrix of size at least N x K if SIDE is 'L', or M x K if SIDE is 'R'
+LDWORK   Leading dimension of WORK matrix
+======   =====================================================================

@@ -1,0 +1,49 @@
+(S|D|C|Z)SYTRI
+==============
+Single, double, single complex, and double complex SYTRI.
+
+Description
+-----------
+Computes the inverse of a symmetric indefinite matrix using one of the
+following factorizations:
+
+.. math::
+
+    \fvar{A} = \fvar{U} \mult \fvar{D} \mult \trans{\fvar{U}}
+
+.. math::
+
+    \fvar{A} = \fvar{L} \mult \fvar{D} \mult \trans{\fvar{L}}
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void ssytri(const char *UPLO, const qml_long *N, float *A, const qml_long *LDA,
+        qml_long *IPIV, float *WORK, qml_long *INFO);
+    
+    void dsytri(const char *UPLO, const qml_long *N, double *A, const qml_long *LDA,
+        qml_long *IPIV, double *WORK, qml_long *INFO);
+    
+    void csytri(const char *UPLO, const qml_long *N, qml_single_complex *A,
+        const qml_long *LDA, qml_long *IPIV, qml_single_complex *WORK,
+        qml_long *INFO);
+    
+    void zsytri(const char *UPLO, const qml_long *N, qml_double_complex *A,
+        const qml_long *LDA, qml_long *IPIV, qml_double_complex *WORK,
+        qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Set to 'U' for upper triangular factorization, 'L' for lower
+N        Number of rows and columns of A
+A        Matrix of size N x N containing block diagonal matrix D with multipliers,
+         as output by :doc:`SYTRF<sytrf>`
+LDA      Leading dimension of A
+IPIV     Array of pivots of size N, as provided by :doc:`SYTRF<sytrf>`
+WORK     Work space of size at least 2N
+INFO     0 on success, <0 for bad arguments, >0 if singular
+======   =====================================================================

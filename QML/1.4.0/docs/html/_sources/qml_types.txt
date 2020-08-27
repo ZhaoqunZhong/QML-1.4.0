@@ -1,0 +1,110 @@
+QML
+=====
+
+OpenMP
+------
+QML uses the OpenMP runtime for parallelism.  More information about OpenMP
+can be found at http://openmp.org/wp/. In particular, OpenMP environment variables
+will affect the behavior of QML.
+
+QML Directory Structure
+------------------------
+The QML directory structure is organized in the following way:
+
+``/<plat>/<arch>/<interface>/<toolchain>/``
+
+Where possible values for each directory are:
+
+**plat:** ``android, linux, macos, windows``
+
+**arch:** ``arm32, aarch64, x64``
+
+**interface:** ``lp64, ilp64``
+
+**toolchain:** ``ndk-r10e, ndk-r11, gcc-4.x, gcc-5.x, gcc-4.9-ubuntu-12.04, msvc, clang``
+
+Once the platform, architecture, interface, and supported toolchain are selected, the
+final directory will contain the follow subdirectories:
+
+``/examples``
+
+``/include``
+
+``/lib``
+
+
+ILP64 and LP64
+--------------
+The BLAS specification uses 32 bit integers for everything from the dimensions
+of matrices to the stride between elements in a dot product.  This is sufficient
+for most problems and 32 bit architectures, however, certain classes of problem
+require more bits to indicate things like the length of the input vectors when
+calling :doc:`AXPY<BLAS/BLAS1/axpy>` or :doc:`DOT<BLAS/BLAS1/dot>`.  This has lead the community to support both ILP64 and LP64
+even on 64 bit architectures.  QML also supports both ILP64 and LP64, with the
+appropriate libraries either in the ``ilp64`` or ``lp64`` folder.  To aid
+development on diverse platforms we provide the type ``qml_long`` in
+``qml_types.h`` which will be 32 bits on 32 bit platforms and 64 bits on
+64 bit platforms if the ``ilp64`` folder header is used.  Otherwise if the ``lp64``
+folder header is used, ``qml_long`` will be 32 bits on all platforms.
+
+Using QML on Android
+----------------------
+In order to run QML on Android, the appropriate QML shared library will need to be
+copied to the device in addition to the program that uses QML.  If the device is
+rooted, the appropriate place for the 32-bit (armv7-a) version of QML is
+``/system/vendor/lib/``.  The 64-bit (aarch64/armv8-a) version of QML belongs in
+``/system/vendor/lib64/``.  Additionally, the 32-bit (armv7-a) version of QML is
+compiled for Android API level 19 (Android 4.4), whereas the 64-bit (aarch64/armv8-a)
+version of QML is compiled for Android API level 21 (Android 5.0).
+
+
+.. _environment-variables:
+
+Environment Variables
+---------------------
+Three environment variables are available to control the threadpool used by QML:
+
+``OMP_NUM_THREADS=<N>``
+    Controls the number of threads in the OpenMP threadpool at launch time.
+
+``QML_NUM_THREADS=<N>``
+    Controls the degree of parallelism of QML functions, does not affect the size of the
+    OpenMP threadpool.  The number of tasks launched by QML will be the minimum of
+    ``QML_NUM_THREADS`` and ``OMP_NUM_THREADS``.
+
+``QML_HET_RATIO=<little:big[:prime]>``
+    Controls the work distribution ratio (as percentage) of parallel operations 
+    like GEMM.  The first number is for the first CPU cluster (e.g. LITTLE cluster), 
+    then for the big cluster and then prime cluster (if applicable).  The numbers 
+    should be integers, and sum of all numbers must be 100.  In case of bad 
+    formatting, the default partitioning is used which may not be optimal for all SOCs. 
+
+On x86 based systems, over subscription can be a problem for compute bound workloads as
+it causes cache thrashing which destroys performance.  To prevent this it is
+recommended to set the number of threads using one of these two environment
+variables to the number of physical cores present rather than the default number
+of reported cores.
+
+
+Example (Linux x86)
+--------------------
+Let's assume we are using an x86 based machine that supports hyperthreading.  This
+means there are X real cores, however, the system behaves as if it has 2X cores.
+On modern Linux systems, the first N/2 cores are different cores, the
+next N/2 are duplicates of the first half.  In order to avoid over subscription for
+compute bound workloads (matrix multiply or GEMM), we don't want to have a threadpool
+larger than the number of real cores on the machine.  We also don't want these threads
+migrating in the middle of computation as that also causes cache thrashing.  To avoid
+this we will employ both a tool that is provided on Linux as well as the environment
+variables used by OpenMP.  For instance, let's assume the machine has 4
+real cores.  Then to invoke a program that calls QML GEMM we would do the following:
+
+``OMP_NUM_THREADS=4 taskset -c 0-3 <program>``
+
+Additional Information
+----------------------
+Some additional information can be found in the release notes.
+
+Questions and Problems
+----------------------
+Please send any suggestions, questions, bugs, or integration issues to qml@qti.qualcomm.com.

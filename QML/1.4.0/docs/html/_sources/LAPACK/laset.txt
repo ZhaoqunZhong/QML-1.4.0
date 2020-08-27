@@ -1,0 +1,46 @@
+(S|D|C|Z)LASET
+==============
+Single, double, single complex, and double complex LASET.
+
+Description
+-----------
+Initializes diagonal and off-diagonal elements of a matrix.
+
+LASET sets diagonal elements to :math:`\beta`. If UPLO is L,
+lower triangular elements off the diagonal of A are set to :math:`\alpha`
+and upper triangular elements are not accessed. If UPLO is U,
+upper triangular elements off the diagonal of A are set to :math:`\alpha`
+and lower triangular elements are not accessed. Otherwise, all off-diagonal
+elements are set to :math:`\alpha`.
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void slaset(const char *uplo, const qml_long *M, const qml_long *N,
+        const float *ALPHA, const float *BETA, float *A, const qml_long *LDA);
+
+    void dlaset(const char *uplo, const qml_long *M, const qml_long *N,
+        const double *ALPHA, const double *BETA, double *A, const qml_long *LDA);
+
+    void claset(const char *uplo, const qml_long *M, const qml_long *N,
+        const qml_single_complex *ALPHA, const qml_single_complex *BETA,
+        qml_single_complex *A, const qml_long *LDA);
+
+    void zlaset(const char *uplo, const qml_long *M, const qml_long *N,
+        const qml_double_complex *ALPHA, const qml_double_complex *BETA,
+        qml_double_complex *A, const qml_long *LDA);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify which part of A to set
+M        Number of rows of A
+N        Number of columns of A
+ALPHA    Value for off-diagonal elements of A
+BETA     Value for diagonal elements of A
+A        Destination matrix
+LDA      Leading dimension of A
+======   =====================================================================

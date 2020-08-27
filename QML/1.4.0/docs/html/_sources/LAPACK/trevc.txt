@@ -1,0 +1,79 @@
+(S|D|C|Z)TREVC
+==============
+Single, double, single complex, and double complex TREVC.
+
+Description
+-----------
+Computes the left/right eigenvectors of an upper (quasi) triangular matrix T.
+
+Upper (quasi) triangular matrices are produced during Schur factorization,
+for example by :doc:`HSEQR<hseqr>`.
+
+Right eigenvectors x satisfy:
+
+.. math::
+
+    T \mult x = \lambda x
+
+Left eigenvectors y satisfy:
+
+.. math::
+
+    \herm{y} \mult T = \lambda \herm{y}
+
+Eigenvalues :math:`\lambda` are not passed explicitly, they are taken
+from the diagonal of T. Optionally a matrix Q can be given that reduces
+an original matrix A to upper triangular form, which allows the calculation
+of the eigenvectors of A (set HOWMNY to B).
+
+The real versions of this function accept quasi triangular form which
+allows 1x1 and 2x2 blocks along the diagonal of T corresponding to real
+and pairs of complex conjugate eigenvalues.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void strevc(const char *SIDE, const char *HOWMNY, qml_int *SELECT,
+        const qml_long *N, float *T, const qml_long *LDT, float *VL,
+        const qml_long *LDVL, float *VR, const qml_long *LDVR,
+        const qml_long *MM, qml_long *M, float *WORK, qml_long *INFO);
+    
+    void dtrevc(const char *SIDE, const char *HOWMNY, qml_int *SELECT,
+        const qml_long *N, double *T, const qml_long *LDT, double *VL,
+        const qml_long *LDVL, double *VR, const qml_long *LDVR,
+        const qml_long *MM, qml_long *M, double *WORK, qml_long *INFO);
+    
+    void ctrevc(const char *SIDE, const char *HOWMNY, qml_int *SELECT,
+        const qml_long *N, qml_single_complex *T, const qml_long *LDT,
+        qml_single_complex *VL, const qml_long *LDVL, qml_single_complex *VR,
+        const qml_long *LDVR, const qml_long *MM, qml_long *M,
+        qml_single_complex *WORK, float *RWORK, qml_long *INFO);
+    
+    void ztrevc(const char *SIDE, const char *HOWMNY, qml_int *SELECT,
+        const qml_long *N, qml_double_complex *T, const qml_long *LDT,
+        qml_double_complex *VL, const qml_long *LDVL, qml_double_complex *VR,
+        const qml_long *LDVR, const qml_long *MM, qml_long *M,
+        qml_double_complex *WORK, double *RWORK, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+SIDE     Compute right 'R', left 'L', or both 'B' eigenvectors
+HOWMNY   Compute all eigenvectors 'A', backtransformed eigenvectors 'B',
+         or selected eigenvectors 'S'
+SELECT   Boolean array choosing eigenvectors used when HOWMNY is 'S'
+N        Number of rows and columns of T
+T        Upper (quasi) triangular matrix, modified but restored on exit
+LDT      Leading dimension of T
+VL       Matrix of size N x N containing Q, overwritten with left eigenvectors
+LDVL     Leading dimension of VL
+VR       Matrix of size N x N containing Q, overwritten with right eigenvectors
+LDVR     Leading dimension of VR
+MM       Number of columns in VL and VR
+M        On exit set to number of columns in VL and VR used to store eigenvectors
+WORK     Work space of size 3N
+RWORK    Work space of size N
+INFO     0 on success
+======   =====================================================================

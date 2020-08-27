@@ -1,0 +1,48 @@
+(S|D|SC|DZ)ASUM
+===============
+Single, double, single complex, and double complex ASUM.
+
+Description
+-----------
+Sum of the absolute value of the elements of the vector.
+
+.. math::
+
+  \result = \sum_{i=1}^N |X_{i}|
+
+BLAS Interface
+---------------
+.. code-block:: c
+
+    float  sasum(const qml_long *N, const float *X, const qml_long *INCX);
+
+    double dasum(const qml_long *N, const double *X, const qml_long *INCX);
+
+    float  scasum(const qml_long *N, const qml_single_complex *X,
+                  const qml_long *INCX);
+
+    double dzasum(const qml_long *N, const qml_double_complex *X,
+                  const qml_long *INCX);
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    float  cblas_sasum(const qml_long N, const float *X, const qml_long INCX);
+
+    double cblas_dasum(const qml_long N, const double *X, const qml_long INCX);
+
+    float  cblas_scasum(const qml_long N, const qml_single_complex *X,
+                        const qml_long INCX);
+
+    double cblas_dzasum(const qml_long N, const qml_double_complex *X,
+                        const qml_long INCX);
+
+Arguments
+-----------
+======   =============================================
+N        Number of elements in X
+X        Input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+Result   Sum of absolute value of elements of vector X
+======   =============================================

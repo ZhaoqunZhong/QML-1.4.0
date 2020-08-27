@@ -1,0 +1,84 @@
+(S|D|C|CS|Z|ZD)ROT
+==================
+Single, double, single complex, and double complex ROT.
+
+Description
+-----------
+Applies a plane rotation.
+
+.. math::
+
+    \left[ \begin{array}{c}
+    x_{i} \\
+    y_{i} \end{array} \right]
+    \assign
+    \left[ \begin{array}{cc}
+    \cos \theta & \sin \theta \\
+    - \sin \theta & \cos \theta \end{array} \right] \mult \left[ \begin{array}{c}
+    x_{i} \\
+    y_{i} \end{array} \right]
+
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void srot(const qml_long *N, float *X, const qml_long *INCX, float *Y,
+              const qml_long *INCY, const float *C, const float *S);
+
+    void drot(const qml_long *N, double *X, const qml_long *INCX, double *Y,
+              const qml_long *INCY, const double *C, const double *S);
+
+    void crot(const qml_long *N, qml_single_complex *X, const qml_long *INCX,
+              qml_single_complex *Y, const qml_long *INCY, const float *C,
+              const qml_single_complex *S);
+
+    void csrot(const qml_long *N, qml_single_complex *X, const qml_long *INCX,
+               qml_single_complex *Y, const qml_long *INCY, const float *C,
+               const float *S);
+
+    void zrot(const qml_long *N, qml_double_complex *X, const qml_long *INCX,
+              qml_double_complex *Y, const qml_long *INCY, const double *C,
+              const qml_double_complex *S);
+
+    void zdrot(const qml_long *N, qml_double_complex *X, const qml_long *INCX,
+               qml_double_complex *Y, const qml_long *INCY, const double *C,
+               const double *S);
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_srot(const qml_long N, float *X, const qml_long INCX, float *Y,
+                    const qml_long INCY, const float C, const float S);
+
+    void cblas_drot(const qml_long N, double *X, const qml_long INCX, double *Y,
+                    const qml_long INCY, const double C, const double S);
+
+    void cblas_crot(const qml_long N, qml_single_complex *X, const qml_long INCX,
+                    qml_single_complex *Y, const qml_long INCY, const float C,
+                    const qml_single_complex *S);
+
+    void cblas_csrot(const qml_long N, qml_single_complex *X, const qml_long INCX,
+                     qml_single_complex *Y, const qml_long INCY, const float C,
+                     const float S);
+
+    void cblas_zrot(const qml_long N, qml_double_complex *X, const qml_long INCX,
+                    qml_double_complex *Y, const qml_long INCY, const double C,
+                    const qml_double_complex *S);
+
+    void cblas_zdrot(const qml_long N, qml_double_complex *X, const qml_long INCX,
+                     qml_double_complex *Y, const qml_long INCY, const double C,
+                     const double S);
+
+Arguments
+---------
+====   ========================================================================
+N      The number of elements in X and Y
+X      The X coordinates for the series of points, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX   Distance between individual elements in X
+Y      The Y coordinates for the series of points, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCY}} + 1`
+INCY   Distance between individual elements in Y
+C      :math:`\cos \theta`
+S      :math:`\sin \theta`
+====   ========================================================================

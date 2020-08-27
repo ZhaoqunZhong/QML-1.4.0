@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>(S|D|C|Z)COPY &mdash; Qualcomm Math Library</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Qualcomm Math Library" href="../../index.html"/>
+        <link rel="up" title="BLAS 1 Functions" href="../blas1.html"/>
+        <link rel="next" title="(S|D)DOT" href="dot.html"/>
+        <link rel="prev" title="(S|D)CABS1" href="cabs1.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> QML
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction to BLAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction_lapack.html">Introduction to LAPACK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using_qml.html">Using QML</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../blas_index.html">QML API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../blas1.html">BLAS 1 Functions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="amax.html">(IS|ID|IC|IZ)AMAX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="amin.html">(IS|ID|IC|IZ)AMIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asum.html">(S|D|SC|DZ)ASUM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="axpby.html">(S|D|C|Z)AXPBY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="axpy.html">(S|D|C|Z)AXPY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cabs1.html">(S|D)CABS1</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">(S|D|C|Z)COPY</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#blas-interface">BLAS Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cblas-interface">CBLAS Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arguments">Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dot.html">(S|D)DOT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotc.html">(C|Z)DOTC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotu.html">(C|Z)DOTU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nrm2.html">(S|D|SC|DZ)NRM2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rot.html">(S|D|C|CS|Z|ZD)ROT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rotg.html">(S|D|C|Z)ROTG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rotm.html">(S|D)ROTM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rotmg.html">(S|D)ROTMG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scal.html">(S|D|C|Z|CS|ZD)SCAL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsdot.html">(D)SDOT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sdsdot.html">(SD)SDOT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="swap.html">(S|D|C|Z)SWAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blas2.html">BLAS 2 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas3.html">BLAS 3 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../LAPACK/lapack.html">LAPACK Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Extensions/extensions.html">QML Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Utility/utility.html">QML Utility Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">QML</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../blas_index.html">QML API Reference</a> &raquo;</li>
+      
+          <li><a href="../blas1.html">BLAS 1 Functions</a> &raquo;</li>
+      
+    <li>(S|D|C|Z)COPY</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-d-c-z-copy">
+<h1>(S|D|C|Z)COPY<a class="headerlink" href="#s-d-c-z-copy" title="Permalink to this headline">¶</a></h1>
+<p>Single, double, single complex, and double complex COPY.</p>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Copies the contents of vector X to vector Y.</p>
+</div>
+<div class="section" id="blas-interface">
+<h2>BLAS Interface<a class="headerlink" href="#blas-interface" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">scopy</span><span class="p">(</span><span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">N</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">INCX</span><span class="p">,</span>
+           <span class="kt">float</span> <span class="o">*</span><span class="n">Y</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">INCY</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">dcopy</span><span class="p">(</span><span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">N</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">INCX</span><span class="p">,</span>
+           <span class="kt">double</span> <span class="o">*</span><span class="n">Y</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">INCY</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">ccopy</span><span class="p">(</span><span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">N</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_single_complex</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">INCX</span><span class="p">,</span> <span class="n">qml_single_complex</span> <span class="o">*</span><span class="n">Y</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">INCY</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">zcopy</span><span class="p">(</span><span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">N</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_double_complex</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">INCX</span><span class="p">,</span> <span class="n">qml_double_complex</span> <span class="o">*</span><span class="n">Y</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">INCY</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cblas-interface">
+<h2>CBLAS Interface<a class="headerlink" href="#cblas-interface" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">cblas_scopy</span><span class="p">(</span><span class="k">const</span> <span class="n">qml_long</span> <span class="n">N</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="n">INCX</span><span class="p">,</span>
+                 <span class="kt">float</span> <span class="o">*</span><span class="n">Y</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="n">INCY</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">cblas_dcopy</span><span class="p">(</span><span class="k">const</span> <span class="n">qml_long</span> <span class="n">N</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="n">INCX</span><span class="p">,</span>
+                 <span class="kt">double</span> <span class="o">*</span><span class="n">Y</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="n">INCY</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">cblas_ccopy</span><span class="p">(</span><span class="k">const</span> <span class="n">qml_long</span> <span class="n">N</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_single_complex</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">qml_long</span> <span class="n">INCX</span><span class="p">,</span> <span class="n">qml_single_complex</span> <span class="o">*</span><span class="n">Y</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">qml_long</span> <span class="n">INCY</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">cblas_zcopy</span><span class="p">(</span><span class="k">const</span> <span class="n">qml_long</span> <span class="n">N</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_double_complex</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">qml_long</span> <span class="n">INCX</span><span class="p">,</span> <span class="n">qml_double_complex</span> <span class="o">*</span><span class="n">Y</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">qml_long</span> <span class="n">INCY</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="arguments">
+<h2>Arguments<a class="headerlink" href="#arguments" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="96%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>N</td>
+<td>Number of elements in X and Y</td>
+</tr>
+<tr class="row-even"><td>X</td>
+<td>First input vector, must be at least: <img class="math" src="../../_images/math/7eed8a4101ef0d79d7dcc4b2e7bbf76caea2c1d2.png" alt="(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1"/></td>
+</tr>
+<tr class="row-odd"><td>INCX</td>
+<td>Distance between individual elements in X</td>
+</tr>
+<tr class="row-even"><td>Y</td>
+<td>Second input vector, must be at least: <img class="math" src="../../_images/math/fc4fde289da27f1fc8d4a0e03c641d7780d4f63b.png" alt="(\fvar{N}-1)\mult\abs{\fvar{INCY}} + 1"/></td>
+</tr>
+<tr class="row-odd"><td>INCY</td>
+<td>Distance between individual elements in Y</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dot.html" class="btn btn-neutral float-right" title="(S|D)DOT" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cabs1.html" class="btn btn-neutral" title="(S|D)CABS1" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Qualcomm Technologies, Inc.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

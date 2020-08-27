@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>(S|D|C|Z)LARFT &mdash; Qualcomm Math Library</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Qualcomm Math Library" href="../index.html"/>
+        <link rel="up" title="LAPACK Functions" href="lapack.html"/>
+        <link rel="next" title="(S|D)LAS2" href="las2.html"/>
+        <link rel="prev" title="(S|D|C|Z)LARTG" href="lartg.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> QML
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction to BLAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction_lapack.html">Introduction to LAPACK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_qml.html">Using QML</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../blas_index.html">QML API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../BLAS/blas1.html">BLAS 1 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../BLAS/blas2.html">BLAS 2 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../BLAS/blas3.html">BLAS 3 Functions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="lapack.html">LAPACK Functions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="bdsqr.html">(S|D|C|Z)BDSQR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gebak.html">(S|D|C|Z)GEBAK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gebal.html">(S|D|C|Z)GEBAL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gees.html">(S|D|C|Z)GEES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geev.html">(S|D|C|Z)GEEV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gehrd.html">(S|D|C|Z)GEHRD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gels.html">(S|D|C|Z)GELS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gelsd.html">(S|D|C|Z)GELSD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geqr2.html">(S|D|C|Z)GEQR2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geqrf.html">(S|D|C|Z)GEQRF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gesdd.html">(S|D|C|Z)GESDD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gesv.html">(S|D|C|Z)GESV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gesvd.html">(S|D|C|Z)GESVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gesvx.html">(S|D|C|Z)GESVX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getf2.html">(S|D|C|Z)GETF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getrf.html">(S|D|C|Z)GETRF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getri.html">(S|D|C|Z)GETRI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getrs.html">(S|D|C|Z)GETRS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gges.html">(S|D|C|Z)GGES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ggev.html">(S|D|C|Z)GGEV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="heev.html">(C|Z)HEEV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="heevd.html">(C|Z)HEEVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hetrd.html">(C|Z)HETRD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hseqr.html">(S|D|C|Z)HSEQR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ilaxlc.html">ILA(S|D|C|Z)LC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ilaxlr.html">ILA(S|D|C|Z)LR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lacgv.html">(C|Z)LACGV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lacpy.html">(S|D|C|Z)LACPY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ladiv.html">(S|D)LADIV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cladiv.html">(C|Z)LADIV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lange.html">(S|D|C|Z)LANGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lapy2.html">(S|D)LAPY2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lapy3.html">(S|D)LAPY3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="larf.html">(S|D|C|Z)LARF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="larfb.html">(S|D|C|Z)LARFB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="larfg.html">(S|D|C|Z)LARFG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lartg.html">(S|D|C|Z)LARTG</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">(S|D|C|Z)LARFT</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lapack-interface">LAPACK Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arguments">Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="las2.html">(S|D)LAS2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lascl.html">(S|D|C|Z)LASCL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laset.html">(S|D|C|Z)LASET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lasq1.html">(S|D)LASQ1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lasr.html">(S|D|C|Z)LASR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lasrt.html">(S|D)LASRT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lassq.html">(S|D|C|Z)LASSQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lasv2.html">(S|D)LASV2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orgqr.html">(S|D)ORGQR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orgtr.html">(S|D)ORGTR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="posv.html">(S|D|C|Z)POSV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="potf2.html">(S|D|C|Z)POTF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="potrf.html">(S|D|C|Z)POTRF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="potri.html">(S|D|C|Z)POTRI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="potrs.html">(S|D|C|Z)POTRS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stedc.html">(S|D|C|Z)STEDC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="steqr.html">(S|D|C|Z)STEQR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syev.html">(S|D)SYEV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syevd.html">(S|D)SYEVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sytrd.html">(S|D)SYTRD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sytrf.html">(S|D|C|Z)SYTRF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sytri.html">(S|D|C|Z)SYTRI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trevc.html">(S|D|C|Z)TREVC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trsyl.html">(S|D|C|Z)TRSYL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trti2.html">(S|D|C|Z)TRTI2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trtri.html">(S|D|C|Z)TRTRI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unghr.html">(C|Z)UNGHR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ungqr.html">(C|Z)UNGQR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ungtr.html">(C|Z)UNGTR</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Extensions/extensions.html">QML Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Utility/utility.html">QML Utility Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">QML</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../blas_index.html">QML API Reference</a> &raquo;</li>
+      
+          <li><a href="lapack.html">LAPACK Functions</a> &raquo;</li>
+      
+    <li>(S|D|C|Z)LARFT</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-d-c-z-larft">
+<h1>(S|D|C|Z)LARFT<a class="headerlink" href="#s-d-c-z-larft" title="Permalink to this headline">¶</a></h1>
+<p>Single, double, single complex, and double complex LARFT.</p>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Generates the triangular factor T of a block reflector.</p>
+<p>The block reflector matrix H is formed as a product of elementary reflectors.</p>
+<p>When DIRECT is &#8216;F&#8217;:</p>
+<div class="math">
+<p><img src="../_images/math/bff4e5a98ac1585659259f60b76b0442574f5e3e.png" alt="H = H_1 \mult H_2 \mult \dots \mult H_k"/></p>
+</div><p>When DIRECT is &#8216;B&#8217;:</p>
+<div class="math">
+<p><img src="../_images/math/fbbfae53aed4e6302c0601467a50db2724f72c31.png" alt="H = H_k \mult H_{k-1} \mult \dots \mult H_1"/></p>
+</div><p>If STOREV is &#8216;C&#8217;, the vectors that define each elementary reflector
+are stored as columns of V and:</p>
+<div class="math">
+<p><img src="../_images/math/0d37241a00ec676ec396ec9a6ee7532c6b8de5ef.png" alt="H = I - V \mult T \mult \herm{V}"/></p>
+</div><p>If STOREV is &#8216;R&#8217;, the vectors that define each elementary reflector
+are stored as rows of V and:</p>
+<div class="math">
+<p><img src="../_images/math/468e4bcd214f5c34fa312b686504ed481834bc28.png" alt="H = I - \herm{V} \mult T \mult V"/></p>
+</div></div>
+<div class="section" id="lapack-interface">
+<h2>LAPACK Interface<a class="headerlink" href="#lapack-interface" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">slarft</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">DIRECT</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">STOREV</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">N</span><span class="p">,</span>
+    <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">K</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">V</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">LDV</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">TAU</span><span class="p">,</span>
+    <span class="kt">float</span> <span class="o">*</span><span class="n">T</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">LDT</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">dlarft</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">DIRECT</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">STOREV</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">N</span><span class="p">,</span>
+    <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">K</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">V</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">LDV</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">TAU</span><span class="p">,</span>
+    <span class="kt">double</span> <span class="o">*</span><span class="n">T</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">LDT</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">clarft</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">DIRECT</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">STOREV</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">N</span><span class="p">,</span>
+    <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">K</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_single_complex</span> <span class="o">*</span><span class="n">V</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">LDV</span><span class="p">,</span>
+    <span class="k">const</span> <span class="n">qml_single_complex</span> <span class="o">*</span><span class="n">TAU</span><span class="p">,</span> <span class="n">qml_single_complex</span> <span class="o">*</span><span class="n">T</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">LDT</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">zlarft</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">DIRECT</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">STOREV</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">N</span><span class="p">,</span>
+    <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">K</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_double_complex</span> <span class="o">*</span><span class="n">V</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">LDV</span><span class="p">,</span>
+    <span class="k">const</span> <span class="n">qml_double_complex</span> <span class="o">*</span><span class="n">TAU</span><span class="p">,</span> <span class="n">qml_double_complex</span> <span class="o">*</span><span class="n">T</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">LDT</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="arguments">
+<h2>Arguments<a class="headerlink" href="#arguments" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>DIRECT</td>
+<td>Direction to apply elementary reflectors</td>
+</tr>
+<tr class="row-even"><td>STOREV</td>
+<td>Storage format of elementary reflector vectors</td>
+</tr>
+<tr class="row-odd"><td>N</td>
+<td>Order of the block reflector H</td>
+</tr>
+<tr class="row-even"><td>K</td>
+<td>The number of elementary reflectors in the block</td>
+</tr>
+<tr class="row-odd"><td>V</td>
+<td>Matrix storing reflector vectors</td>
+</tr>
+<tr class="row-even"><td>LDV</td>
+<td>Leading dimension of V</td>
+</tr>
+<tr class="row-odd"><td>TAU</td>
+<td>Vector of scale factors <img class="math" src="../_images/math/b06e2e5bb96aa4ef5d1788cb4f2d2d60aa559c2b.png" alt="\tau_i"/></td>
+</tr>
+<tr class="row-even"><td>T</td>
+<td>Triangular K x K matrix storing reflectors</td>
+</tr>
+<tr class="row-odd"><td>LDT</td>
+<td>Leading dimension of T</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="las2.html" class="btn btn-neutral float-right" title="(S|D)LAS2" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="lartg.html" class="btn btn-neutral" title="(S|D|C|Z)LARTG" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Qualcomm Technologies, Inc.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,535 @@
+History
+-------
+
+The Basic Linear Algebra Subprograms (BLAS) are a set of functions
+designed to standardize and simplify numerical programming in an
+efficient and portable way. They are commonly used as building
+blocks in the design of higher-level linear algebra routines that
+demand performance and correctness.
+
+The original version of BLAS, now called the *reference implementation*,
+was developed in Fortran77 starting in 1979 and has been updated with
+improvements and fixes up to the present. Highly optimized
+implementations of BLAS tuned for specific machine architectures are
+available for most development environments. These *optimized implementations*
+typically follow the same naming scheme and calling conventions as
+the reference implementation. Many optimized implementations also
+provide additional functions and options.
+
+QML contains a high performance implementation of BLAS optimized for Qualcomm
+processors.
+
+Levels
+------
+
+Functions in BLAS are organized in three levels.
+
++--------+---------------+--------------------------------------+
+| Level  | Operations    |  Examples                            |
++========+===============+======================================+
+| BLAS-1 | vector        | | dot product                        |
+|        |               | | scale a vector                     |
++--------+---------------+--------------------------------------+
+| BLAS-2 | matrix-vector | | matrix-vector product              |
+|        |               | | solve a linear system of equations |
++--------+---------------+--------------------------------------+
+| BLAS-3 | matrix-matrix | | matrix-matrix multiply             |
+|        |               | | solve a linear system of equations |
+|        |               |   with multiple right-hand sides     |
++--------+---------------+--------------------------------------+
+
+The BLAS level indicates how many levels of nested loops
+are required to perform the operation. Scaling a vector requires a
+single loop iterating over the data. Computing a matrix-matrix product
+uses three nested loops (in the simplest implementation). The best performance
+is usually achieved by calling the highest level BLAS function possible
+to give the library the most oportunity for optimization.
+
+Naming Conventions
+------------------
+
+Precision
+`````````
+
+Many functions can work with several types of data. Function names
+are prefixed with the precision of the data they support.
+For example, the function ``dgemm`` works with double precision
+floating point values.
+
++---------+----------------+
+| Prefix  | Precision      |
++=========+================+
+| S       | single         |
++---------+----------------+
+| D       | double         |
++---------+----------------+
+| C       | single complex |
++---------+----------------+
+| Z       | double complex |
++---------+----------------+
+
+
+Matrix storage
+``````````````
+
+BLAS can operate on matrices that are stored in several different
+dense formats. After the precision prefix is a secondary prefix that
+indicates the storage format of the matrix.
+
++---------+------------------+
+| Prefix  | Matrix type      |
++=========+==================+
+| GE      | general          |
++---------+------------------+
+| SY      | symmetric        |
++---------+------------------+
+| HE      | hermitian        |
++---------+------------------+
+| TR      | triangular       |
++---------+------------------+
+| GB      | general banded   |
++---------+------------------+
+| SB      | symmetric banded |
++---------+------------------+
+| HB      | hermitian banded |
++---------+------------------+
+| TB      | triangle banded  |
++---------+------------------+
+| SP      | symmetric packed |
++---------+------------------+
+| HP      | hermitian packed |
++---------+------------------+
+| TP      | triangle packed  |
++---------+------------------+
+
+.. _blas-interfacing:
+
+Fortran77 Interface
+-------------------
+
+Because the reference BLAS implementation is written in Fortran77 the
+interface to BLAS library functions follows Fortran77 conventions.
+The most important difference from C is that all arguments to functions
+are passed by reference. In the C function prototypes this means
+every argument is a pointer, even simple scalar values.
+Functions that return complex values use a ``void`` return type and
+instead put their output into a ``result`` pointer.
+
+Options
+```````
+
+Many functions need to be given information such as whether to use
+an untransposed or transposed version of a matrix, or whether a triangular
+matrix is upper or lower triangular. In the Fortran77 interface
+these types of arguments are passed as character strings. Only the first
+character in the string is used and is interpreted using the following
+table.
+
++----------+-----------+---------------------+
+| Option   | Character | Interpretation      |
++==========+===========+=====================+
+| TRANSx   | N         | Non-transpose       |
+|          +-----------+---------------------+
+|          | T         | Transpose           |
+|          +-----------+---------------------+
+|          | C         | Conjugate transpose |
++----------+-----------+---------------------+
+| UPLO     | U         | Upper triangular    |
+|          +-----------+---------------------+
+|          | L         | Lower triangular    |
++----------+-----------+---------------------+
+| DIAG     | N         | Non-unit diagonal   |
+|          +-----------+---------------------+
+|          | U         | Unit diagonal       |
++----------+-----------+---------------------+
+| SIDE     | L         | Left side           |
+|          +-----------+---------------------+
+|          | R         | Right side          |
++----------+-----------+---------------------+
+
+
+Column-Major
+````````````
+
+Following Fortran, all matrices are assumed to be stored in column-major
+order when using the Fortran77 interface. This means that values linearly
+stored in increasing addresses in memory are interpreted as values in a
+column of the matrix going from top to bottom. Every matrix also has a
+leading dimension. For a matrix A the leading dimension is passed
+as the integer LDA. The values of a row of matrix A are stored in memory
+locations spaced apart by LDA values.
+
+For example, a 3x3 matrix with LDA=10 in column-major order
+has values stored in the following memory locations.
+
+.. math::
+
+    \begin{bmatrix}
+        A & A+10 & A+20 \\
+        A+1 & A+11 & A+21 \\
+        A+2 & A+12 & A+22
+    \end{bmatrix}
+
+
+One-based Indexing
+``````````````````
+
+The functions :doc:`AMAX<BLAS/BLAS1/amax>` and :doc:`AMIN<BLAS/BLAS1/amin>`
+return indices into arrays. Fortran uses 1-based indexing where an array
+with N elements has indices 1 through N. The Fortran BLAS interface follows
+the Fortran convention and uses 1-based indexing.
+
+
+Example
+```````
+
+For example, suppose we wish to perform a simple matrix multiply:
+
+.. math::
+
+    C \assign A\mult B
+
+Here is the Fortran77 prototype for ``dgemm``:
+
+.. code-block:: c
+
+    void dgemm(const char *TRANSA, const char *TRANSB, const qml_long *M,
+               const qml_long *N, const qml_long *K, const double *ALPHA,
+               const double *A, const qml_long *LDA, const double *B,
+               const qml_long *LDB, const double *BETA, double *C,
+               const qml_long *LDC);
+
+The funtion ``dgemm`` is a double precision (``d``) general (``ge``) matrix-matrix
+multiply. We do not wish to transpose ``A`` or ``B``, so we pass ``"N"``
+for ``TRANSA`` and ``TRANSB``. The function actually performs the
+operation:
+
+.. math::
+
+    C \assign \alpha A \mult B + \beta C
+
+We choose :math:`\alpha=1` and :math:`\beta=0`. Even though ``ALPHA`` and
+``BETA`` are scalar values, we still need to pass the address of the values
+to use the Fortran interface.
+
+.. ~ Name mangling
+.. ~ `````````````
+
+.. ~ Different Fortran compilers have different conventions regarding how names
+.. ~ in Fortran map to actual symbols in the library. 
+
+
+C Interface
+-----------
+
+CBLAS is a lightweight wrapper around BLAS that provides an interface
+compatible with the C language. CBLAS functions are prefixed
+with ``cblas_`` but otherwise follow the same naming convention as BLAS.
+
+Passing arguments
+`````````````````
+
+In the C interface, vectors and matrices are passed by pointer while
+non-complex scalar values are passed by value. All complex arguments
+including scalar values are passed by reference. Functions that would
+return complex values are recast as returning ``void``,
+have a final extra pointer argument ``result`` that receives the result
+value, and are renamed to include the suffix ``_sub``.
+
+Options such as non-transpose/transpose are passed by value using an enumerated type
+defined in the ``qml_cblas.h`` header.
+
+.. code-block:: c
+
+    enum CBLAS_TRANSPOSE {CblasNoTrans = 111, CblasTrans = 112, CblasConjTrans = 113};
+    enum CBLAS_UPLO {CblasUpper = 121, CblasLower = 122};
+    enum CBLAS_DIAG {CblasNonUnit = 131, CblasUnit = 132};
+    enum CBLAS_SIDE {CblasLeft = 141, CblasRight = 142};
+
+Aliasing
+````````
+
+Pointers in the C language are generally allowed to
+alias to the same region of memory. The C interface to BLAS allows
+aliasing of arguments declared ``const`` (input arguments) but does
+not allow aliasing of output arguments (any argument not declared ``const``).
+For example, passing ``dgemm`` the same memory location for ``A`` and
+``B`` is allowed because both arguments are input arguments. Passing
+``dgemm`` the same memory location for ``A`` and ``C`` is not allowed
+because ``C`` is an output argument.
+
+Row- or Column-Major
+````````````````````
+
+The CBLAS interface allows either row- or column-major matrix
+storage order. Functions that accept matrices start with an argument
+that indicates whether row- or column-major ordering should be used.
+
+.. code-block:: c
+
+    enum CBLAS_ORDER {CblasRowMajor = 101, CblasColMajor = 102};
+
+Row-major ordering means that values linearly
+stored in increasing addresses in memory are interpreted as values in a
+row of the matrix going from left to right. Every matrix also has a
+leading dimension. For a matrix A the leading dimension is passed
+as the integer LDA. The values of a column of matrix A are stored in memory
+locations spaced apart by LDA values.
+
+For example, a 3x3 matrix with LDA=10 in row-major order
+has values stored in the following memory locations.
+
+.. math::
+
+    \begin{bmatrix}
+        A & A+1 & A+2 \\
+        A+10 & A+11 & A+12 \\
+        A+20 & A+21 & A+22
+    \end{bmatrix}
+
+
+Zero-based Indexing
+```````````````````
+
+The functions :doc:`AMAX<BLAS/BLAS1/amax>` and :doc:`AMIN<BLAS/BLAS1/amin>`
+return indices into arrays. C uses 0-based indexing where an array
+with N elements has indices 0 through N-1. The CBLAS interface follows
+the C convention and uses 0-based indexing.
+
+Performance Considerations
+``````````````````````````
+
+Using row-major ordering has no extra cost for most BLAS functions.
+Some BLAS-2 functions involving conjugate transpose require a small
+amount of extra processing and so will see degraded performance compared
+to column-major ordering. See `Legacy BLAS: C Interface to the Legacy BLAS <http://www.netlib.org/blas/blast-forum/cinterface.pdf>`_ for more
+information.
+
+Example
+```````
+
+For example, suppose we wish to perform a simple matrix multiply:
+
+.. math::
+
+    C \assign A\mult B
+
+Here is the CBLAS prototype for ``dgemm``:
+
+.. code-block:: c
+
+    void cblas_dgemm(const CBLAS_ORDER ORDER, const CBLAS_TRANSPOSE TRANSA,
+                     const CBLAS_TRANSPOSE TRANSB, const qml_long M,
+                     const qml_long N, const qml_long K, const double ALPHA,
+                     const double *A, const qml_long LDA, const double *B,
+                     const qml_long LDB, const double BETA, double *C,
+                     const qml_long LDC);
+
+The funtion ``cblas_dgemm`` is the CBLAS interface (``cblas_``)
+for a double precision (``d``) general (``ge``) matrix-matrix
+multiply. We are storing our matrices in row-major order, so we choose
+``CblasRowMajor`` for ``ORDER``. We do not wish to transpose ``A`` or ``B``,
+so we pass ``CblasNoTrans`` for ``TRANSA`` and ``TRANSB``. The function actually performs the
+operation:
+
+.. math::
+
+    C \assign \alpha A \mult B + \beta C
+
+We choose :math:`\alpha=1` and :math:`\beta=0`, and pass the value
+1.0 for ``ALPHA`` and 0.0 for ``BETA``.
+
+
+Storage Format Examples
+-----------------------
+
+The following examples show how values are laid out in memory
+using the different storage formats. The examples are shown
+for a 4x4 matrix in column-major ordering with LDA=10.
+
+Note that in many formats not all input values are referenced.
+For example, in SY format with UPLO="L" only the lower triangular
+part of the matrix is referenced, the upper triangular part is
+assumed to be symmetric. In some formats elements of the matrix
+are assumed to be a constant value and are not referenced in memory.
+For example, in TR format with DIAG="U" the diagonal elements
+are assumed to be 1 and are never referenced.
+
+GE
+``
+General.
+
+.. math::
+
+    {\small
+    \begin{bmatrix}             
+        A   & A+10 & A+20 & A+30 \\
+        A+1 & A+11 & A+21 & A+31 \\
+        A+2 & A+12 & A+22 & A+32 \\   
+        A+3 & A+13 & A+23 & A+33
+    \end{bmatrix}
+    }
+
+SY
+``
+Symmetric, shown with UPLO="L".
+
+.. math::
+
+    {\small
+    \begin{bmatrix}             
+        A   & A+1 & A+2 & A+3    \\
+        A+1 & A+11 & A+12 & A+13 \\
+        A+2 & A+12 & A+22 & A+23 \\
+        A+3 & A+13 & A+23 & A+33
+    \end{bmatrix}
+    }
+
+HE
+``
+Hermitian, shown with UPLO="L".
+
+.. math::
+
+    {\small
+    \begin{bmatrix}             
+        A   & \sconj{A+1} & \sconj{A+2} & \sconj{A+3}    \\
+        A+1 & A+11 & \sconj{A+12} & \sconj{A+13} \\
+        A+2 & A+12 & A+22 & \sconj{A+23} \\
+        A+3 & A+13 & A+23 & A+33
+    \end{bmatrix}
+    }
+
+TR
+``
+Triangular, shown with UPLO="L" and DIAG="U".
+
+.. math::
+
+    {\small
+    \begin{bmatrix}             
+        1   &      &      &    \\
+        A+1 & 1    &      &  \\
+        A+2 & A+12 & 1    &  \\
+        A+3 & A+13 & A+23 & 1
+    \end{bmatrix}
+    }
+
+GB
+``
+General banded, shown with KL = 1 and KU=1.
+
+.. math::
+
+    {\small
+    \begin{bmatrix}             
+        A+1 & A+10 &      &      \\
+        A+2 & A+11 & A+20 &      \\
+            & A+12 & A+21 & A+30 \\
+            &      & A+22 & A+31
+    \end{bmatrix}
+    }
+
+SB
+``
+Symmetric banded, shown with UPLO="L" and K=1.
+
+.. math::
+
+    {\small
+    \begin{bmatrix}             
+        A   & A+1  &       &      \\
+        A+1 & A+10 & A+11 &      \\
+            & A+11 & A+20 & A+21 \\
+            &      & A+21 & A+30
+    \end{bmatrix}
+    }
+
+HB
+``
+Hermitian banded, shown with UPLO="L" and K=1.
+
+.. math::
+
+    {\small
+    \begin{bmatrix}             
+        A   & \sconj{A+1}  &       &      \\
+        A+1 & A+10 & \sconj{A+11} &      \\
+            & A+11 & A+20 & \sconj{A+21} \\
+            &      & A+21 & A+30
+    \end{bmatrix}
+    }
+
+TB
+``
+Triangular banded, shown with UPLO="L", DIAG="U", and K = 2.
+
+.. math::
+
+    {\small
+    \begin{bmatrix}
+        1   &      &      &  \\
+        A+1 & 1    &      &  \\
+        A+2 & A+11 & 1    &  \\
+            & A+12 & A+21 & 1
+    \end{bmatrix}
+    }
+
+SP
+``
+Symmetric packed, shown with UPLO="L".
+
+.. math::
+
+    {\small
+    \begin{bmatrix}
+        A   & A+1 & A+2 & A+3 \\
+        A+1 & A+4 & A+5 & A+6 \\
+        A+2 & A+5 & A+7 & A+8 \\
+        A+3 & A+6 & A+8 & A+9
+    \end{bmatrix}
+    }
+
+HP
+``
+Hermitian packed, shown with UPLO="L".
+
+.. math::
+
+    {\small
+    \begin{bmatrix}
+        A   & \sconj{A+1} & \sconj{A+2} & \sconj{A+3} \\
+        A+1 & A+4 & \sconj{A+5} & \sconj{A+6} \\
+        A+2 & A+5 & A+7 & \sconj{A+8} \\
+        A+3 & A+6 & A+8 & A+9
+    \end{bmatrix}
+    }
+
+TP
+``
+Triangular packed, shown with UPLO="L" and DIAG="U".
+
+.. math::
+
+    {\small
+    \begin{bmatrix}
+        1   &     &     &     \\
+        A+1 & 1   &     &     \\
+        A+2 & A+5 & 1   &     \\
+        A+3 & A+6 & A+8 & 1
+    \end{bmatrix}
+    }
+
+
+
+
+References
+----------
+
+The `official homepage of BLAS <http://www.netlib.org/blas/>`_ is
+on Netlib.
+
+Netlib also publishes a handy `cheat sheet <http://www.netlib.org/blas/blasqr.pdf>`_
+for quick reference to all BLAS functions.
+
+

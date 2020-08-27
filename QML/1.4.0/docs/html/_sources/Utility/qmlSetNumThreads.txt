@@ -1,0 +1,27 @@
+QMLSetNumThreads
+=================
+QMLSetNumThreads.
+
+Description
+-----------
+Set the number of threads that will be used internally to parallelize
+work in QML.
+
+This function does not normally need to be called. QML automatically detects
+the number of cores available in the device when loaded and adjusts the thread pool
+to an optimal size. A typical use for this function is to pass `1` as the
+argument to get sequential versions of algorithms that will run in a single thread.
+This can be useful for programs that already use multiple threads to divide up
+work.
+
+Extension Interface
+-------------------
+.. code-block:: c
+
+    void QMLSetNumThreads(qml_int numThreads);
+
+Arguments
+---------
+==========   ==================================================================
+numThreads   The number of threads requested
+==========   ==================================================================

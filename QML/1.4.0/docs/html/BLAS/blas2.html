@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>BLAS 2 Functions &mdash; Qualcomm Math Library</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Qualcomm Math Library" href="../index.html"/>
+        <link rel="up" title="QML API Reference" href="../blas_index.html"/>
+        <link rel="next" title="(S|D|C|Z)GBMV" href="BLAS2/gbmv.html"/>
+        <link rel="prev" title="(S|D|C|Z)SWAP" href="BLAS1/swap.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> QML
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction to BLAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction_lapack.html">Introduction to LAPACK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_qml.html">Using QML</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../blas_index.html">QML API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="blas1.html">BLAS 1 Functions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">BLAS 2 Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/gbmv.html">(S|D|C|Z)GBMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/gemv.html">(S|D|C|Z)GEMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/ger.html">(S|D)GER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/gerc.html">(C|Z)GERC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/geru.html">(C|Z)GERU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/hbmv.html">(C|Z)HBMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/hemv.html">(C|Z)HEMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/her.html">(C|Z)HER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/her2.html">(C|Z)HER2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/hpmv.html">(C|Z)HPMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/hpr.html">(C|Z)HPR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/hpr2.html">(C|Z)HPR2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/sbmv.html">(S|D)SBMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/spmv.html">(S|D)SPMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/spr.html">(S|D)SPR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/spr2.html">(S|D)SPR2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/symv.html">(S|D)SYMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/syr.html">(S|D)SYR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/syr2.html">(S|D)SYR2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/tbmv.html">(S|D|C|Z)TBMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/tbsv.html">(S|D|C|Z)TBSV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/tpmv.html">(S|D|C|Z)TPMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/tpsv.html">(S|D|C|Z)TPSV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/trmv.html">(S|D|C|Z)TRMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BLAS2/trsv.html">(S|D|C|Z)TRSV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="blas3.html">BLAS 3 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../LAPACK/lapack.html">LAPACK Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Extensions/extensions.html">QML Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Utility/utility.html">QML Utility Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">QML</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../blas_index.html">QML API Reference</a> &raquo;</li>
+      
+    <li>BLAS 2 Functions</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="blas-2-functions">
+<h1>BLAS 2 Functions<a class="headerlink" href="#blas-2-functions" title="Permalink to this headline">¶</a></h1>
+<p>The BLAS 2 consists of matrix-vector operations.  Below are the BLAS 2 functions supported by QML.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/gbmv.html">(S|D|C|Z)GBMV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/gemv.html">(S|D|C|Z)GEMV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/ger.html">(S|D)GER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/gerc.html">(C|Z)GERC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/geru.html">(C|Z)GERU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/hbmv.html">(C|Z)HBMV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/hemv.html">(C|Z)HEMV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/her.html">(C|Z)HER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/her2.html">(C|Z)HER2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/hpmv.html">(C|Z)HPMV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/hpr.html">(C|Z)HPR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/hpr2.html">(C|Z)HPR2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/sbmv.html">(S|D)SBMV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/spmv.html">(S|D)SPMV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/spr.html">(S|D)SPR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/spr2.html">(S|D)SPR2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/symv.html">(S|D)SYMV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/syr.html">(S|D)SYR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/syr2.html">(S|D)SYR2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/tbmv.html">(S|D|C|Z)TBMV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/tbsv.html">(S|D|C|Z)TBSV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/tpmv.html">(S|D|C|Z)TPMV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/tpsv.html">(S|D|C|Z)TPSV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/trmv.html">(S|D|C|Z)TRMV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS2/trsv.html">(S|D|C|Z)TRSV</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="BLAS2/gbmv.html" class="btn btn-neutral float-right" title="(S|D|C|Z)GBMV" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="BLAS1/swap.html" class="btn btn-neutral" title="(S|D|C|Z)SWAP" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Qualcomm Technologies, Inc.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

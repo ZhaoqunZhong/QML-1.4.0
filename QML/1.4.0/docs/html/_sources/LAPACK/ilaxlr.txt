@@ -1,0 +1,34 @@
+ILA(S|D|C|Z)LR
+==============
+Single, double, single complex, and double complex ILAxLR.
+
+Description
+-----------
+Scans a matrix to find the last non-zero row.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    qml_long ilaslr(const qml_long *M, const qml_long *N, float *A,
+        const qml_long *LDA);
+
+    qml_long iladlr(const qml_long *M, const qml_long *N, double *A,
+        const qml_long *LDA);
+
+    qml_long ilaclr(const qml_long *M, const qml_long *N, qml_single_complex *A,
+        const qml_long *LDA);
+
+    qml_long ilazlr(const qml_long *M, const qml_long *N, qml_double_complex *A,
+        const qml_long *LDA);
+
+
+Arguments
+---------
+======   =====================================================================
+M        Number of rows of A
+N        Number of columns of A
+A        Matrix of size M x N
+LDA      Leading dimension of A
+Result   Last non-zero row
+======   =====================================================================

@@ -1,0 +1,55 @@
+(S|D|C|Z)GETRS
+==============
+Single, double, single complex, and double complex GETRS.
+
+Description
+-----------
+Uses LU decomposition to solve one of the equations:
+
+.. math::
+
+    A \mult X = B
+
+.. math::
+
+    \trans{A} \mult X = B
+
+.. math::
+
+    \herm{A} \mult X = B
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void sgetrs(const char *TRANS, const qml_long *N, const qml_long *NRHS, float *A,
+        const qml_long *LDA, qml_long *IPIV, float *B, const qml_long *LDB,
+        qml_long *INFO);
+
+    void dgetrs(const char *TRANS, const qml_long *N, const qml_long *NRHS, double *A,
+        const qml_long *LDA, qml_long *IPIV, double *B, const qml_long *LDB,
+        qml_long *INFO);
+
+    void cgetrs(const char *TRANS, const qml_long *N, const qml_long *NRHS,
+        qml_single_complex *A, const qml_long *LDA, qml_long *IPIV,
+        qml_single_complex *B, const qml_long *LDB, qml_long *INFO);
+
+    void zgetrs(const char *TRANS, const qml_long *N, const qml_long *NRHS,
+        qml_double_complex *A, const qml_long *LDA, qml_long *IPIV,
+        qml_double_complex *B, const qml_long *LDB, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+TRANS    Specifies transform option for A, 'N' for none, 'T' for transpose, 'C' for conjugate transpose
+N        Number of linear equations, order of A
+NRHS     Number of right hand sides, number of columns of B
+A        Matrix of size N x N
+LDA      Leading dimension of A
+IPIV     Pivot indices indicating rows to interchange
+B        Matrix of size N x NRHS, overwritten with solutions
+LDB      Leading dimension of B
+INFO     0 on success
+======   =====================================================================

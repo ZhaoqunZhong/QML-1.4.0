@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>(S|D|C|Z)TPMV &mdash; Qualcomm Math Library</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Qualcomm Math Library" href="../../index.html"/>
+        <link rel="up" title="BLAS 2 Functions" href="../blas2.html"/>
+        <link rel="next" title="(S|D|C|Z)TPSV" href="tpsv.html"/>
+        <link rel="prev" title="(S|D|C|Z)TBSV" href="tbsv.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> QML
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction to BLAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction_lapack.html">Introduction to LAPACK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using_qml.html">Using QML</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../blas_index.html">QML API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../blas1.html">BLAS 1 Functions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../blas2.html">BLAS 2 Functions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="gbmv.html">(S|D|C|Z)GBMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gemv.html">(S|D|C|Z)GEMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ger.html">(S|D)GER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gerc.html">(C|Z)GERC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geru.html">(C|Z)GERU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hbmv.html">(C|Z)HBMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hemv.html">(C|Z)HEMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="her.html">(C|Z)HER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="her2.html">(C|Z)HER2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hpmv.html">(C|Z)HPMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hpr.html">(C|Z)HPR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hpr2.html">(C|Z)HPR2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sbmv.html">(S|D)SBMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spmv.html">(S|D)SPMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spr.html">(S|D)SPR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spr2.html">(S|D)SPR2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symv.html">(S|D)SYMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syr.html">(S|D)SYR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syr2.html">(S|D)SYR2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tbmv.html">(S|D|C|Z)TBMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tbsv.html">(S|D|C|Z)TBSV</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">(S|D|C|Z)TPMV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#blas-interface">BLAS Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cblas-interface">CBLAS Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arguments">Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tpsv.html">(S|D|C|Z)TPSV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trmv.html">(S|D|C|Z)TRMV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trsv.html">(S|D|C|Z)TRSV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blas3.html">BLAS 3 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../LAPACK/lapack.html">LAPACK Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Extensions/extensions.html">QML Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Utility/utility.html">QML Utility Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">QML</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../blas_index.html">QML API Reference</a> &raquo;</li>
+      
+          <li><a href="../blas2.html">BLAS 2 Functions</a> &raquo;</li>
+      
+    <li>(S|D|C|Z)TPMV</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-d-c-z-tpmv">
+<h1>(S|D|C|Z)TPMV<a class="headerlink" href="#s-d-c-z-tpmv" title="Permalink to this headline">¶</a></h1>
+<p>Single, double, single complex, and double complex TPMV.</p>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Computes a packed banded triangle matrix-vector product.</p>
+<div class="math">
+<p><img src="../../_images/math/1afbdf77ec09928166ad84351a8e0abd3d472e8e.png" alt="x\assign A * x"/></p>
+</div><p>or</p>
+<div class="math">
+<p><img src="../../_images/math/e8ab3f239c3221b4c1e9d45754509703c37d0cef.png" alt="x \assign \trans{A} * x"/></p>
+</div><p>or</p>
+<div class="math">
+<p><img src="../../_images/math/551929372bf33736fb4a866fbfa799fb19b99c2e.png" alt="x \assign \herm{A} * x"/></p>
+</div></div>
+<div class="section" id="blas-interface">
+<h2>BLAS Interface<a class="headerlink" href="#blas-interface" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">stpmv</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">UPLO</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">TRANS</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">DIAG</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">N</span><span class="p">,</span>
+           <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">AP</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">INCX</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">dtpmv</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">UPLO</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">TRANS</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">DIAG</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">N</span><span class="p">,</span>
+           <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">AP</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">INCX</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">ctpmv</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">UPLO</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">TRANS</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">DIAG</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">N</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">qml_single_complex</span> <span class="o">*</span><span class="n">AP</span><span class="p">,</span> <span class="n">qml_single_complex</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">INCX</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">ztpmv</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">UPLO</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">TRANS</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">DIAG</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">N</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">qml_double_complex</span> <span class="o">*</span><span class="n">AP</span><span class="p">,</span> <span class="n">qml_double_complex</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">INCX</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cblas-interface">
+<h2>CBLAS Interface<a class="headerlink" href="#cblas-interface" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">cblas_stpmv</span><span class="p">(</span><span class="k">const</span> <span class="n">CBLAS_ORDER</span> <span class="n">ORDER</span><span class="p">,</span> <span class="k">const</span> <span class="n">CBLAS_UPLO</span> <span class="n">UPLO</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">CBLAS_TRANSPOSE</span> <span class="n">TRANS</span><span class="p">,</span> <span class="k">const</span> <span class="n">CBLAS_DIAG</span> <span class="n">DIAG</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">qml_long</span> <span class="n">N</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">AP</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="n">INCX</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">cblas_dtpmv</span><span class="p">(</span><span class="k">const</span> <span class="n">CBLAS_ORDER</span> <span class="n">ORDER</span><span class="p">,</span> <span class="k">const</span> <span class="n">CBLAS_UPLO</span> <span class="n">UPLO</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">CBLAS_TRANSPOSE</span> <span class="n">TRANS</span><span class="p">,</span> <span class="k">const</span> <span class="n">CBLAS_DIAG</span> <span class="n">DIAG</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">qml_long</span> <span class="n">N</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">AP</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="n">INCX</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">cblas_ctpmv</span><span class="p">(</span><span class="k">const</span> <span class="n">CBLAS_ORDER</span> <span class="n">ORDER</span><span class="p">,</span> <span class="k">const</span> <span class="n">CBLAS_UPLO</span> <span class="n">UPLO</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">CBLAS_TRANSPOSE</span> <span class="n">TRANS</span><span class="p">,</span> <span class="k">const</span> <span class="n">CBLAS_DIAG</span> <span class="n">DIAG</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="n">N</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">qml_single_complex</span> <span class="o">*</span><span class="n">AP</span><span class="p">,</span> <span class="n">qml_single_complex</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">qml_long</span> <span class="n">INCX</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">cblas_ztpmv</span><span class="p">(</span><span class="k">const</span> <span class="n">CBLAS_ORDER</span> <span class="n">ORDER</span><span class="p">,</span> <span class="k">const</span> <span class="n">CBLAS_UPLO</span> <span class="n">UPLO</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">CBLAS_TRANSPOSE</span> <span class="n">TRANS</span><span class="p">,</span> <span class="k">const</span> <span class="n">CBLAS_DIAG</span> <span class="n">DIAG</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="n">N</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">qml_double_complex</span> <span class="o">*</span><span class="n">AP</span><span class="p">,</span> <span class="n">qml_double_complex</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">qml_long</span> <span class="n">INCX</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="arguments">
+<h2>Arguments<a class="headerlink" href="#arguments" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="94%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>UPLO</td>
+<td>Specify whether the upper or lower triangle of matrix A will be used</td>
+</tr>
+<tr class="row-even"><td>TRANS</td>
+<td>Specifies which product is computed:</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td>Non-Transpose: <img class="math" src="../../_images/math/3266df5b6cfbbdbaae7ce97086af9b7799692ace.png" alt="x \assign A * x"/></td>
+</tr>
+<tr class="row-even"><td></td>
+<td>Transpose: <img class="math" src="../../_images/math/0318822a8c0cddb209de078dbc5eddd3eb957ce9.png" alt="x \assign \trans{A} * x"/></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td>Complex Conjugate Transpose: <img class="math" src="../../_images/math/92337743bae4fd883ea4bd5ad2c15b9a991bf233.png" alt="x \assign \herm{A} * x"/></td>
+</tr>
+<tr class="row-even"><td>DIAG</td>
+<td>Whether the diagonal is unit or not</td>
+</tr>
+<tr class="row-odd"><td>N</td>
+<td>Order of matrix A</td>
+</tr>
+<tr class="row-even"><td>AP</td>
+<td>Matrix A stored in packed triangular form, must be at least: <img class="math" src="../../_images/math/4507cdab7934091681c46db0f9aeea1e06a4a66e.png" alt="\fvar{N}\mult(\fvar{N}+1)/2"/></td>
+</tr>
+<tr class="row-odd"><td>X</td>
+<td>Vector, must be at least: <img class="math" src="../../_images/math/7eed8a4101ef0d79d7dcc4b2e7bbf76caea2c1d2.png" alt="(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1"/></td>
+</tr>
+<tr class="row-even"><td>INCX</td>
+<td>Distance between individual elements in X</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tpsv.html" class="btn btn-neutral float-right" title="(S|D|C|Z)TPSV" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tbsv.html" class="btn btn-neutral" title="(S|D|C|Z)TBSV" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Qualcomm Technologies, Inc.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+(S|D)LAPY3
+==========
+Single and double LAPY3.
+
+Description
+-----------
+While avoiding overflow, computes:
+
+.. math::
+
+    \result = \sqrt{X^2 + Y^2 + Z^2}
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    float slapy3(const float *X, const float *Y, const float *Z);
+
+    double dlapy3(const double *X, const double *Y, const double *Z);
+
+
+Arguments
+---------
+======   =====================================================================
+X        X component of vector
+Y        Y component of vector
+Z        Z component of vector
+Result   Magnitude of vector
+======   =====================================================================

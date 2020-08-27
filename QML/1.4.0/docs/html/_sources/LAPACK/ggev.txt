@@ -1,0 +1,77 @@
+(S|D|C|Z)GGEV
+==============
+Single, double, single complex, and double complex GGEV.
+
+Description
+-----------
+Computes the generalized eigenvalues and (optionally) generalized eigenvectors of a general matrix.
+
+Given two N by N matrices A and B, computes the generalized eigenvalues and
+generalized left and right eigenvectors.
+
+A generalized eigenvalue is a solution to the equation:
+
+.. math::
+
+    A v = \lambda B v
+
+The vector v is a generalized right eigenvector. Generalized left eigenvectors u
+satisfy:
+
+.. math::
+
+    \herm{u} A = \lambda \herm{u} B
+
+Generalized eigenvalues are represented as a ratio ALPHA / BETA with separate
+storage for ALPHA and BETA for increased numerical flexibility.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void sggev(const char *JOBVL, const char *JOBVR, const qml_long *N, float *A,
+        const qml_long *LDA, float *B, const qml_long *LDB, float *ALPHAR,
+        float *ALPHAI, float *BETA, float *VL, const qml_long *LDVL, float *VR,
+        const qml_long *LDVR, float *WORK, const qml_long *LWORK, qml_long *INFO);
+
+    void dggev(const char *JOBVL, const char *JOBVR, const qml_long *N, double *A,
+        const qml_long *LDA, double *B, const qml_long *LDB, double *ALPHAR,
+        double *ALPHAI, double *BETA, double *VL, const qml_long *LDVL, double *VR,
+        const qml_long *LDVR, double *WORK, const qml_long *LWORK, qml_long *INFO);
+
+    void cggev(const char *JOBVL, const char *JOBVR, const qml_long *N,
+        qml_single_complex *A, const qml_long *LDA, qml_single_complex *B,
+        const qml_long *LDB, qml_single_complex *ALPHA, qml_single_complex *BETA, 
+        qml_single_complex *VL, const qml_long *LDVL, qml_single_complex *VR,
+        const qml_long *LDVR, qml_single_complex *WORK, const qml_long *LWORK,
+        float *RWORK, qml_long *INFO);
+
+    void zggev(const char *JOBVL, const char *JOBVR, const qml_long *N,
+        qml_double_complex *A, const qml_long *LDA, qml_double_complex *B,
+        const qml_long *LDB, qml_double_complex *ALPHA, qml_double_complex *BETA, 
+        qml_double_complex *VL, const qml_long *LDVL, qml_double_complex *VR,
+        const qml_long *LDVR, qml_double_complex *WORK, const qml_long *LWORK,
+        double *RWORK, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+JOBVL    Compute VL if 'V', otherwise do not compute
+JOBVR    Compute VR if 'V', otherwise do not compute
+N        Number of rows and columns of A, B, VL, and VR
+A        Matrix of size N x N, overwritten on output
+LDA      Leading dimension of A
+B        Matrix of size N x N, overwritten on output
+LDB      Leading dimension of B
+ALPHA    On exit contains generalized eigenvalues
+ALPHAR   Real part of ALPHA for real versions
+ALPHAI   Complex part of ALPHA for real versions
+VL       On exit contains left eigenvectors if JOBVL is 'V'
+LDVL     Leading dimension of VL
+VR       On exit contains right eigenvectors if JOBVR is 'V'
+LDVR     Leading dimension of VR
+WORK     Work space of size at least LWORK
+LWORK    Size of work space, at least 8N but optimally a larger multiple of N (-1 to query)
+INFO     0 on success
+======   =====================================================================

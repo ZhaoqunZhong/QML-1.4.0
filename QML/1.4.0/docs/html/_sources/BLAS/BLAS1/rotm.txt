@@ -1,0 +1,148 @@
+(S|D)ROTM
+==============
+Single and double ROTM.
+
+Description
+-----------
+Applies a modified plane rotation to a series of points.
+
+The exact form of the rotation matrix will depend on `FLAG` which
+is the first element of the `PARAM` input array.
+
+.. math::
+    \fvar{PARAM} =
+    \left[
+        \begin{array}{c}
+            \fvar{FLAG} \\
+            \fvar{H11} \\
+            \fvar{H21} \\
+            \fvar{H12} \\
+            \fvar{H22}
+        \end{array}
+    \right]
+
+If :math:`\fvar{FLAG}=-1`:
+
+.. math::
+    \left[
+        \begin{array}{c}
+            x_{i} \\
+            y_{i}
+        \end{array}
+    \right]
+    \assign
+    \left[
+        \begin{array}{ll}
+            \fvar{H11} & \fvar{H12} \\
+            \fvar{H21} & \fvar{H22} \\
+        \end{array}
+    \right]
+    * \left[
+        \begin{array}{c}
+            x_{i} \\
+            y_{i}
+        \end{array}
+    \right]
+
+If :math:`\fvar{FLAG}=0`:
+
+.. math::
+    \left[
+        \begin{array}{c}
+            x_{i} \\
+            y_{i}
+        \end{array}
+    \right]
+    \assign
+    \left[
+        \begin{array}{ll}
+            1 & \fvar{H12} \\
+            \fvar{H21} & 1 \\
+        \end{array}
+    \right]
+    * \left[
+        \begin{array}{c}
+            x_{i} \\
+            y_{i}
+        \end{array}
+    \right]
+
+If :math:`\fvar{FLAG}=1`:
+
+.. math::
+    \left[
+        \begin{array}{c}
+            x_{i} \\
+            y_{i}
+        \end{array}
+    \right]
+    \assign
+    \left[
+        \begin{array}{ll}
+            \fvar{H11} & 1 \\
+            -1 & \fvar{H22} \\
+        \end{array}
+    \right]
+    * \left[
+        \begin{array}{c}
+            x_{i} \\
+            y_{i}
+        \end{array}
+    \right]
+
+If :math:`\fvar{FLAG}=-2`:
+
+.. math::
+    \left[
+        \begin{array}{c}
+            x_{i} \\
+            y_{i}
+        \end{array}
+    \right]
+    \assign
+    \left[
+        \begin{array}{ll}
+            1 & 0 \\
+            0 & 1 \\
+        \end{array}
+    \right]
+    * \left[
+        \begin{array}{c}
+            x_{i} \\
+            y_{i}
+        \end{array}
+    \right]
+
+
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void srotm(const qml_long *N, float *X, const qml_long *INCX, float *Y,
+               const qml_long *INCY, const float *PARAM);
+
+    void drotm(const qml_long *N, double *X, const qml_long *INCX, double *Y,
+               const qml_long *INCY, const double *PARAM);
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_srotm(const qml_long N, float *X, const qml_long INCX, float *Y,
+                     const qml_long INCY, const float *PARAM);
+
+    void cblas_drotm(const qml_long N, double *X, const qml_long INCX, double *Y,
+                     const qml_long INCY, const double *PARAM);
+
+
+Arguments
+---------
+=====  ========================================================================
+N      The number of elements in X and Y
+X      The X coordinates for the series of points, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX   Distance between individual elements in X
+Y      The Y coordinates for the series of points, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCY}} + 1`
+INCY   Distance between individual elements in Y
+PARAM  Rotation parameter array of length 5
+=====  ========================================================================

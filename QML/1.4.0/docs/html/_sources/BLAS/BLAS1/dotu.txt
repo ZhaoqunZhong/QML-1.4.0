@@ -1,0 +1,46 @@
+(C|Z)DOTU
+=========
+Single complex and double complex DOTU.
+
+Description
+-----------
+Performs a dot product of the complex vectors :math:`x` and :math:`y`.
+
+.. math::
+
+  \result = \sum_{i=1}^N {x_{i} * y_{i}}
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void cdotu(qml_single_complex *result, const qml_long *N,
+               const qml_single_complex *X, const qml_long *INCX,
+               const qml_single_complex *Y, const qml_long *INCY);
+
+    void zdotu(qml_double_complex *result, const qml_long *N,
+               const qml_double_complex *X, const qml_long *INCX,
+               const qml_double_complex *Y, const qml_long *INCY);
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_cdotu_sub(const qml_long N, const qml_single_complex *X,
+                         const qml_long INCX, const qml_single_complex *Y,
+                         const qml_long INCY, qml_single_complex *result);
+
+    void cblas_zdotu_sub(const qml_long N, const qml_double_complex *X,
+                         const qml_long INCX, const qml_double_complex *Y,
+                         const qml_long INCY, qml_double_complex *result);
+
+Arguments
+-----------
+======   ================================================
+N        Number of elements in X and Y
+X        First input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+Y        Second input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCY}} + 1`
+INCY     Distance between individual elements in Y
+Result   Result of the dot product
+======   ================================================

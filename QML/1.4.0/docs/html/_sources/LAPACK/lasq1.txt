@@ -1,0 +1,27 @@
+(S|D)LASQ1
+==========
+Single and double LASQ1.
+
+Description
+-----------
+Computes the singular values of a square bidiagonal matrix to high
+relative accuracy.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void slasq1(const qml_long *N, float *D, float *E, float *WORK, qml_long *INFO);
+
+    void dlasq1(const qml_long *N, double *D, double *E, double *WORK, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+N        Number of rows and columns of matrix A
+D        Vector of diagonal elements of A of length N, overwritten by sorted singular values on exit
+E        Vector of off-diagonal elements of A of length N - 1, destroyed on exit
+WORK     Work space of size 4N
+INFO     0 on success, <0 for bad arguments, >0 if no convergence
+======   =====================================================================

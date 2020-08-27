@@ -1,0 +1,19 @@
+QMLVersionString
+=================
+QMLVersionString.
+
+Description
+-----------
+Provides the version string for QML.
+
+Extension Interface
+-------------------
+.. code-block:: c
+
+    void QMLVersionString(const char **string);
+
+Arguments
+---------
+======   ==================================================================
+string   This argument will be modified to point to the QML version string
+======   ==================================================================

@@ -1,0 +1,50 @@
+(S|D)SPR2
+=============
+Single and double SPR2.
+
+Description
+-----------
+Computes the symmetric packed rank-2 operation:
+
+.. math::
+
+    A \assign \alpha x * \trans{y} + \alpha y * \trans{x} + A
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void sspr2(const char *UPLO, const qml_long *N, const float *ALPHA,
+               const float *X, const qml_long *INCX, const float *Y,
+               const qml_long *INCY, float *AP);
+
+    void dspr2(const char *UPLO, const qml_long *N, const double *ALPHA,
+               const double *X, const qml_long *INCX, const double *Y,
+               const qml_long *INCY, double *AP);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_sspr2(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO, const qml_long N,
+                     const float ALPHA, const float *X, const qml_long INCX,
+                     const float *Y, const qml_long INCY, float *AP);
+
+    void cblas_dspr2(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO, const qml_long N,
+                     const double ALPHA, const double *X, const qml_long INCX,
+                     const double *Y, const qml_long INCY, double *AP);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether the upper or lower triangle of matrix A will be used
+N        Order of matrix A
+ALPHA    Scalar multiplied with the vector-vector product
+X        First input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+Y        Second input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCY}} + 1`
+INCY     Distance between individual elements in Y
+AP       Matrix A stored in packed triangular form, must be at least: :math:`\fvar{N}\mult(\fvar{N}+1)/2`
+======   =====================================================================

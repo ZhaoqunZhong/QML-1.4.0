@@ -1,0 +1,14 @@
+Qualcomm Math Library
+==================================
+QML is a high performance BLAS and LAPACK implementation for Qualcomm processors.
+The original BLAS reference and additional documentation can be found at netlib.org_.
+
+.. toctree::
+   :maxdepth: 2
+   
+   introduction
+   introduction_lapack
+   using_qml
+   blas_index
+
+.. _netlib.org: http://www.netlib.org/blas/

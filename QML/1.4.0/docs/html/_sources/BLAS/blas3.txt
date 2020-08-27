@@ -1,0 +1,16 @@
+BLAS 3 Functions
+================ 
+The BLAS 3 consists of matrix-matrix operations.  Below are the BLAS 3 functions supported by QML.
+
+.. toctree::
+   :maxdepth: 1
+
+   BLAS3/gemm
+   BLAS3/hemm
+   BLAS3/herk
+   BLAS3/her2k
+   BLAS3/symm
+   BLAS3/syrk
+   BLAS3/syr2k
+   BLAS3/trmm
+   BLAS3/trsm

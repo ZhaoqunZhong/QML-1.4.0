@@ -1,0 +1,45 @@
+(S|D|SC|DZ)NRM2
+===============
+Single, double, single complex, and double complex NRM2.
+
+Description
+-----------
+Computes the Euclidean norm of a vector.
+
+.. math::
+
+  \result = \sqrt{ \sum_{i=1}^N {\abs{x_{i}}^2} }
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    float  snrm2(const qml_long *N, const float *X, const qml_long *INCX);
+
+    double dnrm2(const qml_long *N, const double *X, const qml_long *INCX);
+
+    float  scnrm2(const qml_long *N, const qml_single_complex *X, const qml_long *INCX);
+
+    double dznrm2(const qml_long *N, const qml_double_complex *X, const qml_long *INCX);
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    float  cblas_snrm2(const qml_long N, const float *X, const qml_long INCX);
+
+    double cblas_dnrm2(const qml_long N, const double *X, const qml_long INCX);
+
+    float  cblas_scnrm2(const qml_long N, const qml_single_complex *X,
+                        const qml_long INCX);
+
+    double cblas_dznrm2(const qml_long N, const qml_double_complex *X,
+                        const qml_long INCX);
+
+Arguments
+-----------
+====   ===========================================
+N      Number of elements in X
+X      First input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX   Distance between individual elements in X
+====   ===========================================

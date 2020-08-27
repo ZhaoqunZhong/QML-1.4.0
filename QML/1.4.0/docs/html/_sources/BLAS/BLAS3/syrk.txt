@@ -1,0 +1,92 @@
+(S|D|C|Z)SYRK
+=============
+Single, double, single complex, and double complex SYRK.
+
+Description
+-----------
+Performs one of the following rank-k updates on the symmetric matrix C.
+
+.. math::
+
+    C \assign \alpha A * \trans{A} + \beta C
+
+or
+
+.. math::
+
+    C \assign \alpha \trans{A} * A + \beta C
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void ssyrk(const char *UPLO, const char *TRANS, const qml_long *N,
+               const qml_long *K, const float *ALPHA, const float *A,
+               const qml_long *LDA, const float *BETA, float *C,
+               const qml_long *LDC);
+
+    void dsyrk(const char *UPLO, const char *TRANS, const qml_long *N,
+               const qml_long *K, const double *ALPHA, const double *A,
+               const qml_long *LDA, const double *BETA, double *C,
+               const qml_long *LDC);
+
+    void csyrk(const char *UPLO, const char *TRANS, const qml_long *N,
+               const qml_long *K, const qml_single_complex *ALPHA,
+               const qml_single_complex *A, const qml_long *LDA,
+               const qml_single_complex *BETA, qml_single_complex *C,
+               const qml_long *LDC);
+
+    void zsyrk(const char *UPLO, const char *TRANS, const qml_long *N,
+               const qml_long *K, const qml_double_complex *ALPHA,
+               const qml_double_complex *A, const qml_long *LDA,
+               const qml_double_complex *BETA, qml_double_complex *C,
+               const qml_long *LDC);
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_ssyrk(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const qml_long N,
+                     const qml_long K, const float ALPHA, const float *A,
+                     const qml_long LDA, const float BETA, float *C,
+                     const qml_long LDC);
+
+    void cblas_dsyrk(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const qml_long N,
+                     const qml_long K, const double ALPHA, const double *A,
+                     const qml_long LDA, const double BETA, double *C,
+                     const qml_long LDC);
+
+    void cblas_csyrk(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const qml_long N,
+                     const qml_long K, const qml_single_complex *ALPHA,
+                     const qml_single_complex *A, const qml_long LDA,
+                     const qml_single_complex *BETA, qml_single_complex *C,
+                     const qml_long LDC);
+
+    void cblas_zsyrk(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const qml_long N,
+                     const qml_long K, const qml_double_complex *ALPHA,
+                     const qml_double_complex *A, const qml_long LDA,
+                     const qml_double_complex *BETA, qml_double_complex *C,
+                     const qml_long LDC);
+
+Arguments
+---------
+=====   ==================================================================================
+UPLO    Specify whether the upper or lower triangle of matrix C will be used
+TRANS   Specifies which rank-k update is performed:
+\       Non-Transpose: :math:`C \assign \alpha A * \trans{A} + \beta C`
+\       Transpose: :math:`C \assign \alpha \trans{A} * A + \beta C`
+\       Complex Conjugate Transpose: :math:`C \assign \alpha \trans{A} * A + \beta C`
+N       Order of matrix C
+K       For Non-Transpose, K is the number of columns of matrix A
+\       For Transpose and Complex Conjugate Transpose, K is the number of rows of matrix A
+ALPHA   Scalar multiplied with the matrix-matrix product
+A       Input matrix A
+LDA     Leading dimension of matrix A
+BETA    Scalar multiplied with matrix C
+C       Symmetric matrix C
+LDC     Leading dimension of matrix C
+=====   ==================================================================================

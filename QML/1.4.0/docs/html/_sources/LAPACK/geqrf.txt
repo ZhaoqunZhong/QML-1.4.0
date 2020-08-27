@@ -1,0 +1,57 @@
+(S|D|C|Z)GEQRF
+==============
+Single, double, single complex, and double complex GEQRF.
+
+Description
+-----------
+Computes the QR factorization of a matrix using a blocked algorithm.
+
+.. math::
+
+    A = Q \mult R
+
+The upper triangular matrix R is stored in A on the diagonal and above.
+The matrix Q is not stored explicitly. Instead, the elements below
+the diagonal of A together with TAU store Q as the product of scaled
+elementary reflectors.
+
+.. math::
+
+    Q = H_1 \mult H_2 \mult \dots \mult H_k
+    
+.. math::
+
+    H_i = I - \tau_i \mult v_i \mult \herm{v_i}
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void sgeqrf(const qml_long *M, const qml_long *N, float *A, const qml_long *LDA,
+        float *TAU, float *WORK, const qml_long *LWORK, qml_long *INFO);
+
+    void dgeqrf(const qml_long *M, const qml_long *N, double *A, const qml_long *LDA,
+        double *TAU, double *WORK, const qml_long *LWORK, qml_long *INFO);
+
+    void cgeqrf(const qml_long *M, const qml_long *N, qml_single_complex *A,
+        const qml_long *LDA, qml_single_complex *TAU, qml_single_complex *WORK,
+        const qml_long *LWORK, qml_long *INFO);
+
+    void zgeqrf(const qml_long *M, const qml_long *N, qml_double_complex *A,
+        const qml_long *LDA, qml_double_complex *TAU, qml_double_complex *WORK,
+        const qml_long *LWORK, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+M        Number of rows of A
+N        Number of columns of A
+A        Matrix of size M x N
+LDA      Leading dimension of A
+TAU      On exit contains vector of scale factors for reflectors
+WORK     Work space of size at least LWORK
+LWORK    Size of work space, at least N but optimally a larger multiple of N (-1 to query)
+INFO     0 on success
+======   =====================================================================

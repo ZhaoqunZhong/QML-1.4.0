@@ -1,0 +1,86 @@
+(S|D|C|Z)TBSV
+=============
+Single, double, single complex, and double complex TBSV.
+
+Description
+-----------
+Solves one of the following systems of equations for triangle banded A:
+
+.. math::
+
+    A\mult x = b
+
+or
+
+.. math::
+
+    \trans{A}\mult x = b
+
+or
+
+.. math::
+
+    \herm{A}\mult x = b
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void stbsv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const qml_long *K, const float *A, const qml_long *LDA, float *X,
+               const qml_long *INCX);
+
+    void dtbsv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const qml_long *K, const double *A, const qml_long *LDA, double *X,
+               const qml_long *INCX);
+
+    void ctbsv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const qml_long *K, const qml_single_complex *A, const qml_long *LDA,
+               qml_single_complex *X, const qml_long *INCX);
+
+    void ztbsv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const qml_long *K, const qml_double_complex *A, const qml_long *LDA,
+               qml_double_complex *X, const qml_long *INCX);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_stbsv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const qml_long K, const float *A,
+                     const qml_long LDA, float *X, const qml_long INCX);
+
+    void cblas_dtbsv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const qml_long K, const double *A,
+                     const qml_long LDA, double *X, const qml_long INCX);
+
+    void cblas_ctbsv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const qml_long K, const qml_single_complex *A,
+                     const qml_long LDA, qml_single_complex *X, const qml_long INCX);
+
+    void cblas_ztbsv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const qml_long K, const qml_double_complex *A,
+                     const qml_long LDA, qml_double_complex *X, const qml_long INCX);
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether the upper or lower triangle of matrix A will be used
+TRANS    Specifies which equation is solved:
+\        Non-Transpose: :math:`A\mult x = b`
+\        Transpose: :math:`\trans{A}\mult x = b`
+\        Complex Conjugate Transpose: :math:`\herm{A}\mult x = b`
+DIAG     Whether the diagonal is unit or not
+N        Order of matrix A
+K        Number of super- or sub-diagonals of A, with :math:`0 \le \fvar{K}`
+A        Input matrix A
+LDA      Leading dimension of matrix A, with :math:`\fvar{LDA} \ge \fvar{K}+1`
+X        Input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+\        On output, overwritten with solution vector
+INCX     Distance between individual elements in X
+======   =====================================================================

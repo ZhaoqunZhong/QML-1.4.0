@@ -1,0 +1,57 @@
+(S|D)SBMV
+=============
+Single and double SBMV.
+
+Description
+-----------
+Computes a symmetric banded matrix-vector product.
+
+.. math::
+
+    y \assign \alpha A * x + \beta y
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void ssbmv(const char *UPLO, const qml_long *N, const qml_long *K,
+               const float *ALPHA, const float *A, const qml_long *LDA,
+               const float *X, const qml_long *INCX, const float *BETA,
+               float *Y, const qml_long *INCY);
+
+    void dsbmv(const char *UPLO, const qml_long *N, const qml_long *K,
+               const double *ALPHA, const double *A, const qml_long *LDA,
+               const double *X, const qml_long *INCX, const double *BETA,
+               double *Y, const qml_long *INCY);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_ssbmv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO, const qml_long N,
+                     const qml_long K, const float ALPHA, const float *A,
+                     const qml_long LDA, const float *X, const qml_long INCX,
+                     const float BETA, float *Y, const qml_long INCY);
+
+    void cblas_dsbmv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO, const qml_long N,
+                     const qml_long K, const double ALPHA, const double *A,
+                     const qml_long LDA, const double *X, const qml_long INCX,
+                     const double BETA, double *Y, const qml_long INCY);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether the upper or lower triangle of matrix A will be used
+N        Order of matrix A
+K        Number of super-diagonals of A, with :math:`0 \le \fvar{K}`
+ALPHA    Scalar multiplied with the matrix-vector product
+A        Input matrix A
+LDA      Leading dimension of matrix A, with :math:`\fvar{LDA} \ge \fvar{K}+1`
+X        First input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+BETA     Scalar multiplied with vector Y
+Y        Second vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCY}} + 1`
+INCY     Distance between individual elements in Y
+======   =====================================================================

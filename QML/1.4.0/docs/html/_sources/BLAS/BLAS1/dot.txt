@@ -1,0 +1,42 @@
+(S|D)DOT
+========
+Single and double DOT.
+
+Description
+-----------
+Performs a dot product using the input vectors X and Y.
+
+.. math::
+
+  \result = \sum_{i=1}^N {x_{i} \mult y_{i}}
+
+BLAS Interface
+---------------
+.. code-block:: c
+
+    float  sdot(const qml_long *N, const float *X, const qml_long *INCX,
+                const float *Y, const qml_long *INCY);
+
+    double ddot(const qml_long *N, const double *X, const qml_long *INCX,
+                const double *Y, const qml_long *INCY);
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    float  cblas_sdot(const qml_long N, const float *X, const qml_long INCX,
+                      const float *Y, const qml_long INCY);
+
+    double cblas_ddot(const qml_long N, const double *X, const qml_long INCX,
+                      const double *Y, const qml_long INCY);
+
+Arguments
+-----------
+======   =================================================
+N        Number of elements in X and Y
+X        First input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+Y        Second input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCY}} + 1`
+INCY     Distance between individual elements in Y
+Result   Result of the dot product
+======   =================================================

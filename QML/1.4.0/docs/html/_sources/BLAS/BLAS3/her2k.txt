@@ -1,0 +1,71 @@
+(C|Z)HER2K
+==========
+Single complex and double complex HER2K.
+
+Description
+-----------
+Performs one of the following rank-2k updates on the hermitian matrix C.
+
+.. math::
+
+    C \assign \alpha A*\herm{B} + \conj{\alpha} B*\herm{A} + \beta C
+
+or
+
+.. math::
+
+    C \assign \alpha \herm{A}*B + \conj{\alpha} \herm{B}*A + \beta C
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void cher2k(const char *UPLO, const char *TRANS, const qml_long *N,
+                const qml_long *K, const qml_single_complex *ALPHA,
+                const qml_single_complex *A, const qml_long *LDA,
+                const qml_single_complex *B, const qml_long *LDB, const float *BETA,
+                qml_single_complex *C, const qml_long *LDC);
+
+    void zher2k(const char *UPLO, const char *TRANS, const qml_long *N,
+                const qml_long *K, const qml_double_complex *ALPHA,
+                const qml_double_complex *A, const qml_long *LDA,
+                const qml_double_complex *B, const qml_long *LDB, const double *BETA,
+                qml_double_complex *C, const qml_long *LDC);
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_cher2k(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                      const CBLAS_TRANSPOSE TRANS, const qml_long N,
+                      const qml_long K, const qml_single_complex *ALPHA,
+                      const qml_single_complex *A, const qml_long LDA,
+                      const qml_single_complex *B, const qml_long LDB,
+                      const float BETA, qml_single_complex *C, const qml_long LDC);
+
+    void cblas_zher2k(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                      const CBLAS_TRANSPOSE TRANS, const qml_long N,
+                      const qml_long K, const qml_double_complex *ALPHA,
+                      const qml_double_complex *A, const qml_long LDA,
+                      const qml_double_complex *B, const qml_long LDB,
+                      const double BETA, qml_double_complex *C, const qml_long LDC);
+
+Arguments
+---------
+=====   ========================================================================================
+UPLO    Specify whether the upper or lower triangle of matrix C will be used
+TRANS   Specifies which rank-k update is performed:
+\       Non-Transpose: :math:`C \assign \alpha A*\herm{B} + \conj{\alpha} B*\herm{A} + \beta C`
+\       Complex Conjugate Transpose: :math:`C \assign \alpha \herm{A}*B + \conj{\alpha} \herm{B}*A + \beta C`
+N       Order of matrix C
+K       For Non-Transpose, K is the number of columns of matrix A and B
+\       For Transpose and Complex Conjugate Transpose, K is the number of rows of matrix A and B
+ALPHA   Scalar multiplied with the matrix-matrix product
+A       Input matrix A
+LDA     Leading dimension of matrix A
+B       Input matrix B
+LDB     Leading dimension of matrix B
+BETA    Scalar multiplied with matrix C
+C       Hermitian matrix C
+LDC     Leading dimension of matrix C
+=====   ========================================================================================

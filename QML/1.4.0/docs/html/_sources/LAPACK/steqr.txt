@@ -1,0 +1,46 @@
+(S|D|C|Z)STEQR
+==============
+Single, double, single complex, and double complex STEQR.
+
+Description
+-----------
+Computes the eigenvalues of a symmetric tridiagonal matrix and optionally the
+eigenvectors.
+
+Uses the QL or QR method. If COMPZ is V then Z must be set to the
+orthogonal matrix that reduces the original symmetric matrix to tridiagonal form.
+
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void ssteqr(const char *COMPZ, const qml_long *N, float *D, float *E, float *Z,
+        const qml_long *LDZ, float *WORK, qml_long *INFO);
+
+    void dsteqr(const char *COMPZ, const qml_long *N, double *D, double *E, double *Z,
+        const qml_long *LDZ, double *WORK, qml_long *INFO);
+
+    void csteqr(const char *COMPZ, const qml_long *N, float *D, float *E,
+        qml_single_complex *Z, const qml_long *LDZ, float *WORK,
+        qml_long *INFO);
+
+    void zsteqr(const char *COMPZ, const qml_long *N, double *D, double *E,
+        qml_double_complex *Z, const qml_long *LDZ, double *WORK,
+        qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+COMPZ    Computes eigenvalues only ('N'), eigenvalues and eigenvectors ('V'),
+         or eigenvectors and eigenvalues of tridiagonal input ('I')
+N        Order of the matrix
+D        Array of diagonal entries, overwritten with eigenvalues on exit
+E        Array of subdiagonal entries, overwritten on exit
+Z        Orthogonal matrix to reduce to tridiagonal form, overwritten with eigenvectors
+LDZ      Leading dimension of Z
+WORK     Work space of size at least 2N-2
+INFO     0 on success, <0 for illegal arguments, >0 on failure to converge
+======   =====================================================================

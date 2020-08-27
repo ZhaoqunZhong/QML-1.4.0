@@ -1,0 +1,65 @@
+(S|D|C|Z)GEHRD
+==============
+Single, double, single complex, and double complex GEHRD.
+
+Description
+-----------
+Reduces a general matrix to upper Hessenberg form using a unitary similarity
+transform.
+
+.. math::
+
+    H = \herm{Q} \mult A \mult Q
+
+The matrix H is upper Hessenberg and the matrix Q is unitary.
+
+The matrix Q is not stored explicitly. Instead, the elements below
+the diagonal of A together with TAU store Q as the product of scaled
+elementary reflectors.
+
+.. math::
+
+    Q = H_{ILO} \mult H_{ILO+1} \mult \dots \mult H_{IHI-1}
+    
+.. math::
+
+    H_i = I - \tau_i \mult v \mult \herm{v}
+
+The vector v has components 1 through i of zero, component i+1 is 1,
+components IHI+1 through N are zero, and components i+2 through IHI
+are stored in A below the subdiagonal in column i.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void sgehrd(const qml_long *N, const qml_long *ILO, const qml_long *IHI, float *A,
+        const qml_long *LDA, float *TAU, float *WORK, const qml_long *LWORK,
+        qml_long *INFO);
+    
+    void dgehrd(const qml_long *N, const qml_long *ILO, const qml_long *IHI,
+        double *A, const qml_long *LDA, double *TAU, double *WORK,
+        const qml_long *LWORK, qml_long *INFO);
+    
+    void cgehrd(const qml_long *N, const qml_long *ILO, const qml_long *IHI,
+        qml_single_complex *A, const qml_long *LDA, qml_single_complex *TAU,
+        qml_single_complex *WORK, const qml_long *LWORK, qml_long *INFO);
+    
+    void zgehrd(const qml_long *N, const qml_long *ILO, const qml_long *IHI,
+        qml_double_complex *A, const qml_long *LDA, qml_double_complex *TAU,
+        qml_double_complex *WORK, const qml_long *LWORK, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+N        Number of rows and columns of A
+ILO      Lower index
+IHI      Upper index, 1 <= ILO <= IHI <= N
+A        Matrix, overwritten by H and reflector vectors on exit
+LDA      Leading dimension of A
+TAU      On exit contains vector of scale factors for reflectors
+WORK     Work space of size at least LWORK
+LWORK    Size of work space (-1 to query)
+INFO     0 on success
+======   =====================================================================

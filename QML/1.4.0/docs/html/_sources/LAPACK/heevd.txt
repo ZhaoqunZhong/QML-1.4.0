@@ -1,0 +1,58 @@
+(C|Z)HEEVD
+==========
+Single complex and double complex HEEVD.
+
+Description
+-----------
+Computes the eigenvalues and (optionally) eigenvectors of a Hermitian matrix
+using a divide-and-conquer algorithm.
+
+Right eigenvectors satisfy:
+
+.. math::
+
+    \fvar{A} \mult v_i = \lambda_i v_i
+
+Left eigenvectors satisfy:
+
+.. math::
+
+    \herm{u_i} \mult \fvar{A} = \lambda \herm{u_i}
+
+Computed eigenvectors are normalized to have Euclidean unit length and
+largest real component.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void cheevd(const char *JOBZ, const char *UPLO, const qml_long *N,
+        qml_single_complex *A, const qml_long *LDA, float *W,
+        qml_single_complex *WORK, const qml_long *LWORK, float *RWORK,
+        const qml_long *LRWORK, qml_long *IWORK, const qml_long *LIWORK,
+        qml_long *INFO);
+    
+    void zheevd(const char *JOBZ, const char *UPLO, const qml_long *N,
+        qml_double_complex *A, const qml_long *LDA, double *W,
+        qml_double_complex *WORK, const qml_long *LWORK, double *RWORK,
+        const qml_long *LRWORK, qml_long *IWORK, const qml_long *LIWORK,
+        qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+JOBZ     Compute eigenvectors and store in A if 'V', otherwise do not compute
+UPLO     Specify whether to use 'U' upper triangular or 'L' lower triangular part of A
+N        Number of rows and columns of A
+A        Matrix of size N x N, overwritten on exit
+LDA      Leading dimension of A
+W        Array of size N containing eigenvalues on exit
+WORK     Work space of size at least LWORK
+LWORK    Size of work space (-1 to query)
+RWORK    Work space of size at least LRWORK
+LRWORK   Size of secondary work space (-1 to query)
+IWORK    Integer work space of size at least LIWORK
+LIWORK   Size of integer work space (-1 to query)
+INFO     0 on success, <0 for illegal arguments, >0 if convergence failed
+======   =====================================================================

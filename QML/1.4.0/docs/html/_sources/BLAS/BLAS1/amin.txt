@@ -1,0 +1,44 @@
+(IS|ID|IC|IZ)AMIN
+=================
+Single, double, single complex and double complex AMIN.
+
+Description
+-----------
+Returns the index of the element with the minimum absolute value.
+
+BLAS Interface
+---------------
+.. code-block:: c
+
+    qml_long isamin(const qml_long *N, const float *X, const qml_long *INCX);
+
+    qml_long idamin(const qml_long *N, const double *X, const qml_long *INCX);
+
+    qml_long icamin(const qml_long *N, const qml_single_complex *X,
+                      const qml_long *INCX);
+
+    qml_long izamin(const qml_long *N, const qml_double_complex *X,
+                      const qml_long *INCX);
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    qml_long cblas_isamin(const qml_long N, const float *X, const qml_long INCX);
+
+    qml_long cblas_idamin(const qml_long N, const double *X, const qml_long INCX);
+
+    qml_long cblas_icamin(const qml_long N, const qml_single_complex *X,
+                            const qml_long INCX);
+
+    qml_long cblas_izamin(const qml_long N, const qml_double_complex *X,
+                            const qml_long INCX);
+
+Arguments
+-----------
+======   ============================================
+N        Number of elements in X
+X        Input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+Result   Index of element with minimum absolute value
+======   ============================================

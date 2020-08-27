@@ -1,0 +1,76 @@
+(S|D)LASV2
+=============
+Single and double LASV2.
+
+Description
+-----------
+Computes singular value decomposition for the 2x2 triangular matrix:
+
+.. math::
+
+    \left[
+      \begin{matrix}
+        \fvar{F} & \fvar{G} \\
+        0 & \fvar{H} \\
+      \end{matrix}
+    \right]
+
+The larger singular value is returned in SSMAX and the smaller in SSMIN.
+The left singular vector for SSMAX is (CSL, SNL) and the right singular vector
+for SSMAX is (CSR, SNR). On exit:
+
+.. math::
+
+    \left[
+      \begin{matrix}
+        \fvar{CSL} & \fvar{SNL} \\
+        -\fvar{SNL} & \fvar{CSL} \\
+      \end{matrix}
+    \right]
+    \mult
+    \left[
+      \begin{matrix}
+        \fvar{F} & \fvar{G} \\
+        0 & \fvar{H} \\
+      \end{matrix}
+    \right]
+    \mult
+    \left[
+      \begin{matrix}
+        \fvar{CSR} & -\fvar{SNR} \\
+        \fvar{SNR} & \fvar{CSR} \\
+      \end{matrix}
+    \right]
+    =
+    \left[
+      \begin{matrix}
+        \fvar{SSMAX} & 0 \\
+        0 & \fvar{SSMIN} \\
+      \end{matrix}
+    \right]
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void slasv2(const float *F, const float *G, const float *H, float *SSMIN,
+        float *SSMAX, float *SNR, float *CSR, float *SNL, float *CSL);
+
+    void dlasv2(const double *F, const double *G, const double *H, double *SSMIN,
+        double *SSMAX, double *SNR, double *CSR, double *SNL, double *CSL);
+
+
+Arguments
+---------
+======   =====================================================================
+F        Element of input matrix
+G        Element of input matrix
+H        Element of input matrix
+SSMIN    Smallest singular value
+SSMAX    Largest singular value
+SNR      Second part of right singular vector
+CSR      First part of right singular vector
+SNL      Second part of left singular vector
+CSL      First part of left singular vector
+======   =====================================================================

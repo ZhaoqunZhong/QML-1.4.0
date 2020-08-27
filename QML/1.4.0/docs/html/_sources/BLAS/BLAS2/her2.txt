@@ -1,0 +1,55 @@
+(C|Z)HER2
+=============
+Single complex and double complex HER2.
+
+Description
+-----------
+Computes the hermitian rank-2 operation:
+
+.. math::
+
+    A \assign \alpha x * \herm{y} + \conj{\alpha} y * \herm{x} + A
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void cher2(const char *UPLO, const qml_long *N, const qml_single_complex *ALPHA,
+               const qml_single_complex *X, const qml_long *INCX,
+               const qml_single_complex *Y, const qml_long *INCY,
+               qml_single_complex *A, const qml_long *LDA);
+
+    void zher2(const char *UPLO, const qml_long *N, const qml_double_complex *ALPHA,
+               const qml_double_complex *X, const qml_long *INCX,
+               const qml_double_complex *Y, const qml_long *INCY,
+               qml_double_complex *A, const qml_long *LDA);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_cher2(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO, const qml_long N,
+                     const qml_single_complex *ALPHA, const qml_single_complex *X,
+                     const qml_long INCX, const qml_single_complex *Y,
+                     const qml_long INCY, qml_single_complex *A, const qml_long LDA);
+
+    void cblas_zher2(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO, const qml_long N,
+                     const qml_double_complex *ALPHA, const qml_double_complex *X,
+                     const qml_long INCX, const qml_double_complex *Y,
+                     const qml_long INCY, qml_double_complex *A, const qml_long LDA);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether the upper or lower triangle of matrix A will be used
+N        Order of matrix A
+ALPHA    Scalar multiplied with the vector-vector product
+X        First input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+Y        Second input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCY}} + 1`
+INCY     Distance between individual elements in Y
+A        Input matrix A
+LDA      Leading dimension of matrix A
+======   =====================================================================

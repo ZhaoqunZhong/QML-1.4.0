@@ -1,0 +1,92 @@
+(S|D|C|Z)TRSM
+=============
+Single, double, single complex, and double complex TRSM.
+
+Description
+-----------
+Solves one of the following equations:
+
+.. math::
+
+    \alpha B = A*X
+
+or
+
+.. math::
+
+    \alpha B = X*A
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void strsm(const char *SIDE, const char *UPLO, const char *TRANSA,
+               const char *DIAG, const qml_long *M, const qml_long *N,
+               const float *ALPHA, const float *A, const qml_long *LDA,
+               float *B, const qml_long *LDB);
+
+    void dtrsm(const char *SIDE, const char *UPLO, const char *TRANSA,
+               const char *DIAG, const qml_long *M, const qml_long *N,
+               const double *ALPHA, const double *A, const qml_long *LDA,
+               double *B, const qml_long *LDB);
+
+    void ctrsm(const char *SIDE, const char *UPLO, const char *TRANSA,
+               const char *DIAG, const qml_long *M, const qml_long *N,
+               const qml_single_complex *ALPHA, const qml_single_complex *A,
+               const qml_long *LDA, qml_single_complex *B,
+               const qml_long *LDB);
+
+    void ztrsm(const char *SIDE, const char *UPLO, const char *TRANSA,
+               const char *DIAG, const qml_long *M, const qml_long *N,
+               const qml_double_complex *ALPHA, const qml_double_complex *A,
+               const qml_long *LDA, qml_double_complex *B,
+               const qml_long *LDB);
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_strsm(const CBLAS_ORDER ORDER, const CBLAS_SIDE SIDE,
+                     const CBLAS_UPLO UPLO, const CBLAS_TRANSPOSE TRANSA,
+                     const CBLAS_DIAG DIAG, const qml_long M, const qml_long N,
+                     const float ALPHA, const float *A, const qml_long LDA,
+                     float *B, const qml_long LDB);
+
+    void cblas_dtrsm(const CBLAS_ORDER ORDER, const CBLAS_SIDE SIDE,
+                     const CBLAS_UPLO UPLO, const CBLAS_TRANSPOSE TRANSA,
+                     const CBLAS_DIAG DIAG, const qml_long M, const qml_long N,
+                     const double ALPHA, const double *A, const qml_long LDA,
+                     double *B, const qml_long LDB);
+
+    void cblas_ctrsm(const CBLAS_ORDER ORDER, const CBLAS_SIDE SIDE,
+                     const CBLAS_UPLO UPLO, const CBLAS_TRANSPOSE TRANSA,
+                     const CBLAS_DIAG DIAG, const qml_long M, const qml_long N,
+                     const qml_single_complex *ALPHA, const qml_single_complex *A,
+                     const qml_long LDA, qml_single_complex *B,
+                     const qml_long LDB);
+
+    void cblas_ztrsm(const CBLAS_ORDER ORDER, const CBLAS_SIDE SIDE,
+                     const CBLAS_UPLO UPLO, const CBLAS_TRANSPOSE TRANSA,
+                     const CBLAS_DIAG DIAG, const qml_long M, const qml_long N,
+                     const qml_double_complex *ALPHA, const qml_double_complex *A,
+                     const qml_long LDA, qml_double_complex *B,
+                     const qml_long LDB);
+
+Arguments
+---------
+======   =====================================================================
+SIDE     Specify which side of the product matrix A should be
+\        For left, computes: :math:`\alpha B = A*X`
+\        For right, computes: :math:`\alpha B = X*A`
+UPLO     Specify whether the upper or lower triangle of matrix A will be read
+TRANSA   Specifies how to read matrix A
+\        Possible values: Non-Transpose, Tranpose, Complex Conjugate Transpose
+DIAG     Whether the diagonal is unit or not
+M        Number of rows of matrix B
+N        Number of columns of matrix B
+ALPHA    Scalar multiplied with the result matrix B
+A        Input matrix A
+LDA      Leading dimension of matrix A
+B        Result matrix B
+LDB      Leading dimension of matrix B
+======   =====================================================================

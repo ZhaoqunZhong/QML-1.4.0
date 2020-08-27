@@ -1,0 +1,67 @@
+(S|D|C|Z|CS|ZD)SCAL
+====================
+Single, double, single complex, double complex, single complex by single,
+and double complex by double SCAL.
+
+Description
+-----------
+Scale the contents of a vector by a constant.
+
+.. math::
+    X \assign \alpha X
+
+
+BLAS Interface
+---------------
+.. code-block:: c
+
+    void sscal(const qml_long *N, const float *ALPHA, float *X,
+               const qml_long *INCX);
+
+    void dscal(const qml_long *N, const double *ALPHA, double *X,
+               const qml_long *INCX);
+
+    void cscal(const qml_long *N, const qml_single_complex *ALPHA,
+               qml_single_complex *X, const qml_long *INCX);
+
+    void zscal(const qml_long *N, const qml_double_complex *ALPHA,
+               qml_double_complex *X, const qml_long *INCX);
+
+    void csscal(const qml_long *N, const float *ALPHA, qml_single_complex *X,
+                const qml_long *INCX); 
+
+    void zdscal(const qml_long *N, const double *ALPHA, qml_double_complex *X,
+                const qml_long *INCX) ;
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_sscal(const qml_long N, const float ALPHA, float *X,
+                     const qml_long INCX);
+
+    void cblas_dscal(const qml_long N, const double ALPHA, double *X,
+                     const qml_long INCX);
+
+    void cblas_cscal(const qml_long N, const qml_single_complex *ALPHA,
+                     qml_single_complex *X, const qml_long INCX);
+
+    void cblas_zscal(const qml_long N, const qml_double_complex *ALPHA,
+                     qml_double_complex *X, const qml_long INCX);
+
+    void cblas_csscal(const qml_long N, const float ALPHA, qml_single_complex *X,
+                      const qml_long INCX);
+
+    void cblas_zdscal(const qml_long N, const double ALPHA, 
+                      qml_double_complex *X, const qml_long INCX);
+
+
+Arguments
+-----------
+=====  =================================================
+N      Number of elements to scale in X
+ALPHA  Scale factor
+X      Input vector, must be at least size: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX   Distance between individual elements in X
+=====  =================================================

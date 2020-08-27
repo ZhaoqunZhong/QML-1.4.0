@@ -1,0 +1,85 @@
+(S|D|C|Z)TRMV
+=============
+Single, double, single complex, and double complex TRMV.
+
+Description
+-----------
+Computes a triangle matrix-vector product.
+
+.. math::
+
+    x \assign A * x
+
+or
+
+.. math::
+
+    x \assign \trans{A} * x
+
+or
+
+.. math::
+
+    x \assign \herm{A} * x
+
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void strmv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const float *A, const qml_long *LDA, float *X, const qml_long *INCX);
+
+    void dtrmv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const double *A, const qml_long *LDA, double *X, const qml_long *INCX);
+
+    void ctrmv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const qml_single_complex *A, const qml_long *LDA, qml_single_complex *X,
+               const qml_long *INCX);
+
+    void ztrmv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const qml_double_complex *A, const qml_long *LDA, qml_double_complex *X,
+               const qml_long *INCX);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_strmv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const float *A, const qml_long LDA,
+                     float *X, const qml_long INCX);
+
+    void cblas_dtrmv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const double *A, const qml_long LDA,
+                     double *X, const qml_long INCX);
+
+    void cblas_ctrmv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const qml_single_complex *A,
+                     const qml_long LDA, qml_single_complex *X, const qml_long INCX);
+
+    void cblas_ztrmv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const qml_double_complex *A,
+                     const qml_long LDA, qml_double_complex *X, const qml_long INCX);
+
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether the upper or lower triangle of matrix A will be used
+TRANS    Specifies which product is computed:
+\        Non-Transpose: :math:`x \assign A * x`
+\        Transpose: :math:`x \assign \trans{A} * x`
+\        Complex Conjugate Transpose: :math:`x \assign \herm{A} * x`
+DIAG     Whether the diagonal is unit or not
+N        Order of matrix A
+A        Input matrix A
+LDA      Leading dimension of matrix A
+X        Vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+======   =====================================================================

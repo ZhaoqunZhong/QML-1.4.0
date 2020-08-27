@@ -1,0 +1,44 @@
+(S|D)SPR
+=============
+Single and double SPR.
+
+Description
+-----------
+Computes the symmetric packed rank-1 operation:
+
+.. math::
+
+    A \assign \alpha x * \trans{x} + A
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void sspr(const char *UPLO, const qml_long *N, const float *ALPHA,
+              const float *X, const qml_long *INCX, float *AP);
+
+    void dspr(const char *UPLO, const qml_long *N, const double *ALPHA,
+              const double *X, const qml_long *INCX, double *AP);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_sspr(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO, const qml_long N,
+                    const float ALPHA, const float *X, const qml_long INCX, float *AP);
+
+    void cblas_dspr(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO, const qml_long N,
+                    const double ALPHA, const double *X, const qml_long INCX, double *AP);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether the upper or lower triangle of matrix A will be used
+N        Order of matrix A
+ALPHA    Scalar multiplied with the vector-vector product
+X        Input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+AP       Matrix A stored in packed triangular form, must be at least: :math:`\fvar{N}\mult(\fvar{N}+1)/2`
+======   =====================================================================

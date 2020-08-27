@@ -1,0 +1,67 @@
+(S|D|C|Z)HSEQR
+==============
+Single, double, single complex, and double complex HSEQR.
+
+Description
+-----------
+Computes the eigenvalues of a Hessenberg matrix and optionally the
+Schur decomposition.
+
+The Schur decomposition of the Hessenberg matrix H is:
+
+.. math::
+
+    H = Z \mult T \mult \herm{Z}
+
+where T is upper triangular and Z is the unitary
+matrix of Schur vectors.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void shseqr(const char *JOB, const char *COMPZ, const qml_long *N,
+        const qml_long *ILO, const qml_long *IHI, float *H,
+        const qml_long *LDH, float *WR, float *WI, float *Z,
+        const qml_long *LDZ, float *WORK, const qml_long *LWORK,
+        qml_long *INFO);
+    
+    void dhseqr(const char *JOB, const char *COMPZ, const qml_long *N,
+        const qml_long *ILO, const qml_long *IHI, double *H,
+        const qml_long *LDH, double *WR, double *WI, double *Z,
+        const qml_long *LDZ, double *WORK, const qml_long *LWORK,
+        qml_long *INFO);
+    
+    void chseqr(const char *JOB, const char *COMPZ, const qml_long *N,
+        const qml_long *ILO, const qml_long *IHI, qml_single_complex *H,
+        const qml_long *LDH, qml_single_complex *W, qml_single_complex *Z,
+        const qml_long *LDZ, qml_single_complex *WORK, const qml_long *LWORK,
+        qml_long *INFO);
+    
+    void zhseqr(const char *JOB, const char *COMPZ, const qml_long *N,
+        const qml_long *ILO, const qml_long *IHI, qml_double_complex *H,
+        const qml_long *LDH, qml_double_complex *W, qml_double_complex *Z,
+        const qml_long *LDZ, qml_double_complex *WORK, const qml_long *LWORK,
+        qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+JOB      Compute Schur matrix T ('S') or eigenvalues only ('E')
+COMPZ    Compute Schur matrix Z ('I'), Q*Z ('V'), or do not compute ('N')
+N        Number of rows and columns of H
+ILO      Lower bound of already reduced triangular part
+IHI      Upper bound of already reduced triangular part
+H        Matrix of size N x N, overwritten on exit
+LDH      Leading dimension of H
+W        Array of size N containing eigenvalues on exit
+WR       Real part of W for real versions
+WI       Complex part of W for real version
+Z        Matrix of size N x N
+LDZ      Leading dimension of Z
+WORK     Work space of size at least LWORK
+LWORK    Size of work space (-1 to query)
+RWORK    Work space of size 2N
+INFO     0 on success
+======   =====================================================================

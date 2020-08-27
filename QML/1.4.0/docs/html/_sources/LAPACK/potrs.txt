@@ -1,0 +1,64 @@
+(S|D|C|Z)POTRS
+==============
+Single, double, single complex, and double complex POTRS.
+
+Description
+-----------
+Solves a system of linear equations for multiple right-hand sides
+given the Cholesky factorization of the matrix.
+
+Solves:
+
+.. math::
+
+    A \mult X = B
+
+If UPLO is 'U' then A has been factored using an upper triangular matrix U:
+
+.. math::
+
+    A = \herm{U} \mult U
+
+If UPLO is 'L' then A has been factored using a lower triangular matrix L:
+
+.. math::
+
+    A = L \mult \herm{L}
+
+The factored form is used to solve the system of equations. Only the
+upper or lower triangular part of A is referenced.
+
+To get the Cholesky factorization of a matrix use :doc:`POTRF<potrf>`.
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void spotrs(const char *UPLO, const qml_long *N, const qml_long *NRHS, float *A,
+        const qml_long *LDA, float *B, const qml_long *LDB, qml_long *INFO);
+
+    void dpotrs(const char *UPLO, const qml_long *N, const qml_long *NRHS, double *A,
+        const qml_long *LDA, double *B, const qml_long *LDB, qml_long *INFO);
+
+    void cpotrs(const char *UPLO, const qml_long *N, const qml_long *NRHS,
+        qml_single_complex *A, const qml_long *LDA, qml_single_complex *B,
+        const qml_long *LDB, qml_long *INFO);
+
+    void zpotrs(const char *UPLO, const qml_long *N, const qml_long *NRHS,
+        qml_double_complex *A, const qml_long *LDA, qml_double_complex *B,
+        const qml_long *LDB, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether A has been factored in 'U' upper triangular or 'L' lower triangular form
+N        Number of linear equations, order of the matrix A
+NRHS     Number of right hand sides, number of columns of B
+A        Matrix of size N x N in factored form
+LDA      Leading dimension of A
+B        On entry, the N x NRHS matrix B, on exit the solution matrix
+LDB      Leading dimension of B
+INFO     0 on success, <0 on illegal arguments
+======   =====================================================================

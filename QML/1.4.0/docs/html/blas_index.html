@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>QML API Reference &mdash; Qualcomm Math Library</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Qualcomm Math Library" href="index.html"/>
+        <link rel="next" title="BLAS 1 Functions" href="BLAS/blas1.html"/>
+        <link rel="prev" title="Example Programs" href="example_programs.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> QML
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to BLAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction_lapack.html">Introduction to LAPACK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_qml.html">Using QML</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">QML API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/blas1.html">BLAS 1 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/blas2.html">BLAS 2 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/blas3.html">BLAS 3 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/lapack.html">LAPACK Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Extensions/extensions.html">QML Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Utility/utility.html">QML Utility Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">QML</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>QML API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="qml-api-reference">
+<h1>QML API Reference<a class="headerlink" href="#qml-api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="BLAS/blas1.html">BLAS 1 Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/amax.html">(IS|ID|IC|IZ)AMAX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/amin.html">(IS|ID|IC|IZ)AMIN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/asum.html">(S|D|SC|DZ)ASUM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/axpby.html">(S|D|C|Z)AXPBY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/axpy.html">(S|D|C|Z)AXPY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/cabs1.html">(S|D)CABS1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/copy.html">(S|D|C|Z)COPY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/dot.html">(S|D)DOT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/dotc.html">(C|Z)DOTC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/dotu.html">(C|Z)DOTU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/nrm2.html">(S|D|SC|DZ)NRM2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/rot.html">(S|D|C|CS|Z|ZD)ROT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/rotg.html">(S|D|C|Z)ROTG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/rotm.html">(S|D)ROTM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/rotmg.html">(S|D)ROTMG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/scal.html">(S|D|C|Z|CS|ZD)SCAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/dsdot.html">(D)SDOT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/sdsdot.html">(SD)SDOT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS1/swap.html">(S|D|C|Z)SWAP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS/blas2.html">BLAS 2 Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/gbmv.html">(S|D|C|Z)GBMV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/gemv.html">(S|D|C|Z)GEMV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/ger.html">(S|D)GER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/gerc.html">(C|Z)GERC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/geru.html">(C|Z)GERU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/hbmv.html">(C|Z)HBMV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/hemv.html">(C|Z)HEMV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/her.html">(C|Z)HER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/her2.html">(C|Z)HER2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/hpmv.html">(C|Z)HPMV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/hpr.html">(C|Z)HPR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/hpr2.html">(C|Z)HPR2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/sbmv.html">(S|D)SBMV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/spmv.html">(S|D)SPMV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/spr.html">(S|D)SPR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/spr2.html">(S|D)SPR2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/symv.html">(S|D)SYMV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/syr.html">(S|D)SYR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/syr2.html">(S|D)SYR2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/tbmv.html">(S|D|C|Z)TBMV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/tbsv.html">(S|D|C|Z)TBSV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/tpmv.html">(S|D|C|Z)TPMV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/tpsv.html">(S|D|C|Z)TPSV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/trmv.html">(S|D|C|Z)TRMV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS2/trsv.html">(S|D|C|Z)TRSV</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BLAS/blas3.html">BLAS 3 Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS3/gemm.html">(S|D|C|Z)GEMM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS3/hemm.html">(C|Z)HEMM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS3/herk.html">(C|Z)HERK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS3/her2k.html">(C|Z)HER2K</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS3/symm.html">(S|D|C|Z)SYMM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS3/syrk.html">(S|D|C|Z)SYRK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS3/syr2k.html">(S|D|C|Z)SYR2K</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS3/trmm.html">(S|D|C|Z)TRMM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BLAS/BLAS3/trsm.html">(S|D|C|Z)TRSM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="LAPACK/lapack.html">LAPACK Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/bdsqr.html">(S|D|C|Z)BDSQR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/gebak.html">(S|D|C|Z)GEBAK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/gebal.html">(S|D|C|Z)GEBAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/gees.html">(S|D|C|Z)GEES</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/geev.html">(S|D|C|Z)GEEV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/gehrd.html">(S|D|C|Z)GEHRD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/gels.html">(S|D|C|Z)GELS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/gelsd.html">(S|D|C|Z)GELSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/geqr2.html">(S|D|C|Z)GEQR2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/geqrf.html">(S|D|C|Z)GEQRF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/gesdd.html">(S|D|C|Z)GESDD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/gesv.html">(S|D|C|Z)GESV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/gesvd.html">(S|D|C|Z)GESVD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/gesvx.html">(S|D|C|Z)GESVX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/getf2.html">(S|D|C|Z)GETF2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/getrf.html">(S|D|C|Z)GETRF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/getri.html">(S|D|C|Z)GETRI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/getrs.html">(S|D|C|Z)GETRS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/gges.html">(S|D|C|Z)GGES</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/ggev.html">(S|D|C|Z)GGEV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/heev.html">(C|Z)HEEV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/heevd.html">(C|Z)HEEVD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/hetrd.html">(C|Z)HETRD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/hseqr.html">(S|D|C|Z)HSEQR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/ilaxlc.html">ILA(S|D|C|Z)LC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/ilaxlr.html">ILA(S|D|C|Z)LR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/lacgv.html">(C|Z)LACGV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/lacpy.html">(S|D|C|Z)LACPY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/ladiv.html">(S|D)LADIV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/cladiv.html">(C|Z)LADIV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/lange.html">(S|D|C|Z)LANGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/lapy2.html">(S|D)LAPY2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/lapy3.html">(S|D)LAPY3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/larf.html">(S|D|C|Z)LARF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/larfb.html">(S|D|C|Z)LARFB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/larfg.html">(S|D|C|Z)LARFG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/lartg.html">(S|D|C|Z)LARTG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/larft.html">(S|D|C|Z)LARFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/las2.html">(S|D)LAS2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/lascl.html">(S|D|C|Z)LASCL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/laset.html">(S|D|C|Z)LASET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/lasq1.html">(S|D)LASQ1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/lasr.html">(S|D|C|Z)LASR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/lasrt.html">(S|D)LASRT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/lassq.html">(S|D|C|Z)LASSQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/lasv2.html">(S|D)LASV2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/orgqr.html">(S|D)ORGQR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/orgtr.html">(S|D)ORGTR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/posv.html">(S|D|C|Z)POSV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/potf2.html">(S|D|C|Z)POTF2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/potrf.html">(S|D|C|Z)POTRF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/potri.html">(S|D|C|Z)POTRI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/potrs.html">(S|D|C|Z)POTRS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/stedc.html">(S|D|C|Z)STEDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/steqr.html">(S|D|C|Z)STEQR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/syev.html">(S|D)SYEV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/syevd.html">(S|D)SYEVD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/sytrd.html">(S|D)SYTRD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/sytrf.html">(S|D|C|Z)SYTRF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/sytri.html">(S|D|C|Z)SYTRI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/trevc.html">(S|D|C|Z)TREVC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/trsyl.html">(S|D|C|Z)TRSYL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/trti2.html">(S|D|C|Z)TRTI2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/trtri.html">(S|D|C|Z)TRTRI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/unghr.html">(C|Z)UNGHR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/ungqr.html">(C|Z)UNGQR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAPACK/ungtr.html">(C|Z)UNGTR</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Extensions/extensions.html">QML Extensions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Extensions/conv_mm.html">(S)CONV_MM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Extensions/i32i8conv.html">I32I8CONV</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Utility/utility.html">QML Utility Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Utility/qmlInfo.html">QMLVersionInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Utility/qmlVersionString.html">QMLVersionString</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Utility/qmlGetNumThreads.html">QMLGetNumThreads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Utility/qmlSetNumThreads.html">QMLSetNumThreads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Utility/qmlIsSupported.html">QML_IS_SUPPORTED</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="BLAS/blas1.html" class="btn btn-neutral float-right" title="BLAS 1 Functions" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="example_programs.html" class="btn btn-neutral" title="Example Programs" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Qualcomm Technologies, Inc.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

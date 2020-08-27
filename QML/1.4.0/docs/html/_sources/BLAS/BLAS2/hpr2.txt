@@ -1,0 +1,54 @@
+(C|Z)HPR2
+=============
+Single complex and double complex HPR2.
+
+Description
+-----------
+Computes the hermitian rank-2 operation:
+
+.. math::
+
+    A \assign \alpha x * \herm{y} + \conj{\alpha} y * \herm{x} + A
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void chpr2(const char *UPLO, const qml_long *N, const qml_single_complex *ALPHA,
+               const qml_single_complex *X, const qml_long *INCX,
+               const qml_single_complex *Y, const qml_long *INCY,
+               qml_single_complex *AP);
+
+    void zhpr2(const char *UPLO, const qml_long *N, const qml_double_complex *ALPHA,
+               const qml_double_complex *X, const qml_long *INCX,
+               const qml_double_complex *Y, const qml_long *INCY,
+               qml_double_complex *AP);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_chpr2(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO, const qml_long N,
+                     const qml_single_complex *ALPHA, const qml_single_complex *X,
+                     const qml_long INCX, const qml_single_complex *Y,
+                     const qml_long INCY, qml_single_complex *AP);
+
+    void cblas_zhpr2(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO, const qml_long N,
+                     const qml_double_complex *ALPHA, const qml_double_complex *X,
+                     const qml_long INCX, const qml_double_complex *Y,
+                     const qml_long INCY, qml_double_complex *AP);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether the upper or lower triangle of matrix A will be used
+N        Order of matrix A
+ALPHA    Scalar multiplied with the vector-vector product
+X        First input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+Y        Second input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCY}} + 1`
+INCY     Distance between individual elements in Y
+AP       Matrix A stored in packed triangular form, must be at least: :math:`\fvar{N}\mult(\fvar{N}+1)/2`
+======   =====================================================================

@@ -1,0 +1,40 @@
+(S)CONV_MM
+=================
+Single precision CONV_MM.
+
+Description
+-----------
+Takes an image and a set of filters and performs a convolution using matrix multiplication.
+The image must be stored in channel major format.
+
+Extension Interface
+-------------------
+.. code-block:: c
+
+  void sconv_mm(const bool biased, const float* src, const qml_int srcWidth,
+                const qml_int srcHeight, const qml_int srcNumChannels,
+                const float* filters, const qml_int numFilters,
+                const qml_int filterX, const qml_int filterY, const qml_int padLeft,
+                const qml_int padTop, const qml_int strideX, const qml_int strideY,
+                float* output, const qml_int outputWidth, const qml_int outputHeight);
+
+Arguments
+---------
+==========   ============================================================
+biased       Whether or not a bias has already been applied to the output
+src          Input image, assumed to be stored in channel major format
+srcX         Width of the image
+srcY         Height of the image
+channels     Number of channels in the image
+filters      Filters, assumed to be stored in channel major format
+numFilters   Number of filters
+filterX      Width of the filters
+filterY      Height of the filters
+padX         Amount of padding added to the left and right of the image
+padY         Amount of padding added to the top and bottom of the image
+strideX      Filter stride in the X dimension
+strideY      Filter stride in the Y dimension
+output       Output, assumed to be stored in channel major format
+outputX      Width of an individual output
+outputy      Height of an individual output
+==========   ============================================================

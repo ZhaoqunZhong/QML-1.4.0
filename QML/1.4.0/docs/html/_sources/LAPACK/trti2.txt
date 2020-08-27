@@ -1,0 +1,45 @@
+(S|D|C|Z)TRTI2
+==============
+Single, double, single complex, and double complex TRTI2.
+
+Description
+-----------
+Computes the inverse of a triangular matrix using an unblocked algorithm.
+
+If UPLO is 'U' then A is assumed to be upper triangular and the lower
+triangular part is not accessed.
+
+If UPLO is 'L' then A is assumed to be lower triangular and the upper
+triangular part is not accessed.
+
+If DIAG is 'U' then the diagonal of A is not accessed and is assumed
+to be 1. If Diag is 'N' then the diagonal of A is accessed.
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void strti2(const char *UPLO, const char *DIAG, const qml_long *N, float *A,
+        const qml_long *LDA, qml_long *INFO);
+
+    void dtrti2(const char *UPLO, const char *DIAG, const qml_long *N, double *A,
+        const qml_long *LDA, qml_long *INFO);
+
+    void ctrti2(const char *UPLO, const char *DIAG, const qml_long *N,
+        qml_single_complex *A, const qml_long *LDA, qml_long *INFO);
+
+    void ztrti2(const char *UPLO, const char *DIAG, const qml_long *N,
+        qml_double_complex *A, const qml_long *LDA, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether to use 'U' upper triangular or 'L' lower triangular part of A
+DIAG     Specify whether to assume 'N' non-unit triangular or 'U' unit triangular
+N        Order of the matrix A
+A        Matrix of size N x N, overwritten with inverse on exit
+LDA      Leading dimension of A
+INFO     0 on success, <0 on illegal arguments
+======   =====================================================================

@@ -1,0 +1,45 @@
+(S|D|C|Z)GETRI
+==============
+Single, double, single complex, and double complex GETRI.
+
+Description
+-----------
+Computes the inverse of a matrix by using LU decomposition.
+
+Computes the inverse of U, then solves for the inverse of A:
+
+.. math::
+
+    \inv{A} \mult L = \inv{U}
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void sgetri(const qml_long *N, float *A, const qml_long *LDA, const qml_long *IPIV,
+        float *WORK, const qml_long *LWORK, qml_long *INFO);
+
+    void dgetri(const qml_long *N, double *A, const qml_long *LDA, const qml_long *IPIV,
+        double *WORK, const qml_long *LWORK, qml_long *INFO);
+
+    void cgetri(const qml_long *N, qml_single_complex *A, const qml_long *LDA,
+        const qml_long *IPIV, qml_single_complex *WORK, const qml_long *LWORK,
+        qml_long *INFO);
+
+    void zgetri(const qml_long *N, qml_double_complex *A, const qml_long *LDA,
+        const qml_long *IPIV, qml_double_complex *WORK, const qml_long *LWORK,
+        qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+N        Order of A
+A        Matrix of size N x N
+LDA      Leading dimension of A
+IPIV     Pivot indices indicating rows to interchange
+WORK     Work space of size at least LWORK
+LWORK    Size of work space, at least N, optimally a multiple of N (-1 to query)
+INFO     0 on success, <0 for illegal arguments, >0 for singular decomposition
+======   =====================================================================

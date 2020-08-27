@@ -1,0 +1,98 @@
+(S|D|C|Z)GBMV
+=============
+Single, double, single complex, and double complex GBMV.
+
+Description
+-----------
+Computes a general banded matrix-vector product.
+
+.. math::
+
+    y \assign \alpha A * x + \beta y
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void sgbmv(const char *TRANS, const qml_long *M, const qml_long *N,
+               const qml_long *KL, const qml_long *KU, const float *ALPHA,
+               const float *A, const qml_long *LDA, const float *X,
+               const qml_long *INCX, const float *BETA, float *Y,
+               const qml_long *INCY);
+
+    void dgbmv(const char *TRANS, const qml_long *M, const qml_long *N,
+               const qml_long *KL, const qml_long *KU, const double *ALPHA,
+               const double *A, const qml_long *LDA, const double *X,
+               const qml_long *INCX, const double *BETA, double *Y,
+               const qml_long *INCY);
+
+    void cgbmv(const char *TRANS, const qml_long *M, const qml_long *N,
+               const qml_long *KL, const qml_long *KU,
+               const qml_single_complex *ALPHA, const qml_single_complex *A,
+               const qml_long *LDA, const qml_single_complex *X,
+               const qml_long *INCX, const qml_single_complex *BETA,
+               qml_single_complex *Y, const qml_long *INCY);
+
+    void zgbmv(const char *TRANS, const qml_long *M, const qml_long *N,
+               const qml_long *KL, const qml_long *KU,
+               const qml_double_complex *ALPHA, const qml_double_complex *A,
+               const qml_long *LDA, const qml_double_complex *X,
+               const qml_long *INCX, const qml_double_complex *BETA,
+               qml_double_complex *Y, const qml_long *INCY);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_sgbmv(const CBLAS_ORDER ORDER, const CBLAS_TRANSPOSE TRANS,
+                     const qml_long M, const qml_long N, const qml_long KL,
+                     const qml_long KU, const float ALPHA, const float *A,
+                     const qml_long LDA, const float *X, const qml_long INCX,
+                     const float BETA, float *Y, const qml_long INCY);
+
+    void cblas_dgbmv(const CBLAS_ORDER ORDER, const CBLAS_TRANSPOSE TRANS,
+                     const qml_long M, const qml_long N, const qml_long KL,
+                     const qml_long KU, const double ALPHA, const double *A,
+                     const qml_long LDA, const double *X, const qml_long INCX,
+                     const double BETA, double *Y, const qml_long INCY);
+
+    void cblas_cgbmv(const CBLAS_ORDER ORDER, const CBLAS_TRANSPOSE TRANS,
+                     const qml_long M, const qml_long N, const qml_long KL, 
+                     const qml_long KU, const qml_single_complex *ALPHA,
+                     const qml_single_complex *A, const qml_long LDA,
+                     const qml_single_complex *X, const qml_long INCX,
+                     const qml_single_complex *BETA, qml_single_complex *Y,
+                     const qml_long INCY);
+
+    void cblas_zgbmv(const CBLAS_ORDER ORDER, const CBLAS_TRANSPOSE TRANS, 
+                     const qml_long M, const qml_long N, const qml_long KL,
+                     const qml_long KU, const qml_double_complex *ALPHA,
+                     const qml_double_complex *A, const qml_long LDA,
+                     const qml_double_complex *X, const qml_long INCX,
+                     const qml_double_complex *BETA, qml_double_complex *Y,
+                     const qml_long INCY);
+
+
+Arguments
+---------
+======   =====================================================================
+TRANS    Specifies how to read matrix A
+\        Possible values: Non-Transpose, Tranpose, Complex Conjugate Transpose
+M        Number of rows of matrix A
+N        Number of columns of matrix A
+KL       Number of sub-diagonals of A, with :math:`0 \le \fvar{KL}`
+KU       Number of super-diagonals of A, with :math:`0 \le \fvar{KU}`
+ALPHA    Scalar multiplied with the matrix-vector product
+A        Input matrix A
+LDA      Leading dimension of matrix A
+X        First input vector, must be at least:
+\        When Non-Tranpose: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+\        When Tranpose: :math:`(\fvar{M}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+BETA     Scalar multiplied with vector Y
+Y        Second input vector, must be at least:
+\        When Non-Transpose: :math:`(\fvar{M}-1)\mult\abs{\fvar{INCY}} + 1`
+\        When Transpose: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCY}} + 1`
+INCY     Distance between individual elements in Y
+======   =====================================================================

@@ -1,0 +1,53 @@
+(S|D|C|Z)SYTRF
+==============
+Single, double, single complex, and double complex SYTRF.
+
+Description
+-----------
+Computes the factorization of a symmetric matrix using one of the
+following factorizations:
+
+.. math::
+
+    \fvar{A} = \fvar{U} \mult \fvar{D} \mult \trans{\fvar{U}}
+
+.. math::
+
+    \fvar{A} = \fvar{L} \mult \fvar{D} \mult \trans{\fvar{L}}
+
+Uses the Bunch-Kaufman diagonal pivoting method. U is a product of
+permutation and unit upper triangular matrices. L is a product of
+permutation and unit lower triangular matrices. D is symmetric
+with block diagonal structure, with blocks of size 1x1 or 2x2.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void ssytrf(const char *UPLO, const qml_long *N, float *A, const qml_long *LDA,
+        qml_long *IPIV, float *WORK, const qml_long *LWORK, qml_long *INFO);
+    
+    void dsytrf(const char *UPLO, const qml_long *N, double *A, const qml_long *LDA,
+        qml_long *IPIV, double *WORK, const qml_long *LWORK, qml_long *INFO);
+    
+    void csytrf(const char *UPLO, const qml_long *N, qml_single_complex *A,
+        const qml_long *LDA, qml_long *IPIV, qml_single_complex *WORK,
+        const qml_long *LWORK, qml_long *INFO);
+    
+    void zsytrf(const char *UPLO, const qml_long *N, qml_double_complex *A,
+        const qml_long *LDA, qml_long *IPIV, qml_double_complex *WORK,
+        const qml_long *LWORK, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Set to 'U' for upper triangular factorization, 'L' for lower
+N        Number of rows and columns of A
+A        Matrix of size N x N, overwritten with D on exit
+LDA      Leading dimension of A
+IPIV     Array of pivots of size N, negative indicates 2x2 block pivots
+WORK     Work space
+LWORK    Size of WORK, -1 to query
+INFO     0 on success, <0 for bad arguments, >0 if singular
+======   =====================================================================

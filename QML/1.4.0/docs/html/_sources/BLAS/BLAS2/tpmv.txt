@@ -1,0 +1,79 @@
+(S|D|C|Z)TPMV
+=============
+Single, double, single complex, and double complex TPMV.
+
+Description
+-----------
+Computes a packed banded triangle matrix-vector product.
+
+.. math::
+
+    x\assign A * x
+
+or
+
+.. math::
+
+    x \assign \trans{A} * x
+
+or
+
+.. math::
+
+    x \assign \herm{A} * x
+
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void stpmv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const float *AP, float *X, const qml_long *INCX);
+    
+    void dtpmv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const double *AP, double *X, const qml_long *INCX);
+    
+    void ctpmv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const qml_single_complex *AP, qml_single_complex *X, const qml_long *INCX);
+    
+    void ztpmv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const qml_double_complex *AP, qml_double_complex *X, const qml_long *INCX);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_stpmv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const float *AP, float *X, const qml_long INCX);
+
+    void cblas_dtpmv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const double *AP, double *X, const qml_long INCX);
+
+    void cblas_ctpmv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG, const qml_long N,
+                     const qml_single_complex *AP, qml_single_complex *X,
+                     const qml_long INCX);
+
+    void cblas_ztpmv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG, const qml_long N,
+                     const qml_double_complex *AP, qml_double_complex *X,
+                     const qml_long INCX);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether the upper or lower triangle of matrix A will be used
+TRANS    Specifies which product is computed:
+\        Non-Transpose: :math:`x \assign A * x`
+\        Transpose: :math:`x \assign \trans{A} * x`
+\        Complex Conjugate Transpose: :math:`x \assign \herm{A} * x`
+DIAG     Whether the diagonal is unit or not
+N        Order of matrix A
+AP       Matrix A stored in packed triangular form, must be at least: :math:`\fvar{N}\mult(\fvar{N}+1)/2`
+X        Vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+======   =====================================================================

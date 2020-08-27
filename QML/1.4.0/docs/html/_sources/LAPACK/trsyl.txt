@@ -1,0 +1,88 @@
+(S|D|C|Z)TRSYL
+==============
+Single, double, single complex, and double complex TRSYL.
+
+Description
+-----------
+Solves one of the Sylvester equations:
+
+.. math::
+
+    A \mult X + X \mult B = \alpha C
+
+.. math::
+
+    \herm{A} \mult X + X \mult B = \alpha C
+
+.. math::
+
+    A \mult X + X \mult \herm{B} = \alpha C
+
+.. math::
+
+    \herm{A} \mult X + X \mult \herm{B} = \alpha C
+
+.. math::
+
+    A \mult X - X \mult B = \alpha C
+
+.. math::
+
+    \herm{A} \mult X - X \mult B = \alpha C
+
+.. math::
+
+    A \mult X - X \mult \herm{B} = \alpha C
+
+.. math::
+
+    \herm{A} \mult X - X \mult \herm{B} = \alpha C
+
+Matrices A and B are upper triangular, A is M x M and B is N x N.
+Matrices C and X are M x N. The scale factor :math:`\alpha` is set
+less than one to avoid overflow in X.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void strsyl(const char *TRANA, const char *TRANB, const qml_long *ISGN,
+        const qml_long *M, const qml_long *N, float *A, const qml_long *LDA,
+        float *B, const qml_long *LDB, float *C, const qml_long *LDC,
+        float *SCALE, qml_long *INFO);
+    
+    void dtrsyl(const char *TRANA, const char *TRANB, const qml_long *ISGN,
+        const qml_long *M, const qml_long *N, double *A, const qml_long *LDA,
+        double *B, const qml_long *LDB, double *C, const qml_long *LDC,
+        double *SCALE, qml_long *INFO);
+    
+    void ctrsyl(const char *TRANA, const char *TRANB, const qml_long *ISGN,
+        const qml_long *M, const qml_long *N, qml_single_complex *A,
+        const qml_long *LDA, qml_single_complex *B, const qml_long *LDB,
+        qml_single_complex *C, const qml_long *LDC, float *SCALE,
+        qml_long *INFO);
+    
+    void ztrsyl(const char *TRANA, const char *TRANB, const qml_long *ISGN,
+        const qml_long *M, const qml_long *N, qml_double_complex *A,
+        const qml_long *LDA, qml_double_complex *B, const qml_long *LDB,
+        qml_double_complex *C, const qml_long *LDC, double *SCALE,
+        qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+TRANA    Specifies transform option for A, 'N' for none, 'T' for transpose, 'C' for conjugate transpose
+TRANB    Specifies transform option for B, 'N' for none, 'T' for transpose, 'C' for conjugate transpose
+ISGN     Solve :math:`A\mult X + X \mult B = \alpha C` (+1) or :math:`A\mult X - X \mult B = \alpha C` (-1)
+M        Number of rows and columns of A
+N        Number of rows and columns of B
+A        Upper triangular matrix
+LDA      Leading dimension of A
+B        Upper triangular matrix
+LDB      Leading dimension of B
+C        Right hand side matrix, on exit overwritten by solution matrix X
+LDC      Leading dimension of C
+SCALE    Scale factor :math:`\alpha` to avoid overflow in X
+INFO     0 on success, <0 on bad arguments, 1 if A and B have very close eigenvalues
+======   =====================================================================

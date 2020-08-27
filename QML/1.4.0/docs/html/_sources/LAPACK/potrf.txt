@@ -1,0 +1,50 @@
+(S|D|C|Z)POTRF
+==============
+Single, double, single complex, and double complex POTRF.
+
+Description
+-----------
+Computes the Cholesky factorization of a positive definite matrix
+using a blocked algorithm.
+
+If UPLO is 'U' then A is factored using an upper triangular matrix U:
+
+.. math::
+
+    A = \herm{U} \mult U
+
+If UPLO is 'L' then A is factored using a lower triangular matrix L:
+
+.. math::
+
+    A = L \mult \herm{L}
+
+The upper or lower triangular part of A is overwritten on exit with
+U or L. The opposite side is not modified.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void spotrf(const char *UPLO, const qml_long *N, float *A, const qml_long *LDA,
+        qml_long *INFO);
+
+    void dpotrf(const char *UPLO, const qml_long *N, double *A, const qml_long *LDA,
+        qml_long *INFO);
+
+    void cpotrf(const char *UPLO, const qml_long *N, qml_single_complex *A,
+        const qml_long *LDA, qml_long *INFO);
+
+    void zpotrf(const char *UPLO, const qml_long *N, qml_double_complex *A,
+        const qml_long *LDA, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether to factor using 'U' upper triangular or 'L' lower triangular
+N        Order of the matrix A
+A        Matrix of size N x N, overwritten with factorization on exit
+LDA      Leading dimension of A
+INFO     0 on success, <0 on illegal arguments, >0 if not positive definite
+======   =====================================================================

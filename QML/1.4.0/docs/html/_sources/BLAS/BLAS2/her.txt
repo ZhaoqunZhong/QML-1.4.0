@@ -1,0 +1,48 @@
+(C|Z)HER
+=============
+Single complex and double complex HER.
+
+Description
+-----------
+Computes the hermitian rank-1 operation:
+
+.. math::
+
+    A \assign \alpha x * \herm{x} + A
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void cher(const char *UPLO, const qml_long *N, const float *ALPHA,
+              const qml_single_complex *X, const qml_long *INCX,
+              qml_single_complex *A, const qml_long *LDA);
+
+    void zher(const char *UPLO, const qml_long *N, const double *ALPHA,
+              const qml_double_complex *X, const qml_long *INCX,
+              qml_double_complex *A, const qml_long *LDA);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_cher(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO, const qml_long N,
+                    const float ALPHA, const qml_single_complex *X, const qml_long INCX,
+                    qml_single_complex *A, const qml_long LDA);
+
+    void cblas_zher(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO, const qml_long N,
+                    const double ALPHA, const qml_double_complex *X, const qml_long INCX,
+                    qml_double_complex *A, const qml_long LDA);
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether the upper or lower triangle of matrix A will be used
+N        Order of matrix A
+ALPHA    Scalar multiplied with the vector-vector product
+X        Input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+A        Input matrix A
+LDA      Leading dimension of matrix A
+======   =====================================================================

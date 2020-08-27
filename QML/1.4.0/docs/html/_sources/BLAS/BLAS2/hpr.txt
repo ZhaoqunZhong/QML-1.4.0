@@ -1,0 +1,47 @@
+(C|Z)HPR
+=============
+Single complex and double complex HPR.
+
+Description
+-----------
+Computes the packed hermitian rank-1 operation:
+
+.. math::
+
+    A \assign \alpha x * \herm{x} + A
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void chpr(const char *UPLO, const qml_long *N, const float *ALPHA,
+              const qml_single_complex *X, const qml_long *INCX,
+              qml_single_complex *AP);
+
+    void zhpr(const char *UPLO, const qml_long *N, const double *ALPHA,
+              const qml_double_complex *X, const qml_long *INCX,
+              qml_double_complex *AP);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_chpr(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO, const qml_long N,
+                    const float ALPHA, const qml_single_complex *X,
+                    const qml_long INCX, qml_single_complex *AP);
+
+    void cblas_zhpr(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO, const qml_long N,
+                    const double ALPHA, const qml_double_complex *X,
+                    const qml_long INCX, qml_double_complex *AP);
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether the upper or lower triangle of matrix A will be used
+N        Order of matrix A
+ALPHA    Scalar multiplied with the vector-vector product
+X        Input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+AP       Matrix A stored in packed triangular form, must be at least: :math:`\fvar{N}\mult(\fvar{N}+1)/2`
+======   =====================================================================

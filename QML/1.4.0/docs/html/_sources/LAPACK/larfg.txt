@@ -1,0 +1,71 @@
+(S|D|C|Z)LARFG
+==============
+Single, double, single complex, and double complex LARFG.
+
+Description
+-----------
+Generates a single elementary reflector matrix.
+
+.. math::
+
+    \herm{H} \mult 
+        \left[
+            \begin{matrix}
+                \alpha \\ x
+            \end{matrix}
+        \right]
+    =
+    \left[
+        \begin{matrix}
+            \beta \\ 0
+        \end{matrix}
+    \right]
+
+.. math::
+
+    \herm{H} \mult H = I
+
+The reflector matrix is represented in the form:
+
+.. math::
+
+    H = I - \tau \mult
+        \left[
+            \begin{matrix}
+                1 \\ v
+            \end{matrix}
+        \right]
+    \mult
+        \left[
+            \begin{matrix}
+                1 & \herm{v}
+            \end{matrix}
+        \right]
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void slarfg(const qml_long *N, float *ALPHA, float *X, const qml_long *INCX,
+        float *TAU);
+
+    void dlarfg(const qml_long *N, double *ALPHA, double *X, const qml_long *INCX,
+        double *TAU);
+
+    void clarfg(const qml_long *N, qml_single_complex *ALPHA, qml_single_complex *X,
+        const qml_long *INCX, qml_single_complex *TAU);
+
+    void zlarfg(const qml_long *N, qml_double_complex *ALPHA, qml_double_complex *X,
+        const qml_long *INCX, qml_double_complex *TAU);
+
+
+Arguments
+---------
+======   =====================================================================
+N        Order of the elementary reflector matrix
+ALPHA    On entry :math:`\alpha`, on exit holds :math:`\beta`
+X        On entry the vector x, on exit the vector v
+INCX     The stride between elements of x
+TAU      On exit the value :math:`\tau`
+======   =====================================================================

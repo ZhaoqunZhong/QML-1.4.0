@@ -1,0 +1,10 @@
+/home/photon/Documents/QML/1.4.0/arm64/ilp64/examples/build/CMakeFiles/rebuild_cache.dir
+/home/photon/Documents/QML/1.4.0/arm64/ilp64/examples/build/CMakeFiles/edit_cache.dir
+/home/photon/Documents/QML/1.4.0/arm64/ilp64/examples/build/CMakeFiles/QMLInfoExample.dir
+/home/photon/Documents/QML/1.4.0/arm64/ilp64/examples/build/CMakeFiles/CBLASExample.dir
+/home/photon/Documents/QML/1.4.0/arm64/ilp64/examples/build/CMakeFiles/MinimalExample.dir
+/home/photon/Documents/QML/1.4.0/arm64/ilp64/examples/build/CMakeFiles/BLASSolveExample.dir
+/home/photon/Documents/QML/1.4.0/arm64/ilp64/examples/build/CMakeFiles/BigBLASExample.dir
+/home/photon/Documents/QML/1.4.0/arm64/ilp64/examples/build/CMakeFiles/ConvMMExample.dir
+/home/photon/Documents/QML/1.4.0/arm64/ilp64/examples/build/CMakeFiles/LeastSquaresExample.dir
+/home/photon/Documents/QML/1.4.0/arm64/ilp64/examples/build/CMakeFiles/SVDExample.dir

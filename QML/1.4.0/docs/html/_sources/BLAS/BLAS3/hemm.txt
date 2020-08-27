@@ -1,0 +1,74 @@
+(C|Z)HEMM
+=========
+Single complex and double complex HEMM.
+
+Description
+-----------
+Computes a complex matrix-matrix product with hermitian matrix A
+
+.. math::
+
+    C \assign \alpha A * B + \beta C
+
+or
+
+.. math::
+
+    C \assign \alpha B * A + \beta C
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void chemm(const char *SIDE, const char *UPLO, const qml_long *M,
+               const qml_long *N, const qml_single_complex *ALPHA,
+               const qml_single_complex *A, const qml_long *LDA,
+               const qml_single_complex *B, const qml_long *LDB,
+               const qml_single_complex *BETA, qml_single_complex *C,
+               const qml_long *LDC);
+
+    void zhemm(const char *SIDE, const char *UPLO, const qml_long *M,
+               const qml_long *N, const qml_double_complex *ALPHA,
+               const qml_double_complex *A, const qml_long *LDA,
+               const qml_double_complex *B, const qml_long *LDB,
+               const qml_double_complex *BETA, qml_double_complex *C,
+               const qml_long *LDC);
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_chemm(const CBLAS_ORDER ORDER, const CBLAS_SIDE SIDE,
+                     const CBLAS_UPLO UPLO, const qml_long M,
+                     const qml_long N, const qml_single_complex *ALPHA,
+                     const qml_single_complex *A, const qml_long LDA,
+                     const qml_single_complex *B, const qml_long LDB,
+                     const qml_single_complex *BETA, qml_single_complex *C,
+                     const qml_long LDC);
+
+    void cblas_zhemm(const CBLAS_ORDER ORDER, const CBLAS_SIDE SIDE,
+                     const CBLAS_UPLO UPLO, const qml_long M,
+                     const qml_long N, const qml_double_complex *ALPHA,
+                     const qml_double_complex *A, const qml_long LDA,
+                     const qml_double_complex *B, const qml_long LDB,
+                     const qml_double_complex *BETA, qml_double_complex *C,
+                     const qml_long LDC);
+
+Arguments
+---------
+=====   ====================================================================
+SIDE    Specify which side of the product matrix A should be
+\       For left, computes: :math:`C \assign \alpha A * B + \beta C`
+\       For right, computes: :math:`C \assign \alpha B * A + \beta C`
+UPLO    Specify whether the upper or lower triangle of matrix A will be read
+M       Number of rows of matrix C
+N       Number of columns of matrix C
+ALPHA   Scalar multiplied with the matrix-matrix product
+A       Hermitian input matrix A
+LDA     Leading dimension of matrix A
+B       Input matrix B
+LDB     Leading dimension of matrix B
+BETA    Scalar multiplied with matrix C
+C       Result matrix
+LDC     Leading dimension of matrix C
+=====   ====================================================================

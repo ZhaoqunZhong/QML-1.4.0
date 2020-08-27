@@ -1,0 +1,26 @@
+BLAS 1 Functions
+================
+The BLAS 1 consists of vector-vector operations.  Below are the BLAS 1 functions supported by QML.
+
+.. toctree::
+   :maxdepth: 1
+   
+   BLAS1/amax
+   BLAS1/amin
+   BLAS1/asum
+   BLAS1/axpby
+   BLAS1/axpy
+   BLAS1/cabs1
+   BLAS1/copy
+   BLAS1/dot
+   BLAS1/dotc
+   BLAS1/dotu
+   BLAS1/nrm2
+   BLAS1/rot
+   BLAS1/rotg
+   BLAS1/rotm
+   BLAS1/rotmg
+   BLAS1/scal
+   BLAS1/dsdot
+   BLAS1/sdsdot
+   BLAS1/swap

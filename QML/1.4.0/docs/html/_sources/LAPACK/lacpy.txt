@@ -1,0 +1,42 @@
+(S|D|C|Z)LACPY
+==============
+Single, double, single complex, and double complex LACPY.
+
+Description
+-----------
+Copies all or part of a matrix from one location to another.
+
+.. math::
+
+    B \assign A
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void slacpy(const char *UPLO, const qml_long *M, const qml_long *N,
+        const float *A, const qml_long *LDA, float *B, const qml_long *LDB);
+
+    void dlacpy(const char *UPLO, const qml_long *M, const qml_long *N,
+        const double *A, const qml_long *LDA, double *B, const qml_long *LDB);
+
+    void clacpy(const char *UPLO, const qml_long *M, const qml_long *N,
+        const qml_single_complex *A, const qml_long *LDA, qml_single_complex *B,
+        const qml_long *LDB);
+
+    void zlacpy(const char *UPLO, const qml_long *M, const qml_long *N,
+        const qml_double_complex *A, const qml_long *LDA, qml_double_complex *B,
+        const qml_long *LDB);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether A is upper 'U' or lower 'L' triangular, or rectangular otherwise
+M        Number of rows of A
+N        Number of columns of A
+A        Source matrix
+LDA      Leading dimension of A
+B        Destination matrix
+LDB      Leading dimension of B
+======   =====================================================================

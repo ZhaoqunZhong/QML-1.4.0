@@ -1,0 +1,56 @@
+(S|D|C|Z)LARTG
+==============
+Single, double, single complex, and double complex LARTG.
+
+Description
+-----------
+Generates a plane rotation such that:
+
+.. math::
+
+    \left[
+      \begin{matrix}
+        \fvar{CS} & \fvar{SN} \\
+        -\sconj{\fvar{SN}} & \fvar{CS} \\
+      \end{matrix}
+    \right]
+    \mult
+    \left[
+      \begin{matrix}
+        \fvar{F} \\ \fvar{G}
+      \end{matrix}
+    \right]
+    =
+    \left[
+      \begin{matrix}
+        \fvar{R} \\ 0
+      \end{matrix}
+    \right]
+
+where :math:`\fvar{CS}^2+|\fvar{SN}|^2 = 1`.
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void slartg(const float *F, const float *G, float *CS, float *SN, float *R);
+
+    void dlartg(const double *F, const double *G, double *CS, double *SN, double *R);
+
+    void clartg(const qml_single_complex *F, const qml_single_complex *G,
+        float *CS, qml_single_complex *SN, qml_single_complex *R);
+
+    void zlartg(const qml_double_complex *F, const qml_double_complex *G,
+        double *CS, qml_double_complex *SN, qml_double_complex *R);
+
+
+Arguments
+---------
+======   =====================================================================
+F        First part of vector to rotate
+G        Second part of vector to rotate
+CS       Cosine part of rotation matrix
+SN       Sine part of rotatione matrix
+R        Residual after rotation
+======   =====================================================================

@@ -1,0 +1,70 @@
+(C|Z)HERK
+=========
+Single complex and double complex HERK.
+
+Description
+-----------
+Performs one of the following rank-k updates on the hermitian matrix C.
+
+.. math::
+
+    C = \alpha A * \herm{A} + \beta C
+
+or
+
+.. math::
+
+    C = \alpha \herm{A} * A + \beta C
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void cherk(const char *UPLO, const char *TRANS, const qml_long *N,
+               const qml_long *K, const float *ALPHA,
+               const qml_single_complex *A, const qml_long *LDA,
+               const float *BETA, qml_single_complex *C, const qml_long *LDC);
+
+    void zherk(const char *UPLO, const char *TRANS, const qml_long *N,
+               const qml_long *K, const double *ALPHA,
+               const qml_double_complex *A, const qml_long *LDA,
+               const double *BETA, qml_double_complex *C, const qml_long *LDC);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_cherk(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const qml_long N,
+                     const qml_long K, const float ALPHA,
+                     const qml_single_complex *A, const qml_long LDA,
+                     const float BETA, qml_single_complex *C,
+                     const qml_long LDC);
+
+    void cblas_zherk(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const qml_long N,
+                     const qml_long K, const double ALPHA,
+                     const qml_double_complex *A, const qml_long LDA,
+                     const double BETA, qml_double_complex *C,
+                     const qml_long LDC);
+
+
+
+Arguments
+---------
+=====   ==================================================================================
+UPLO    Specify whether the upper or lower triangle of matrix C will be used
+TRANS   Specifies which rank-k update is performed:
+\       Non-Transpose: :math:`C = \alpha A * \herm{A} + \beta C`
+\       Complex Conjugate Transpose: :math:`C = \alpha \herm{A} * A + \beta C`
+N       Order of matrix C
+K       For Non-Transpose, K is the number of columns of matrix A
+\       For Transpose and Complex Conjugate Transpose, K is the number of rows of matrix A
+ALPHA   Scalar multiplied with the matrix-matrix product
+A       Input matrix A
+LDA     Leading dimension of matrix A
+BETA    Scalar multiplied with matrix C
+C       Hermitian matrix C
+LDC     Leading dimension of matrix C
+=====   ==================================================================================

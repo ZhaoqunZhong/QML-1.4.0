@@ -1,0 +1,97 @@
+(S|D|C|Z)GEMM
+=============
+Single, double, single complex, and double complex GEMM.
+
+Description
+-----------
+Computes a general matrix-matrix product.
+
+.. math::
+
+    C \assign \alpha A * B + \beta C
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void sgemm(const char *TRANSA, const char *TRANSB, const qml_long *M,
+               const qml_long *N, const qml_long *K, const float *ALPHA,
+               const float *A, const qml_long *LDA, const float *B,
+               const qml_long *LDB, const float *BETA, float *C,
+               const qml_long *LDC);
+
+    void dgemm(const char *TRANSA, const char *TRANSB, const qml_long *M,
+               const qml_long *N, const qml_long *K, const double *ALPHA,
+               const double *A, const qml_long *LDA, const double *B,
+               const qml_long *LDB, const double *BETA, double *C,
+               const qml_long *LDC);
+
+    void cgemm(const char *TRANSA, const char *TRANSB, const qml_long *M,
+               const qml_long *N, const qml_long *K,
+               const qml_single_complex *ALPHA, const qml_single_complex *A,
+               const qml_long *LDA, const qml_single_complex *B,
+               const qml_long *LDB, const qml_single_complex *BETA,
+               qml_single_complex *C, const qml_long *LDC);
+
+    void zgemm(const char *TRANSA, const char *TRANSB, const qml_long *M,
+               const qml_long *N, const qml_long *K,
+               const qml_double_complex *ALPHA, const qml_double_complex *A,
+               const qml_long *LDA, const qml_double_complex *B,
+               const qml_long *LDB, const qml_double_complex *BETA,
+               qml_double_complex *C, const qml_long *LDC);
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_sgemm(const CBLAS_ORDER ORDER, const CBLAS_TRANSPOSE TRANSA,
+                     const CBLAS_TRANSPOSE TRANSB, const qml_long M,
+                     const qml_long N, const qml_long K, const float ALPHA,
+                     const float *A, const qml_long LDA, const float *B,
+                     const qml_long LDB, const float BETA, float *C,
+                     const qml_long LDC);
+
+    void cblas_dgemm(const CBLAS_ORDER ORDER, const CBLAS_TRANSPOSE TRANSA,
+                     const CBLAS_TRANSPOSE TRANSB, const qml_long M,
+                     const qml_long N, const qml_long K, const double ALPHA,
+                     const double *A, const qml_long LDA, const double *B,
+                     const qml_long LDB, const double BETA, double *C,
+                     const qml_long LDC);
+
+    void cblas_cgemm(const CBLAS_ORDER ORDER, const CBLAS_TRANSPOSE TRANSA,
+                     const CBLAS_TRANSPOSE TRANSB, const qml_long M,
+                     const qml_long N, const qml_long K,
+                     const qml_single_complex *ALPHA,
+                     const qml_single_complex *A, const qml_long LDA,
+                     const qml_single_complex *B, const qml_long LDB,
+                     const qml_single_complex *BETA, qml_single_complex *C,
+                     const qml_long LDC);
+
+    void cblas_zgemm(const CBLAS_ORDER ORDER, const CBLAS_TRANSPOSE TRANSA,
+                     const CBLAS_TRANSPOSE TRANSB, const qml_long M,
+                     const qml_long N, const qml_long K,
+                     const qml_double_complex *ALPHA,
+                     const qml_double_complex *A, const qml_long LDA,
+                     const qml_double_complex *B, const qml_long LDB,
+                     const qml_double_complex *BETA, qml_double_complex *C,
+                     const qml_long LDC);
+
+Arguments
+---------
+======   =====================================================================
+TRANSA   Specifies how to read matrix A
+\        Possible values: Non-Transpose, Tranpose, Complex Conjugate Transpose
+TRANSB   Specifies how to read matrix B
+\        Possible values: Non-Transpose, Tranpose, Complex Conjugate Transpose
+M        Number of rows of matrix A
+N        Number of columns of matrix B
+K        Number of columns of matrix A
+ALPHA    Scalar multiplied with the matrix-matrix product
+A        Input matrix A
+LDA      Leading dimension of matrix A
+B        Input matrix B
+LDB      Leading dimension of matrix B
+BETA     Scalar multiplied with matrix C
+C        Result matrix
+LDC      Leading dimension of matrix C
+======   =====================================================================

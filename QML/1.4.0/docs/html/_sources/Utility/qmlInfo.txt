@@ -1,0 +1,34 @@
+QMLVersionInfo
+===============
+QMLVersionInfo.
+
+Description
+-----------
+Provides general information about QML.
+
+Extension Interface
+-------------------
+.. code-block:: c
+
+    void QMLVersionInfo(qml_info *info);
+
+    struct qml_info
+    {
+        const char *productName;
+        const char *vendor;
+        qml_int major;
+        qml_int minor;
+        qml_int mark;
+        QML_INFO_TYPE type;
+        const char *cpuOptimization;
+        const char *cpuArch;
+        const char *buildDate;
+        qml_int lp64;
+    };
+
+Arguments
+---------
+====  ==================================================================
+info  Pointer to the ``qml_info`` struct which will be populated with
+      information about QML
+====  ==================================================================

@@ -1,0 +1,44 @@
+(S|D|C|Z)LASSQ
+==============
+Single, double, single complex, and double complex LASSQ.
+
+Description
+-----------
+Updates a scaled sum of squares value.
+
+The scaled sum of squares storage format consists of two values
+SCALE and SUMSQ which together represent the value:
+
+.. math::
+
+    \fvar{SCALE}^2 \mult \fvar{SUMSQ}
+
+LASSQ updates an existing scaled sum of squares value to include
+the sum of squares of vector X.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void slassq(const qml_long *N, const float *X, const qml_long *INCX,
+        float *SCALE, float *SUMSQ);
+
+    void dlassq(const qml_long *N, const double *X, const qml_long *INCX,
+        double *SCALE, double *SUMSQ);
+
+    void classq(const qml_long *N, const qml_single_complex *X, const qml_long *INCX,
+        float *SCALE, float *SUMSQ);
+
+    void zlassq(const qml_long *N, const qml_double_complex *X, const qml_long *INCX,
+        double *SCALE, double *SUMSQ);
+
+
+Arguments
+---------
+======   =====================================================================
+N        Size of the array
+X        Input array
+INCX     Stride between elements of X
+SCALE    Initial scale value, overwritten with updated value
+SUMSQ    Initial sum of squares value, overwritten with updated value
+======   =====================================================================

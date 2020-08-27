@@ -1,0 +1,83 @@
+(S|D|C|Z)TPSV
+=============
+Single, double, single complex, and double complex TPSV.
+
+Description
+-----------
+Solves one of the following systems of equations for packed banded triangle A:
+
+.. math::
+
+    A\mult x = b
+
+or
+
+.. math::
+
+    \trans{A}\mult x = b
+
+or
+
+.. math::
+
+    \herm{A}\mult x = b
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void stpsv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const float *AP, float *X, const qml_long *INCX);
+
+    void dtpsv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const double *AP, double *X, const qml_long *INCX);
+
+    void ctpsv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const qml_single_complex *AP, qml_single_complex *X,
+               const qml_long *INCX);
+
+    void ztpsv(const char *UPLO, const char *TRANS, const char *DIAG, const qml_long *N,
+               const qml_double_complex *AP, qml_double_complex *X,
+               const qml_long *INCX);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_stpsv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const float *AP, float *X,
+                     const qml_long INCX);
+
+    void cblas_dtpsv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const double *AP, double *X,
+                     const qml_long INCX);
+
+    void cblas_ctpsv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const qml_single_complex *AP,
+                     qml_single_complex *X, const qml_long INCX);
+
+    void cblas_ztpsv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const qml_double_complex *AP,
+                     qml_double_complex *X, const qml_long INCX);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether the upper or lower triangle of matrix A will be used
+TRANS    Specifies which equation is solved:
+\        Non-Transpose: :math:`A\mult x = b`
+\        Transpose: :math:`\trans{A}\mult x = b`
+\        Complex Conjugate Transpose: :math:`\herm{A}\mult x = b`
+DIAG     Whether the diagonal is unit or not
+N        Order of matrix A
+AP       Matrix A stored in packed triangular form, must be at least: :math:`\fvar{N}\mult(\fvar{N}+1)/2`
+X        Input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+\        On output, overwritten with solution vector
+INCX     Distance between individual elements in X
+======   =====================================================================

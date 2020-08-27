@@ -1,0 +1,90 @@
+(S|D|C|Z)TBMV
+=============
+Single, double, single complex, and double complex TBMV.
+
+Description
+-----------
+Computes a triangle banded matrix-vector product.
+
+.. math::
+
+    x \assign \alpha A * x
+
+or
+
+.. math::
+
+    x \assign \alpha \trans{A} * x
+
+or
+
+.. math::
+
+    x \assign \alpha \herm{A} * x
+
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void stbmv(const char *UPLO, const char *TRANS, const char *DIAG,
+               const qml_long *N, const qml_long *K, const float *A,
+               const qml_long *LDA, float *X, const qml_long *INCX);
+
+    void dtbmv(const char *UPLO, const char *TRANS, const char *DIAG,
+               const qml_long *N, const qml_long *K, const double *A,
+               const qml_long *LDA, double *X, const qml_long *INCX);
+
+    void ctbmv(const char *UPLO, const char *TRANS, const char *DIAG,
+               const qml_long *N, const qml_long *K, const qml_single_complex *A,
+               const qml_long *LDA, qml_single_complex *X, const qml_long *INCX);
+
+    void ztbmv(const char *UPLO, const char *TRANS, const char *DIAG,
+               const qml_long *N, const qml_long *K, const qml_double_complex *A,
+               const qml_long *LDA, qml_double_complex *X, const qml_long *INCX);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_stbmv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const qml_long K, const float *A,
+                     const qml_long LDA, float *X, const qml_long INCX);
+
+    void cblas_dtbmv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const qml_long K, const double *A,
+                     const qml_long LDA, double *X, const qml_long INCX);
+
+    void cblas_ctbmv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const qml_long K,
+                     const qml_single_complex *A, const qml_long LDA,
+                     qml_single_complex *X, const qml_long INCX);
+
+    void cblas_ztbmv(const CBLAS_ORDER ORDER, const CBLAS_UPLO UPLO,
+                     const CBLAS_TRANSPOSE TRANS, const CBLAS_DIAG DIAG,
+                     const qml_long N, const qml_long K,
+                     const qml_double_complex *A, const qml_long LDA,
+                     qml_double_complex *X, const qml_long INCX);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether the upper or lower triangle of matrix A will be used
+TRANS    Specifies which product is computed:
+\        Non-Transpose: :math:`x \assign \alpha A * x`
+\        Transpose: :math:`x \assign \alpha \trans{A} * x`
+\        Complex Conjugate Transpose: :math:`x \assign \alpha \herm{A} * x`
+DIAG     Whether the diagonal is unit or not
+N        Order of matrix A
+K        Number of super- or sub-diagonals of A, with :math:`0 \le \fvar{K}`
+ALPHA    Scalar multiplied with the matrix-vector product
+A        Input matrix A
+LDA      Leading dimension of matrix A, with :math:`\fvar{LDA} \ge \fvar{K}+1`
+X        Vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX     Distance between individual elements in X
+======   =====================================================================

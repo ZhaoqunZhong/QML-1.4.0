@@ -1,0 +1,19 @@
+QML_IS_SUPPORTED
+=================
+QML_IS_SUPPORTED.
+
+Description
+-----------
+Returns one if QML is supported on this platform, zero otherwise.
+
+Extension Interface
+-------------------
+.. code-block:: c
+
+    qml_int QML_IS_SUPPORTED();
+
+Arguments
+---------
+======   ==================================================================
+Result   Returns one if QML is supported on this platform, zero otherwise.
+======   ==================================================================

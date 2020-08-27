@@ -1,0 +1,26 @@
+(C|Z)LADIV
+=============
+Single complex and double complex LADIV.
+
+Description
+-----------
+Performs complex division while avoiding overflow.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void cladiv(qml_single_complex *result, const qml_single_complex *X,
+        const qml_single_complex *Y);
+
+    void zladiv(qml_double_complex *result, const qml_double_complex *X,
+        const qml_double_complex *Y);
+
+
+Arguments
+---------
+======   =====================================================================
+result   Complex result
+X        Complex numerator
+Y        Complex denominator
+======   =====================================================================

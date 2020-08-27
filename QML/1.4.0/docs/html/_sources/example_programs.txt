@@ -1,0 +1,136 @@
+Example Programs
+================
+
+All the example code can be found in the ``examples/`` subdirectory at
+the installation prefix location.
+
+Minimal Example
+---------------
+
+This example shows the minimal code needed to call a QML function.
+
+This example constructs matrices ``A`` and ``B`` that are both 1024x1024
+filled with unit values. It then calls ``sgemm`` to multiply the matrices
+and store the 1024x1024 result in matrix ``C``. The first value in the resulting
+matrix is displayed, which should be 1024.
+
+.. literalinclude:: ../../../core/examples/MinimalExample.cpp
+    :language: c++
+
+CBLAS Example
+-------------
+
+This example shows how row-major indexing works in CBLAS
+and how offsets and leading dimensions can be passed to QML
+functions to operate on subregions of larger matrices.
+
+.. literalinclude:: ../../../core/examples/CBLASExample.cpp
+    :language: c++
+
+BLAS Solve Example
+------------------
+
+This example shows how to use the Fortran BLAS interface
+from C++ code to solve a system of linear equations.
+
+.. literalinclude:: ../../../core/examples/BLASSolveExample.cpp
+    :language: c++
+
+LAPACK Least Squares Example
+----------------------------
+
+This example shows how to use the LAPACK interface of QML from C++
+code to find the best-fit quadratic equation through a set of points.
+The example calls ``dgels`` to compute the linear least squares solution.
+
+.. literalinclude:: ../../../core/examples/LeastSquaresExample.cpp
+    :language: c++
+
+LAPACK Singular Value Decomposition
+-----------------------------------
+
+This example shows how to use the LAPACK interface of QML from C++
+code to find the singular value decomposition of a matrix. It calls
+``dgesvd`` to do the decomposition.
+
+.. literalinclude:: ../../../core/examples/SVDExample.cpp
+    :language: c++
+
+Building the Examples
+---------------------
+
+One way to build your application or library and link against QML
+is to use the official Android NDK. You declare that QML is a
+pre-built library using directives in an ``Android.mk`` file inside the
+``jni`` directory of an application tree.
+
+.. code-block:: make
+
+    include $(CLEAR_VARS)
+    LOCAL_MODULE := QML
+    LOCAL_SRC_FILES := <install-prefix>/lib<name>.so
+    LOCAL_EXPORT_C_INCLUDES := <install-prefix>/include
+    include $(PREBUILT_SHARED_LIBRARY)
+    
+Once this module has been declared, you can let the build system
+know that your application links against QML by adding the following
+directive to your application's ``Android.mk``:
+
+.. code-block:: make
+
+    LOCAL_SHARED_LIBRARIES += QML
+
+To have access to newer C++11 features you also need to link against a
+full-featured version of the C++ runtime library and enable C++11
+features in the compiler. These settings are set in ``Application.mk``.
+
+.. code-block:: make
+
+    APP_STL := gnustl_shared
+    APP_CPPFLAGS += -std=c++11
+
+To build the provided example programs in this way, run ``ndk-build``
+from the ``examples/`` directory of the installation within the desired
+architecture. This will produce executables and library files inside
+``libs/<arch>/``. Within the context of a complete application, these
+executables and libraries will be included as part of the final APK
+and installed in the correct location on application install.
+
+Running the Examples
+--------------------
+
+There are two main ways to run the examples. If you control the Android
+platform on the device, you can add QML to the system
+libraries that are available to all applications. If you do not
+control the platform then you will include the libraries as part of
+your application so they will be installed in the private application
+area during installation.
+
+Platform control
+````````````````
+
+If you control the Android platform, you can install the QML
+into the system libraries location of the device. The typical
+location would be ``/system/vendor/lib/`` for 32-bit architectures
+or ``/system/vendor/lib64/`` for 64-bit architectures.
+With root access in ADB this can be done for testing purposes using ``adb push``.
+
+Once the libraries are installed in system locations, running the examples
+requires copying the executables to any location on the device and running
+them.
+
+Local install
+`````````````
+
+To run the executables without root access, copy the libraries and executables from
+``libs/<arch>/`` to an accessible directory on the device such as ``/data/local/test``. Once QML,
+and the test application are all in the same directory, run the executable with a command such as:
+
+.. code-block:: bash
+
+    LD_LIBRARY_PATH=. ./MinimalExample
+
+Complete applications packaged inside an APK will automatically install
+the libraries into the correct locations during installation if the libraries
+are declared as previously described in the ``Android.mk`` file.
+

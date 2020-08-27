@@ -1,0 +1,770 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>History &mdash; Qualcomm Math Library</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Qualcomm Math Library" href="index.html"/>
+        <link rel="up" title="Introduction to BLAS" href="introduction.html"/>
+        <link rel="next" title="Introduction to LAPACK" href="introduction_lapack.html"/>
+        <link rel="prev" title="Introduction to BLAS" href="introduction.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> QML
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="introduction.html">Introduction to BLAS</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">History</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#levels">Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#naming-conventions">Naming Conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#precision">Precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#matrix-storage">Matrix storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#fortran77-interface">Fortran77 Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#column-major">Column-Major</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#one-based-indexing">One-based Indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#c-interface">C Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#passing-arguments">Passing arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aliasing">Aliasing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#row-or-column-major">Row- or Column-Major</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zero-based-indexing">Zero-based Indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#storage-format-examples">Storage Format Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ge">GE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sy">SY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#he">HE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tr">TR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gb">GB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sb">SB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hb">HB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tb">TB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sp">SP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hp">HP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tp">TP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="introduction_lapack.html">Introduction to LAPACK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_qml.html">Using QML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blas_index.html">QML API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">QML</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="introduction.html">Introduction to BLAS</a> &raquo;</li>
+      
+    <li>History</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="history">
+<h1>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h1>
+<p>The Basic Linear Algebra Subprograms (BLAS) are a set of functions
+designed to standardize and simplify numerical programming in an
+efficient and portable way. They are commonly used as building
+blocks in the design of higher-level linear algebra routines that
+demand performance and correctness.</p>
+<p>The original version of BLAS, now called the <em>reference implementation</em>,
+was developed in Fortran77 starting in 1979 and has been updated with
+improvements and fixes up to the present. Highly optimized
+implementations of BLAS tuned for specific machine architectures are
+available for most development environments. These <em>optimized implementations</em>
+typically follow the same naming scheme and calling conventions as
+the reference implementation. Many optimized implementations also
+provide additional functions and options.</p>
+<p>QML contains a high performance implementation of BLAS optimized for Qualcomm
+processors.</p>
+</div>
+<div class="section" id="levels">
+<h1>Levels<a class="headerlink" href="#levels" title="Permalink to this headline">¶</a></h1>
+<p>Functions in BLAS are organized in three levels.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="25%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Level</th>
+<th class="head">Operations</th>
+<th class="head">Examples</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>BLAS-1</td>
+<td>vector</td>
+<td><div class="first last line-block">
+<div class="line">dot product</div>
+<div class="line">scale a vector</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>BLAS-2</td>
+<td>matrix-vector</td>
+<td><div class="first last line-block">
+<div class="line">matrix-vector product</div>
+<div class="line">solve a linear system of equations</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>BLAS-3</td>
+<td>matrix-matrix</td>
+<td><div class="first last line-block">
+<div class="line">matrix-matrix multiply</div>
+<div class="line">solve a linear system of equations
+with multiple right-hand sides</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The BLAS level indicates how many levels of nested loops
+are required to perform the operation. Scaling a vector requires a
+single loop iterating over the data. Computing a matrix-matrix product
+uses three nested loops (in the simplest implementation). The best performance
+is usually achieved by calling the highest level BLAS function possible
+to give the library the most oportunity for optimization.</p>
+</div>
+<div class="section" id="naming-conventions">
+<h1>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="precision">
+<h2>Precision<a class="headerlink" href="#precision" title="Permalink to this headline">¶</a></h2>
+<p>Many functions can work with several types of data. Function names
+are prefixed with the precision of the data they support.
+For example, the function <code class="docutils literal"><span class="pre">dgemm</span></code> works with double precision
+floating point values.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="64%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Prefix</th>
+<th class="head">Precision</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>S</td>
+<td>single</td>
+</tr>
+<tr class="row-odd"><td>D</td>
+<td>double</td>
+</tr>
+<tr class="row-even"><td>C</td>
+<td>single complex</td>
+</tr>
+<tr class="row-odd"><td>Z</td>
+<td>double complex</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="matrix-storage">
+<h2>Matrix storage<a class="headerlink" href="#matrix-storage" title="Permalink to this headline">¶</a></h2>
+<p>BLAS can operate on matrices that are stored in several different
+dense formats. After the precision prefix is a secondary prefix that
+indicates the storage format of the matrix.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Prefix</th>
+<th class="head">Matrix type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>GE</td>
+<td>general</td>
+</tr>
+<tr class="row-odd"><td>SY</td>
+<td>symmetric</td>
+</tr>
+<tr class="row-even"><td>HE</td>
+<td>hermitian</td>
+</tr>
+<tr class="row-odd"><td>TR</td>
+<td>triangular</td>
+</tr>
+<tr class="row-even"><td>GB</td>
+<td>general banded</td>
+</tr>
+<tr class="row-odd"><td>SB</td>
+<td>symmetric banded</td>
+</tr>
+<tr class="row-even"><td>HB</td>
+<td>hermitian banded</td>
+</tr>
+<tr class="row-odd"><td>TB</td>
+<td>triangle banded</td>
+</tr>
+<tr class="row-even"><td>SP</td>
+<td>symmetric packed</td>
+</tr>
+<tr class="row-odd"><td>HP</td>
+<td>hermitian packed</td>
+</tr>
+<tr class="row-even"><td>TP</td>
+<td>triangle packed</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="fortran77-interface">
+<span id="blas-interfacing"></span><h1>Fortran77 Interface<a class="headerlink" href="#fortran77-interface" title="Permalink to this headline">¶</a></h1>
+<p>Because the reference BLAS implementation is written in Fortran77 the
+interface to BLAS library functions follows Fortran77 conventions.
+The most important difference from C is that all arguments to functions
+are passed by reference. In the C function prototypes this means
+every argument is a pointer, even simple scalar values.
+Functions that return complex values use a <code class="docutils literal"><span class="pre">void</span></code> return type and
+instead put their output into a <code class="docutils literal"><span class="pre">result</span></code> pointer.</p>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<p>Many functions need to be given information such as whether to use
+an untransposed or transposed version of a matrix, or whether a triangular
+matrix is upper or lower triangular. In the Fortran77 interface
+these types of arguments are passed as character strings. Only the first
+character in the string is used and is interpreted using the following
+table.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="26%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Option</th>
+<th class="head">Character</th>
+<th class="head">Interpretation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td rowspan="3">TRANSx</td>
+<td>N</td>
+<td>Non-transpose</td>
+</tr>
+<tr class="row-odd"><td>T</td>
+<td>Transpose</td>
+</tr>
+<tr class="row-even"><td>C</td>
+<td>Conjugate transpose</td>
+</tr>
+<tr class="row-odd"><td rowspan="2">UPLO</td>
+<td>U</td>
+<td>Upper triangular</td>
+</tr>
+<tr class="row-even"><td>L</td>
+<td>Lower triangular</td>
+</tr>
+<tr class="row-odd"><td rowspan="2">DIAG</td>
+<td>N</td>
+<td>Non-unit diagonal</td>
+</tr>
+<tr class="row-even"><td>U</td>
+<td>Unit diagonal</td>
+</tr>
+<tr class="row-odd"><td rowspan="2">SIDE</td>
+<td>L</td>
+<td>Left side</td>
+</tr>
+<tr class="row-even"><td>R</td>
+<td>Right side</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="column-major">
+<h2>Column-Major<a class="headerlink" href="#column-major" title="Permalink to this headline">¶</a></h2>
+<p>Following Fortran, all matrices are assumed to be stored in column-major
+order when using the Fortran77 interface. This means that values linearly
+stored in increasing addresses in memory are interpreted as values in a
+column of the matrix going from top to bottom. Every matrix also has a
+leading dimension. For a matrix A the leading dimension is passed
+as the integer LDA. The values of a row of matrix A are stored in memory
+locations spaced apart by LDA values.</p>
+<p>For example, a 3x3 matrix with LDA=10 in column-major order
+has values stored in the following memory locations.</p>
+<div class="math">
+<p><img src="_images/math/161a023bdfe3290703c6927eb47019bff8092eb0.png" alt="\begin{bmatrix}
+    A &amp; A+10 &amp; A+20 \\
+    A+1 &amp; A+11 &amp; A+21 \\
+    A+2 &amp; A+12 &amp; A+22
+\end{bmatrix}"/></p>
+</div></div>
+<div class="section" id="one-based-indexing">
+<h2>One-based Indexing<a class="headerlink" href="#one-based-indexing" title="Permalink to this headline">¶</a></h2>
+<p>The functions <a class="reference internal" href="BLAS/BLAS1/amax.html"><em>AMAX</em></a> and <a class="reference internal" href="BLAS/BLAS1/amin.html"><em>AMIN</em></a>
+return indices into arrays. Fortran uses 1-based indexing where an array
+with N elements has indices 1 through N. The Fortran BLAS interface follows
+the Fortran convention and uses 1-based indexing.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>For example, suppose we wish to perform a simple matrix multiply:</p>
+<div class="math">
+<p><img src="_images/math/ffc42a900428ad049f48dd17d3cb2a51b754448b.png" alt="C \assign A\mult B"/></p>
+</div><p>Here is the Fortran77 prototype for <code class="docutils literal"><span class="pre">dgemm</span></code>:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">dgemm</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">TRANSA</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">TRANSB</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">M</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">N</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">K</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">ALPHA</span><span class="p">,</span>
+           <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">A</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">LDA</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">B</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">LDB</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">BETA</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span><span class="n">C</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">qml_long</span> <span class="o">*</span><span class="n">LDC</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The funtion <code class="docutils literal"><span class="pre">dgemm</span></code> is a double precision (<code class="docutils literal"><span class="pre">d</span></code>) general (<code class="docutils literal"><span class="pre">ge</span></code>) matrix-matrix
+multiply. We do not wish to transpose <code class="docutils literal"><span class="pre">A</span></code> or <code class="docutils literal"><span class="pre">B</span></code>, so we pass <code class="docutils literal"><span class="pre">&quot;N&quot;</span></code>
+for <code class="docutils literal"><span class="pre">TRANSA</span></code> and <code class="docutils literal"><span class="pre">TRANSB</span></code>. The function actually performs the
+operation:</p>
+<div class="math">
+<p><img src="_images/math/d30434611a372d27956a464e06a13aac3179bf08.png" alt="C \assign \alpha A \mult B + \beta C"/></p>
+</div><p>We choose <img class="math" src="_images/math/c5546c04013722990df27d348e9cf9d263c0b661.png" alt="\alpha=1"/> and <img class="math" src="_images/math/c8dc45446499e8265aff8320175adc5e53ac25ed.png" alt="\beta=0"/>. Even though <code class="docutils literal"><span class="pre">ALPHA</span></code> and
+<code class="docutils literal"><span class="pre">BETA</span></code> are scalar values, we still need to pass the address of the values
+to use the Fortran interface.</p>
+</div>
+</div>
+<div class="section" id="c-interface">
+<h1>C Interface<a class="headerlink" href="#c-interface" title="Permalink to this headline">¶</a></h1>
+<p>CBLAS is a lightweight wrapper around BLAS that provides an interface
+compatible with the C language. CBLAS functions are prefixed
+with <code class="docutils literal"><span class="pre">cblas_</span></code> but otherwise follow the same naming convention as BLAS.</p>
+<div class="section" id="passing-arguments">
+<h2>Passing arguments<a class="headerlink" href="#passing-arguments" title="Permalink to this headline">¶</a></h2>
+<p>In the C interface, vectors and matrices are passed by pointer while
+non-complex scalar values are passed by value. All complex arguments
+including scalar values are passed by reference. Functions that would
+return complex values are recast as returning <code class="docutils literal"><span class="pre">void</span></code>,
+have a final extra pointer argument <code class="docutils literal"><span class="pre">result</span></code> that receives the result
+value, and are renamed to include the suffix <code class="docutils literal"><span class="pre">_sub</span></code>.</p>
+<p>Options such as non-transpose/transpose are passed by value using an enumerated type
+defined in the <code class="docutils literal"><span class="pre">qml_cblas.h</span></code> header.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">enum</span> <span class="n">CBLAS_TRANSPOSE</span> <span class="p">{</span><span class="n">CblasNoTrans</span> <span class="o">=</span> <span class="mi">111</span><span class="p">,</span> <span class="n">CblasTrans</span> <span class="o">=</span> <span class="mi">112</span><span class="p">,</span> <span class="n">CblasConjTrans</span> <span class="o">=</span> <span class="mi">113</span><span class="p">};</span>
+<span class="k">enum</span> <span class="n">CBLAS_UPLO</span> <span class="p">{</span><span class="n">CblasUpper</span> <span class="o">=</span> <span class="mi">121</span><span class="p">,</span> <span class="n">CblasLower</span> <span class="o">=</span> <span class="mi">122</span><span class="p">};</span>
+<span class="k">enum</span> <span class="n">CBLAS_DIAG</span> <span class="p">{</span><span class="n">CblasNonUnit</span> <span class="o">=</span> <span class="mi">131</span><span class="p">,</span> <span class="n">CblasUnit</span> <span class="o">=</span> <span class="mi">132</span><span class="p">};</span>
+<span class="k">enum</span> <span class="n">CBLAS_SIDE</span> <span class="p">{</span><span class="n">CblasLeft</span> <span class="o">=</span> <span class="mi">141</span><span class="p">,</span> <span class="n">CblasRight</span> <span class="o">=</span> <span class="mi">142</span><span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="aliasing">
+<h2>Aliasing<a class="headerlink" href="#aliasing" title="Permalink to this headline">¶</a></h2>
+<p>Pointers in the C language are generally allowed to
+alias to the same region of memory. The C interface to BLAS allows
+aliasing of arguments declared <code class="docutils literal"><span class="pre">const</span></code> (input arguments) but does
+not allow aliasing of output arguments (any argument not declared <code class="docutils literal"><span class="pre">const</span></code>).
+For example, passing <code class="docutils literal"><span class="pre">dgemm</span></code> the same memory location for <code class="docutils literal"><span class="pre">A</span></code> and
+<code class="docutils literal"><span class="pre">B</span></code> is allowed because both arguments are input arguments. Passing
+<code class="docutils literal"><span class="pre">dgemm</span></code> the same memory location for <code class="docutils literal"><span class="pre">A</span></code> and <code class="docutils literal"><span class="pre">C</span></code> is not allowed
+because <code class="docutils literal"><span class="pre">C</span></code> is an output argument.</p>
+</div>
+<div class="section" id="row-or-column-major">
+<h2>Row- or Column-Major<a class="headerlink" href="#row-or-column-major" title="Permalink to this headline">¶</a></h2>
+<p>The CBLAS interface allows either row- or column-major matrix
+storage order. Functions that accept matrices start with an argument
+that indicates whether row- or column-major ordering should be used.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">enum</span> <span class="n">CBLAS_ORDER</span> <span class="p">{</span><span class="n">CblasRowMajor</span> <span class="o">=</span> <span class="mi">101</span><span class="p">,</span> <span class="n">CblasColMajor</span> <span class="o">=</span> <span class="mi">102</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>Row-major ordering means that values linearly
+stored in increasing addresses in memory are interpreted as values in a
+row of the matrix going from left to right. Every matrix also has a
+leading dimension. For a matrix A the leading dimension is passed
+as the integer LDA. The values of a column of matrix A are stored in memory
+locations spaced apart by LDA values.</p>
+<p>For example, a 3x3 matrix with LDA=10 in row-major order
+has values stored in the following memory locations.</p>
+<div class="math">
+<p><img src="_images/math/faff16f6b76638f2e9ab37b85c7fd251eba243dd.png" alt="\begin{bmatrix}
+    A &amp; A+1 &amp; A+2 \\
+    A+10 &amp; A+11 &amp; A+12 \\
+    A+20 &amp; A+21 &amp; A+22
+\end{bmatrix}"/></p>
+</div></div>
+<div class="section" id="zero-based-indexing">
+<h2>Zero-based Indexing<a class="headerlink" href="#zero-based-indexing" title="Permalink to this headline">¶</a></h2>
+<p>The functions <a class="reference internal" href="BLAS/BLAS1/amax.html"><em>AMAX</em></a> and <a class="reference internal" href="BLAS/BLAS1/amin.html"><em>AMIN</em></a>
+return indices into arrays. C uses 0-based indexing where an array
+with N elements has indices 0 through N-1. The CBLAS interface follows
+the C convention and uses 0-based indexing.</p>
+</div>
+<div class="section" id="performance-considerations">
+<h2>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Permalink to this headline">¶</a></h2>
+<p>Using row-major ordering has no extra cost for most BLAS functions.
+Some BLAS-2 functions involving conjugate transpose require a small
+amount of extra processing and so will see degraded performance compared
+to column-major ordering. See <a class="reference external" href="http://www.netlib.org/blas/blast-forum/cinterface.pdf">Legacy BLAS: C Interface to the Legacy BLAS</a> for more
+information.</p>
+</div>
+<div class="section" id="id1">
+<h2>Example<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>For example, suppose we wish to perform a simple matrix multiply:</p>
+<div class="math">
+<p><img src="_images/math/ffc42a900428ad049f48dd17d3cb2a51b754448b.png" alt="C \assign A\mult B"/></p>
+</div><p>Here is the CBLAS prototype for <code class="docutils literal"><span class="pre">dgemm</span></code>:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">cblas_dgemm</span><span class="p">(</span><span class="k">const</span> <span class="n">CBLAS_ORDER</span> <span class="n">ORDER</span><span class="p">,</span> <span class="k">const</span> <span class="n">CBLAS_TRANSPOSE</span> <span class="n">TRANSA</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">CBLAS_TRANSPOSE</span> <span class="n">TRANSB</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="n">M</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">qml_long</span> <span class="n">N</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="n">K</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">ALPHA</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">A</span><span class="p">,</span> <span class="k">const</span> <span class="n">qml_long</span> <span class="n">LDA</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">B</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">qml_long</span> <span class="n">LDB</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">BETA</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span><span class="n">C</span><span class="p">,</span>
+                 <span class="k">const</span> <span class="n">qml_long</span> <span class="n">LDC</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The funtion <code class="docutils literal"><span class="pre">cblas_dgemm</span></code> is the CBLAS interface (<code class="docutils literal"><span class="pre">cblas_</span></code>)
+for a double precision (<code class="docutils literal"><span class="pre">d</span></code>) general (<code class="docutils literal"><span class="pre">ge</span></code>) matrix-matrix
+multiply. We are storing our matrices in row-major order, so we choose
+<code class="docutils literal"><span class="pre">CblasRowMajor</span></code> for <code class="docutils literal"><span class="pre">ORDER</span></code>. We do not wish to transpose <code class="docutils literal"><span class="pre">A</span></code> or <code class="docutils literal"><span class="pre">B</span></code>,
+so we pass <code class="docutils literal"><span class="pre">CblasNoTrans</span></code> for <code class="docutils literal"><span class="pre">TRANSA</span></code> and <code class="docutils literal"><span class="pre">TRANSB</span></code>. The function actually performs the
+operation:</p>
+<div class="math">
+<p><img src="_images/math/d30434611a372d27956a464e06a13aac3179bf08.png" alt="C \assign \alpha A \mult B + \beta C"/></p>
+</div><p>We choose <img class="math" src="_images/math/c5546c04013722990df27d348e9cf9d263c0b661.png" alt="\alpha=1"/> and <img class="math" src="_images/math/c8dc45446499e8265aff8320175adc5e53ac25ed.png" alt="\beta=0"/>, and pass the value
+1.0 for <code class="docutils literal"><span class="pre">ALPHA</span></code> and 0.0 for <code class="docutils literal"><span class="pre">BETA</span></code>.</p>
+</div>
+</div>
+<div class="section" id="storage-format-examples">
+<h1>Storage Format Examples<a class="headerlink" href="#storage-format-examples" title="Permalink to this headline">¶</a></h1>
+<p>The following examples show how values are laid out in memory
+using the different storage formats. The examples are shown
+for a 4x4 matrix in column-major ordering with LDA=10.</p>
+<p>Note that in many formats not all input values are referenced.
+For example, in SY format with UPLO=&#8221;L&#8221; only the lower triangular
+part of the matrix is referenced, the upper triangular part is
+assumed to be symmetric. In some formats elements of the matrix
+are assumed to be a constant value and are not referenced in memory.
+For example, in TR format with DIAG=&#8221;U&#8221; the diagonal elements
+are assumed to be 1 and are never referenced.</p>
+<div class="section" id="ge">
+<h2>GE<a class="headerlink" href="#ge" title="Permalink to this headline">¶</a></h2>
+<p>General.</p>
+<div class="math">
+<p><img src="_images/math/21f747c07a3ed6724ed60d369f1fe9a282d1d52b.png" alt="{\small
+\begin{bmatrix}
+    A   &amp; A+10 &amp; A+20 &amp; A+30 \\
+    A+1 &amp; A+11 &amp; A+21 &amp; A+31 \\
+    A+2 &amp; A+12 &amp; A+22 &amp; A+32 \\
+    A+3 &amp; A+13 &amp; A+23 &amp; A+33
+\end{bmatrix}
+}"/></p>
+</div></div>
+<div class="section" id="sy">
+<h2>SY<a class="headerlink" href="#sy" title="Permalink to this headline">¶</a></h2>
+<p>Symmetric, shown with UPLO=&#8221;L&#8221;.</p>
+<div class="math">
+<p><img src="_images/math/660e3441ea1aec689a0cb114035d5f56e569b99f.png" alt="{\small
+\begin{bmatrix}
+    A   &amp; A+1 &amp; A+2 &amp; A+3    \\
+    A+1 &amp; A+11 &amp; A+12 &amp; A+13 \\
+    A+2 &amp; A+12 &amp; A+22 &amp; A+23 \\
+    A+3 &amp; A+13 &amp; A+23 &amp; A+33
+\end{bmatrix}
+}"/></p>
+</div></div>
+<div class="section" id="he">
+<h2>HE<a class="headerlink" href="#he" title="Permalink to this headline">¶</a></h2>
+<p>Hermitian, shown with UPLO=&#8221;L&#8221;.</p>
+<div class="math">
+<p><img src="_images/math/1d1a6e9617e59b220c67cfd3ff8b0ad98505bc48.png" alt="{\small
+\begin{bmatrix}
+    A   &amp; \sconj{A+1} &amp; \sconj{A+2} &amp; \sconj{A+3}    \\
+    A+1 &amp; A+11 &amp; \sconj{A+12} &amp; \sconj{A+13} \\
+    A+2 &amp; A+12 &amp; A+22 &amp; \sconj{A+23} \\
+    A+3 &amp; A+13 &amp; A+23 &amp; A+33
+\end{bmatrix}
+}"/></p>
+</div></div>
+<div class="section" id="tr">
+<h2>TR<a class="headerlink" href="#tr" title="Permalink to this headline">¶</a></h2>
+<p>Triangular, shown with UPLO=&#8221;L&#8221; and DIAG=&#8221;U&#8221;.</p>
+<div class="math">
+<p><img src="_images/math/3459b468b768dd5dc549e87c1f5183ac007e1913.png" alt="{\small
+\begin{bmatrix}
+    1   &amp;      &amp;      &amp;    \\
+    A+1 &amp; 1    &amp;      &amp;  \\
+    A+2 &amp; A+12 &amp; 1    &amp;  \\
+    A+3 &amp; A+13 &amp; A+23 &amp; 1
+\end{bmatrix}
+}"/></p>
+</div></div>
+<div class="section" id="gb">
+<h2>GB<a class="headerlink" href="#gb" title="Permalink to this headline">¶</a></h2>
+<p>General banded, shown with KL = 1 and KU=1.</p>
+<div class="math">
+<p><img src="_images/math/e0f87d547d5d4ab253accff8f849529a83a738c0.png" alt="{\small
+\begin{bmatrix}
+    A+1 &amp; A+10 &amp;      &amp;      \\
+    A+2 &amp; A+11 &amp; A+20 &amp;      \\
+        &amp; A+12 &amp; A+21 &amp; A+30 \\
+        &amp;      &amp; A+22 &amp; A+31
+\end{bmatrix}
+}"/></p>
+</div></div>
+<div class="section" id="sb">
+<h2>SB<a class="headerlink" href="#sb" title="Permalink to this headline">¶</a></h2>
+<p>Symmetric banded, shown with UPLO=&#8221;L&#8221; and K=1.</p>
+<div class="math">
+<p><img src="_images/math/9655d2ee5f0be0d9fddb9969c1ca3d8869f2e33b.png" alt="{\small
+\begin{bmatrix}
+    A   &amp; A+1  &amp;       &amp;      \\
+    A+1 &amp; A+10 &amp; A+11 &amp;      \\
+        &amp; A+11 &amp; A+20 &amp; A+21 \\
+        &amp;      &amp; A+21 &amp; A+30
+\end{bmatrix}
+}"/></p>
+</div></div>
+<div class="section" id="hb">
+<h2>HB<a class="headerlink" href="#hb" title="Permalink to this headline">¶</a></h2>
+<p>Hermitian banded, shown with UPLO=&#8221;L&#8221; and K=1.</p>
+<div class="math">
+<p><img src="_images/math/e1d00cce9f56527bcc3792b84564722f1f1b26dd.png" alt="{\small
+\begin{bmatrix}
+    A   &amp; \sconj{A+1}  &amp;       &amp;      \\
+    A+1 &amp; A+10 &amp; \sconj{A+11} &amp;      \\
+        &amp; A+11 &amp; A+20 &amp; \sconj{A+21} \\
+        &amp;      &amp; A+21 &amp; A+30
+\end{bmatrix}
+}"/></p>
+</div></div>
+<div class="section" id="tb">
+<h2>TB<a class="headerlink" href="#tb" title="Permalink to this headline">¶</a></h2>
+<p>Triangular banded, shown with UPLO=&#8221;L&#8221;, DIAG=&#8221;U&#8221;, and K = 2.</p>
+<div class="math">
+<p><img src="_images/math/32a4932b6cd35bffbe96790a20ece1ab97a28019.png" alt="{\small
+\begin{bmatrix}
+    1   &amp;      &amp;      &amp;  \\
+    A+1 &amp; 1    &amp;      &amp;  \\
+    A+2 &amp; A+11 &amp; 1    &amp;  \\
+        &amp; A+12 &amp; A+21 &amp; 1
+\end{bmatrix}
+}"/></p>
+</div></div>
+<div class="section" id="sp">
+<h2>SP<a class="headerlink" href="#sp" title="Permalink to this headline">¶</a></h2>
+<p>Symmetric packed, shown with UPLO=&#8221;L&#8221;.</p>
+<div class="math">
+<p><img src="_images/math/a93f2b236c175392f022c47f61ef4c2276242ba1.png" alt="{\small
+\begin{bmatrix}
+    A   &amp; A+1 &amp; A+2 &amp; A+3 \\
+    A+1 &amp; A+4 &amp; A+5 &amp; A+6 \\
+    A+2 &amp; A+5 &amp; A+7 &amp; A+8 \\
+    A+3 &amp; A+6 &amp; A+8 &amp; A+9
+\end{bmatrix}
+}"/></p>
+</div></div>
+<div class="section" id="hp">
+<h2>HP<a class="headerlink" href="#hp" title="Permalink to this headline">¶</a></h2>
+<p>Hermitian packed, shown with UPLO=&#8221;L&#8221;.</p>
+<div class="math">
+<p><img src="_images/math/62416645b1f96e81b8cca106641d9d538091e946.png" alt="{\small
+\begin{bmatrix}
+    A   &amp; \sconj{A+1} &amp; \sconj{A+2} &amp; \sconj{A+3} \\
+    A+1 &amp; A+4 &amp; \sconj{A+5} &amp; \sconj{A+6} \\
+    A+2 &amp; A+5 &amp; A+7 &amp; \sconj{A+8} \\
+    A+3 &amp; A+6 &amp; A+8 &amp; A+9
+\end{bmatrix}
+}"/></p>
+</div></div>
+<div class="section" id="tp">
+<h2>TP<a class="headerlink" href="#tp" title="Permalink to this headline">¶</a></h2>
+<p>Triangular packed, shown with UPLO=&#8221;L&#8221; and DIAG=&#8221;U&#8221;.</p>
+<div class="math">
+<p><img src="_images/math/ceab783dbe5d438747c36007a3cab3873f79be7f.png" alt="{\small
+\begin{bmatrix}
+    1   &amp;     &amp;     &amp;     \\
+    A+1 &amp; 1   &amp;     &amp;     \\
+    A+2 &amp; A+5 &amp; 1   &amp;     \\
+    A+3 &amp; A+6 &amp; A+8 &amp; 1
+\end{bmatrix}
+}"/></p>
+</div></div>
+</div>
+<div class="section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="http://www.netlib.org/blas/">official homepage of BLAS</a> is
+on Netlib.</p>
+<p>Netlib also publishes a handy <a class="reference external" href="http://www.netlib.org/blas/blasqr.pdf">cheat sheet</a>
+for quick reference to all BLAS functions.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="introduction_lapack.html" class="btn btn-neutral float-right" title="Introduction to LAPACK" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral" title="Introduction to BLAS" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Qualcomm Technologies, Inc.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

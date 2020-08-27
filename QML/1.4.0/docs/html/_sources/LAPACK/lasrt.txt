@@ -1,0 +1,26 @@
+(S|D)LASRT
+==========
+Single and double LASRT.
+
+Description
+-----------
+Sorts an array of numbers.
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void slasrt(const char *ID, const qml_long *N, float *D, qml_long *INFO);
+
+    void dlasrt(const char *ID, const qml_long *N, double *D, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+ID       Order to short, 'I' for increasing, 'D' for decreasing
+N        Length of the array
+D        Array to be sorted, modified in place
+INFO     0 on success
+======   =====================================================================

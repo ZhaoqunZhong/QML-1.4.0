@@ -1,0 +1,76 @@
+(S|D|C|Z)GEBAL
+==============
+Single, double, single complex, and double complex GEBAL.
+
+Description
+-----------
+Balances a general matrix using permutations and scaling to isolate
+eigenvalues and make rows and columns more similar in norm.
+
+The permutation stage puts the matrix A into the form:
+
+.. math::
+
+    P \mult A \mult \herm{P} =
+        \begin{bmatrix}
+            T_1 & X & Y \\
+            0   & B & Z \\
+            0   & 0 & T_2
+        \end{bmatrix}
+
+where :math:`T_1` and :math:`T_2` are upper triangular. The indices ILO
+and IHI define the boundaries of B. Permutation details are recorded
+in SCALE in components 1 through ILO-1, and IHI+1 through N.
+
+The balance stage consists of diagonal similarity transforms:
+
+.. math::
+
+    \inv{D} \mult B \mult D
+
+The scale factors for D are chosen to make the 1-norm of each row of B
+and its corresding column as equal as possible. The scale factors for
+D are recorded in SCALE in components ILO through IHI.
+
+The final balanced matrix is:
+
+.. math::
+
+    \inv{D} \mult P \mult A \mult \herm{P} \mult D =
+        \begin{bmatrix}
+            T_1 & X \mult D               & Y \\
+            0   & \inv{D} \mult B \mult D & \inv{D} \mult Z \\
+            0   & 0                       & T_2
+        \end{bmatrix}
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void sgebal(const char *JOB, const qml_long *N, float *A, const qml_long *LDA,
+        qml_long *ILO, qml_long *IHI, float *SCALE, qml_long *INFO);
+    
+    void dgebal(const char *JOB, const qml_long *N, double *A, const qml_long *LDA,
+        qml_long *ILO, qml_long *IHI, double *SCALE, qml_long *INFO);
+    
+    void cgebal(const char *JOB, const qml_long *N, qml_single_complex *A,
+        const qml_long *LDA, qml_long *ILO, qml_long *IHI, float *SCALE,
+        qml_long *INFO);
+    
+    void zgebal(const char *JOB, const qml_long *N, qml_double_complex *A,
+        const qml_long *LDA, qml_long *ILO, qml_long *IHI, double *SCALE,
+        qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+JOB      Operations to perform, 'N' none, 'P' permute only, 'S' scale only, 'B' both
+N        Number of rows and columns of A
+A        Matrix of size N x N, overwritten with balanced matrix
+LDA      Leading dimension of A
+ILO      Lower index
+IHI      Upper index
+SCALE    Array of size N, scale factors of columns
+INFO     0 on success
+======   =====================================================================

@@ -1,0 +1,73 @@
+(S|D|C|Z)ROTG
+===============
+Single, double, single complex, and double complex ROTG.
+
+Description
+-----------
+Generates a single plane rotation.
+
+.. math::
+
+    \left[
+        \begin{array}{cc}
+            \cos \theta & \sin \theta \\
+            - \sin \theta & \cos \theta
+        \end{array}
+    \right] 
+    \mult 
+    \left[ 
+        \begin{array}{c}
+            A \\
+            B
+        \end{array}
+    \right]
+    =
+    \left[
+        \begin{array}{c}
+            R \\
+            0
+        \end{array}
+    \right]
+
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void srotg(float *A, float *B, float *C, float *S);
+    
+    void drotg(double *A, double *B, double *C, double *S);
+    
+    void crotg(qml_single_complex *A, const qml_single_complex *B,
+               float *C, qml_single_complex *S);
+    
+    void zrotg(qml_double_complex *A, const qml_double_complex *B,
+               double *C, qml_double_complex *S);
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_srotg(float *A, float *B, float *C, float *S);
+    
+    void cblas_drotg(double *A, double *B, double *C, double *S);
+    
+    void cblas_crotg(qml_single_complex *A, const qml_single_complex *B,
+                     float *C, qml_single_complex *S);
+    
+    void cblas_zrotg(qml_double_complex *A, const qml_double_complex *B,
+                     double *C, qml_double_complex *S);
+
+
+Arguments
+---------
+====   ========================================================================
+A      First component of vector to rotate
+\      On output contains R
+B      Second component of vector to rotate
+\      On output contains Z, which is:
+\      :math:`\begin{array}{rcl} \fvar{S} & \textrm{if} & \abs{\fvar{A}} > \abs{\fvar{B}} \\ 1/\fvar{C} & \textrm{if} & \abs{\fvar{A}} \le \abs{\fvar{B}} \andrm C\ne 0 \andrm R\ne 0 \\1 & \textrm{if} & \abs{\fvar{A}} \le \abs{\fvar{B}} \andrm C = 0 \andrm R\ne 0  \\0 & \textrm{if} & R = 0 \\\end{array}`
+C      On output contains :math:`\cos \theta`
+S      On output contains :math:`\sin \theta`
+====   ========================================================================

@@ -1,0 +1,76 @@
+(S|D|C|Z)GELS
+=============
+Single, double, single complex, and double complex GELS.
+
+Description
+-----------
+Solves an over or underdetermined system of linear equations.
+
+
+For overdetermined systems, finds the least squares solution:
+
+.. math::
+
+    \min || B - A \mult X ||
+
+For underdetermined systems, finds the minimum norm solution:
+
+.. math::
+
+    A \mult X = B
+
+For SGELS and DGELS, if TRANS is T then uses the transpose of A.
+For CGELS and ZGELS, if TRANS is C then uses the Hermitian of A.
+
+The matrix A is assumed to be full rank. Either QR or LQ factorization
+is used to compute results.
+
+The matrix B encodes multiple right-hand sides and produces multiple
+solution vectors in the matrix X. Each column of B and column of X can
+be considered a single solution to
+
+.. math::
+
+    A \mult x = b
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void sgels(const char *TRANS, const qml_long *M, const qml_long *N,
+        const qml_long *NRHS, float *A, const qml_long *LDA, float *B,
+        const qml_long *LDB, float *WORK, const qml_long *LWORK,
+        qml_long *INFO);
+    
+    void dgels(const char *TRANS, const qml_long *M, const qml_long *N,
+        const qml_long *NRHS, double *A, const qml_long *LDA, double *B,
+        const qml_long *LDB, double *WORK, const qml_long *LWORK,
+        qml_long *INFO);
+    
+    void cgels(const char *TRANS, const qml_long *M, const qml_long *N,
+        const qml_long *NRHS, qml_single_complex *A, const qml_long *LDA,
+        qml_single_complex *B, const qml_long *LDB, qml_single_complex *WORK,
+        const qml_long *LWORK, qml_long *INFO);
+    
+    void zgels(const char *TRANS, const qml_long *M, const qml_long *N,
+        const qml_long *NRHS, qml_double_complex *A, const qml_long *LDA,
+        qml_double_complex *B, const qml_long *LDB, qml_double_complex *WORK,
+        const qml_long *LWORK, qml_long *INFO);
+    
+
+Arguments
+---------
+======   =====================================================================
+TRANS    One of 'N' (no transpose), 'T' (transpose), or 'C' (Hermitian)
+M        Number of rows of A
+N        Number of columns of A
+NRHS     Number of right hand sides, number of columns of B and X
+A        Matrix of size M x N, overwritten by factorization on exit
+LDA      Leading dimension of A
+B        Matrix of right hand side vectors, overwritten with X on exit
+LDB      Leading dimension of B
+WORK     Work space of size at least LWORK
+LWORK    Size of work space, at least `min(M,N)+max(min(M, N), NRHS)` (-1 to query)
+INFO     0 on success, <0 for illegal arguments, >0 if not full rank
+======   =====================================================================

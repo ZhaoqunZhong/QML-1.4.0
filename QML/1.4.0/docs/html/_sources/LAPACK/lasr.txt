@@ -1,0 +1,127 @@
+(S|D|C|Z)LASR
+=============
+Single, double, single complex, and double complex LASR.
+
+Description
+-----------
+Applies a sequence of plane rotations to a rectangular matrix.
+
+When SIDE is L, LASR performs:
+
+.. math::
+
+    A \assign P \mult A
+
+When SIDE is R, LASR performs:
+
+.. math::
+
+    A \assign A \mult \trans{P}
+
+The matrix P is an orthogonal matrix formed as the product of plane
+rotations.
+
+When DIRECT is F:
+
+.. math::
+
+    P = P_{K} \mult \dots \mult P_2 \mult P_1
+
+When DIRECT is B:
+
+.. math::
+
+    P = P_1 \mult P_2 \mult \dots \mult P_{K}
+
+Each plane rotation is formed around a pivot.
+
+When PIVOT is T:
+
+.. math::
+
+    P_k =
+    \left[
+      \begin{matrix}
+        c_k &   &        &   & s_k &   &        &   \\
+            & 1 &        &   &     &   &        &   \\
+            &   & \ddots &   &     &   &        &   \\
+            &   &        & 1 &     &   &        &   \\
+       -s_k &   &        &   & c_k &   &        &   \\
+            &   &        &   &     & 1 &        &   \\
+            &   &        &   &     &   & \ddots &   \\
+            &   &        &   &     &   &        & 1 \\
+      \end{matrix}
+    \right]
+
+When PIVOT is B:
+
+.. math::
+
+    P_k =
+    \left[
+      \begin{matrix}
+    1 &          &   &      &   &        &   &     \\
+      &  \ddots  &   &      &   &        &   &     \\
+      &          & 1 &      &   &        &   &     \\
+      &          &   &  c_k &   &        &   & s_k \\
+      &          &   &      & 1 &        &   &     \\
+      &          &   &      &   & \ddots &   &     \\
+      &          &   &      &   &        & 1 &     \\
+      &          &   & -s_k &   &        &   & c_k \\
+      \end{matrix}
+    \right]
+
+When PIVOT is V:
+
+.. math::
+
+    P_k =
+    \left[
+      \begin{matrix}
+    1 &          &   &      &      &   &        &   \\
+      &  \ddots  &   &      &      &   &        &   \\
+      &          & 1 &      &      &   &        &   \\
+      &          &   &  c_k & s_k  &   &        &   \\
+      &          &   & -s_k & c_k  &   &        &   \\
+      &          &   &      &      & 1 &        &   \\
+      &          &   &      &      &   & \ddots &   \\
+      &          &   &      &      &   &        & 1 \\
+      \end{matrix}
+    \right]
+
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void slasr(const char *SIDE, const char *PIVOT, const char *DIRECT, 
+        const qml_long *M,const qml_long *N, const float *C, const float *S,
+        float *A, const qml_long *LDA);
+
+    void dlasr(const char *SIDE, const char *PIVOT, const char *DIRECT,
+        const qml_long *M, const qml_long *N, const double *C, const double *S,
+        double *A, const qml_long *LDA);
+
+    void clasr(const char *SIDE, const char *PIVOT, const char *DIRECT,
+        const qml_long *M, const qml_long *N, const float *C, const float *S,
+        qml_single_complex *A, const qml_long *LDA);
+
+    void zlasr(const char *SIDE, const char *PIVOT, const char *DIRECT,
+        const qml_long *M, const qml_long *N, const double *C, const double *S,
+        qml_double_complex *A, const qml_long *LDA);
+
+
+Arguments
+---------
+======   =====================================================================
+SIDE     Which side to apply plane rotations to
+PIVOT    Positions of pivots
+DIRECT   Direction to apply rotations
+M        Number of rows of A
+N        Number of columns of A
+C        Array of cosine values for plane rotations
+S        Array of sine values for plane rotations
+A        Matrix of size M x N
+LDA      Leading dimension of A
+======   =====================================================================

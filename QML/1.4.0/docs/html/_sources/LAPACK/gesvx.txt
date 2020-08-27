@@ -1,0 +1,92 @@
+(S|D|C|Z)GESVX
+==============
+Single, double, single complex, and double complex GESVX.
+
+Description
+-----------
+Uses LU decomposition with pivoting to solve one of the equations:
+
+.. math::
+
+    A \mult X = B
+
+.. math::
+
+    \trans{A} \mult X = B
+
+.. math::
+
+    \herm{A} \mult X = B
+
+This interface provides more options than the simplified :doc:`GESV<gesv>`
+interface. The matrix A may be provided factored or non-factored on input.
+Equilibration is configurable. Error estimates for the solution are also
+provided.
+
+If FACT is 'F' then A is supplied both in equilibrated form and in LU factored
+form with pivots. In this case arguments A, AF, IPIV, EQUED, R, and C 
+are input arguments provided by the caller. Otherwise AF, IPIV, EQUED,
+R, and C are output arguments.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+    
+    void sgesvx(const char *FACT, const char *TRANS, const qml_long *N,
+        const qml_long *NRHS, float *A, const qml_long *LDA, float *AF,
+        const qml_long *LDAF, qml_long *IPIV, char *EQUED, float *R, float *C,
+        float *B, const qml_long *LDB, float *X, const qml_long *LDX,
+        float *RCOND, float *FERR, float *BERR, float *WORK, qml_long *IWORK,
+        qml_long *INFO);
+    
+    void dgesvx(const char *FACT, const char *TRANS, const qml_long *N,
+        const qml_long *NRHS, double *A, const qml_long *LDA, double *AF,
+        const qml_long *LDAF, qml_long *IPIV, char *EQUED, double *R,
+        double *C, double *B, const qml_long *LDB, double *X,
+        const qml_long *LDX, double *RCOND, double *FERR, double *BERR,
+        double *WORK, qml_long *IWORK, qml_long *INFO);
+    
+    void cgesvx(const char *FACT, const char *TRANS, const qml_long *N,
+        const qml_long *NRHS, qml_single_complex *A, const qml_long *LDA,
+        qml_single_complex *AF, const qml_long *LDAF, qml_long *IPIV,
+        char *EQUED, float *R, float *C, qml_single_complex *B,
+        const qml_long *LDB, qml_single_complex *X, const qml_long *LDX,
+        float *RCOND, float *FERR, float *BERR, qml_single_complex *WORK,
+        float *RWORK, qml_long *INFO);
+    
+    void zgesvx(const char *FACT, const char *TRANS, const qml_long *N,
+        const qml_long *NRHS, qml_double_complex *A, const qml_long *LDA,
+        qml_double_complex *AF, const qml_long *LDAF, qml_long *IPIV,
+        char *EQUED, double *R, double *C, qml_double_complex *B,
+        const qml_long *LDB, qml_double_complex *X, const qml_long *LDX,
+        double *RCOND, double *FERR, double *BERR, qml_double_complex *WORK,
+        double *RWORK, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+FACT     One of 'F' (factorization provided), 'N' (factorization requested), or 'E' (equilibration and factorization requested)
+TRANS    One of 'N' (no tranpose), 'T' (transpose), or 'C' (Hermitian)
+N        Number of linear equations, order of A
+NRHS     Number of right hand sides, number of columns of B and X
+A        Matrix of size N x N, must be equilibrated if FACT is 'F' and EQUED is not 'N'
+LDA      Leading dimension of A
+AF       Factored form of A
+LDAF     Leading dimension of AF
+IPIV     Pivot indices
+EQUED    Type of equilibration, 'N' (none), 'R' (row), 'C' (column), 'B' (both)
+R        Array of size N, row scaling factors of A
+C        Array of size N, column scaling factors of A
+B        Matrix of size N x NRHS
+LDB      Leading dimension of B
+X        Matrix of size N x NRHS containing solutions
+LDX      Leading dimension of X
+RCOND    Estimate of reciprocal of condition number of A after equilibration
+FERR     Array of size NRHS, estimate of forward errors for each solution
+BERR     Array of size NRHS, relative backward error for each solution
+WORK     Workspace of size 4N
+RWORK    Workspace of size 2N
+IWORK    Integer workspace of size N
+INFO     0 on success, <0 for illegal arguments, >0 for factorization problems
+======   =====================================================================

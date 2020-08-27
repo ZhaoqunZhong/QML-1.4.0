@@ -1,0 +1,13 @@
+QML Extensions
+===============
+QML provides a limited number of extensions to the standard primitives such as those
+offered in LAPACK or BLAS.  These primitives are less general and more tightly
+coupled to specific domains such as machine learning or augmented reality.  Below
+are the extensions supported by QML.
+
+.. toctree::
+   :maxdepth: 1
+
+   conv_mm
+
+   i32i8conv

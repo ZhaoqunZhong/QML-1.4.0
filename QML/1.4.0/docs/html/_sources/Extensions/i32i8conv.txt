@@ -1,0 +1,44 @@
+I32I8CONV
+=================
+Convolution with int8 input and int32 output.
+
+Description
+-----------
+Takes an image and a set of filters and performs a convolution using dot-product instruction.
+
+Extension Interface
+-------------------
+.. code-block:: c
+
+	void i32i8conv(const QML_IMAGE_FORMAT inputFormat, const QML_IMAGE_FORMAT outputFormat, 
+                      const bool biased, const qml_int8* src,
+               	      const qml_int srcX, const qml_int srcY, 
+                      const qml_int channels, const qml_int8* filters, 
+                      const qml_int numFilters, const qml_int filterX, const qml_int filterY, 
+                      const qml_int padLeft, const qml_int padTop, 
+                      const qml_int strideX, const qml_int strideY, 
+                      qml_int* output, const qml_int outputX, const qml_int outputY);
+
+
+Arguments
+---------
+============ ============================================================
+inputFormat  Input image format (channel-major or image-major).
+outputFormat Output image format (channel-major or image-major).
+biased       Whether or not a bias has already been applied to the output
+src          Input image stored in the specified format
+srcX         Width of the image
+srcY         Height of the image
+channels     Number of channels in the image
+filters      Filters, assumed to be stored in channel major format
+numFilters   Number of filters
+filterX      Width of the filters
+filterY      Height of the filters
+padX         Amount of padding added to the left and right of the image
+padY         Amount of padding added to the top and bottom of the image
+strideX      Filter stride in the X dimension
+strideY      Filter stride in the Y dimension
+output       Output image stored in the specified format
+outputX      Width of an individual output
+outputy      Height of an individual output
+============ ============================================================

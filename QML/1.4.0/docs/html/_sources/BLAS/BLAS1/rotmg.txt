@@ -1,0 +1,118 @@
+(S|D)ROTMG
+===============
+Single and double ROTMG.
+
+Description
+-----------
+Generate a single modified plane rotation.
+
+.. math::
+
+    H *
+    \left[ 
+        \begin{array}{c}
+            \sqrt{D_1}\mult X_1 \\
+            \sqrt{D_2}\mult Y_1
+        \end{array}
+    \right]
+    =
+    \left[
+        \begin{array}{c}
+            R \\
+            0
+        \end{array}
+    \right]
+
+The form of the generated rotation matrix `H` will depend on `FLAG` which
+is the first element of the `PARAM` input array.
+
+.. math::
+    \fvar{PARAM} =
+    \left[
+        \begin{array}{c}
+            \fvar{FLAG} \\
+            \fvar{H11} \\
+            \fvar{H21} \\
+            \fvar{H12} \\
+            \fvar{H22}
+        \end{array}
+    \right]
+
+If :math:`\fvar{FLAG}=-1`:
+
+.. math::
+    H = 
+    \left[
+        \begin{array}{ll}
+            \fvar{H11} & \fvar{H12} \\
+            \fvar{H21} & \fvar{H22} \\
+        \end{array}
+    \right]
+
+If :math:`\fvar{FLAG}=0`:
+
+.. math::
+    H =
+    \left[
+        \begin{array}{ll}
+            1 & \fvar{H12} \\
+            \fvar{H21} & 1 \\
+        \end{array}
+    \right]
+
+If :math:`\fvar{FLAG}=1`:
+
+.. math::
+    H = 
+    \left[
+        \begin{array}{ll}
+            \fvar{H11} & 1 \\
+            -1 & \fvar{H22} \\
+        \end{array}
+    \right]
+
+If :math:`\fvar{FLAG}=-2`:
+
+.. math::
+    H =
+    \left[
+        \begin{array}{ll}
+            1 & 0 \\
+            0 & 1 \\
+        \end{array}
+    \right]
+
+
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void srotmg(float *D1, float *D2, float *X1, const float *Y1, float *PARAM);
+
+    void drotmg(double *D1, double *D2, double *X1, const double *Y1,
+                double *PARAM);
+
+
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_srotmg(float *D1, float *D2, float *X1, const float Y1,
+                      float *PARAM);
+
+    void cblas_drotmg(double *D1, double *D2, double *X1, const double Y1,
+                      double *PARAM);
+
+
+
+Arguments
+---------
+=====  ========================================================================
+D1     First scaling factor
+D2     Second scaling factor
+X1     First component of vector to rotate
+Y1     Second component of vector to rotate
+PARAM  Rotation parameter array of length 5
+=====  ========================================================================

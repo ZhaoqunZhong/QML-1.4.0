@@ -1,0 +1,77 @@
+(S|D|C|Z)BDSQR
+==============
+Single, double, single complex, and double complex BDSQR.
+
+Description
+-----------
+Computes the singular values and (optionally) the right/left singular vectors
+from the singular value decomposition of a square bidiagonal matrix.
+
+A general dense matrix A can be bidiagonalized to matrix B before calling BDSQR.
+
+.. math::
+
+    A = U \mult B \mult VT
+
+BDSQR then computes the singular value decomposition of B as:
+
+.. math::
+
+    B = Q \mult S \mult \herm{P}
+
+The result can be interpreted as the singular value decomposition of the
+original matrix A:
+
+.. math::
+
+    A = (U \mult Q) \mult S \mult (\herm{P} \mult VT)
+
+The matrices B, U, and VT are provided as input. BDSQR computes :math:`S`,
+:math:`U \mult Q`, and :math:`\herm{P} \mult VT`.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void sbdsqr(const char *UPLO, const qml_long *N, const qml_long *NCVT,
+        const qml_long *NRU, const qml_long *NCC, float *D, float *E,
+        float *VT, const qml_long *LDVT, float *U, const qml_long *LDU,
+        float *C, const qml_long *LDC, float *RWORK, qml_long *INFO);
+
+    void dbdsqr(const char *UPLO, const qml_long *N, const qml_long *NCVT,
+        const qml_long *NRU, const qml_long *NCC, double *D, double *E,
+        double *VT, const qml_long *LDVT, double *U, const qml_long *LDU,
+        double *C, const qml_long *LDC, double *RWORK, qml_long *INFO);
+
+    void cbdsqr(const char *UPLO, const qml_long *N, const qml_long *NCVT,
+        const qml_long *NRU, const qml_long *NCC, float *D, float *E,
+        qml_single_complex *VT, const qml_long *LDVT, qml_single_complex *U,
+        const qml_long *LDU, qml_single_complex *C, const qml_long *LDC,
+        float *RWORK, qml_long *INFO);
+
+    void zbdsqr(const char *UPLO, const qml_long *N, const qml_long *NCVT,
+        const qml_long *NRU, const qml_long *NCC, double *D, double *E,
+        qml_double_complex *VT, const qml_long *LDVT, qml_double_complex *U,
+        const qml_long *LDU, qml_double_complex *C, const qml_long *LDC,
+        double *RWORK, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Specify whether B is upper ('U') or lower ('L') triangular
+N        Order of matrix B
+NCVT     Number of columns of VT
+NRU      Number of rows of U
+NCC      Number of columns of C
+D        Vector of diagonal elements of B of length N, overwritten by sorted singular values on exit
+E        Vector of off-diagonal elements of B of length N - 1, destroyed on exit
+VT       Matrix of size N x NCVT, overwritten by :math:`\herm{P} \mult VT` on exit
+LDVT     Leading dimension of VT
+U        Matrix of size NRU x N, overwritten by :math:`U\mult Q` on exit
+LDU      Leading dimension of U
+C        Matrix of size N x NCC, overwritten by :math:`\herm{Q} \mult C` on exit
+LDC      Leading dimension of C
+RWORK    Work space of size 4N
+INFO     0 on success, <0 for bad arguments, >0 if no convergence
+======   =====================================================================

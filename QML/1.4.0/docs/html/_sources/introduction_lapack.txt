@@ -1,0 +1,7 @@
+Introduction to LAPACK
+======================
+
+.. toctree::
+   :maxdepth: 1
+
+   lapack

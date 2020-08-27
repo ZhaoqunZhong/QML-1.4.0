@@ -1,0 +1,94 @@
+(S|D|C|Z)SYMM
+=============
+Single, double, single complex, and double complex SYMM.
+
+Description
+-----------
+Computes a matrix-matrix product with the symmetric matrix A
+
+.. math::
+
+    C \assign \alpha A * B + \beta C
+
+or
+
+.. math::
+
+    C \assign \alpha B * A + \beta C
+
+BLAS Interface
+--------------
+.. code-block:: c
+
+    void ssymm(const char *SIDE, const char *UPLO, const qml_long *M,
+               const qml_long *N, const float *ALPHA, const float *A,
+               const qml_long *LDA, const float *B, const qml_long *LDB,
+               const float *BETA, float *C, const qml_long *LDC);
+
+    void dsymm(const char *SIDE, const char *UPLO, const qml_long *M,
+               const qml_long *N, const double *ALPHA, const double *A,
+               const qml_long *LDA, const double *B, const qml_long *LDB,
+               const double *BETA, double *C, const qml_long *LDC);
+
+    void csymm(const char *SIDE, const char *UPLO, const qml_long *M,
+               const qml_long *N, const qml_single_complex *ALPHA,
+               const qml_single_complex *A, const qml_long *LDA,
+               const qml_single_complex *B, const qml_long *LDB,
+               const qml_single_complex *BETA, qml_single_complex *C,
+               const qml_long *LDC);
+
+    void zsymm(const char *SIDE, const char *UPLO, const qml_long *M,
+               const qml_long *N, const qml_double_complex *ALPHA,
+               const qml_double_complex *A, const qml_long *LDA,
+               const qml_double_complex *B, const qml_long *LDB,
+               const qml_double_complex *BETA, qml_double_complex *C,
+               const qml_long *LDC);
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_ssymm(const CBLAS_ORDER ORDER, const CBLAS_SIDE SIDE,
+                     const CBLAS_UPLO UPLO, const qml_long M, const qml_long N,
+                     const float ALPHA, const float *A, const qml_long LDA,
+                     const float *B, const qml_long LDB, const float BETA,
+                     float *C, const qml_long LDC);
+
+    void cblas_dsymm(const CBLAS_ORDER ORDER, const CBLAS_SIDE SIDE,
+                     const CBLAS_UPLO UPLO, const qml_long M, const qml_long N,
+                     const double ALPHA, const double *A, const qml_long LDA,
+                     const double *B, const qml_long LDB, const double BETA,
+                     double *C, const qml_long LDC);
+
+    void cblas_csymm(const CBLAS_ORDER ORDER, const CBLAS_SIDE SIDE,
+                     const CBLAS_UPLO UPLO, const qml_long M, const qml_long N,
+                     const qml_single_complex *ALPHA, const qml_single_complex *A,
+                     const qml_long LDA, const qml_single_complex *B,
+                     const qml_long LDB, const qml_single_complex *BETA,
+                     qml_single_complex *C, const qml_long LDC);
+
+    void cblas_zsymm(const CBLAS_ORDER ORDER, const CBLAS_SIDE SIDE,
+                     const CBLAS_UPLO UPLO, const qml_long M, const qml_long N,
+                     const qml_double_complex *ALPHA, const qml_double_complex *A,
+                     const qml_long LDA, const qml_double_complex *B,
+                     const qml_long LDB, const qml_double_complex *BETA,
+                     qml_double_complex *C, const qml_long LDC);
+
+Arguments
+---------
+=====   ====================================================================
+SIDE    Specify which side of the product matrix A should be
+\       For left, computes: :math:`C \assign \alpha A * B + \beta C`
+\       For right, computes: :math:`C \assign \alpha B * A + \beta C`
+UPLO    Specify whether the upper or lower triangle of matrix A will be read
+M       Number of rows of matrix C
+N       Number of columns of matrix C
+ALPHA   Scalar multiplied with the matrix-matrix product
+A       Symmetric input matrix A
+LDA     Leading dimension of matrix A
+B       Input matrix B
+LDB     Leading dimension of matrix B
+BETA    Scalar multiplied with matrix C
+C       Result matrix
+LDC     Leading dimension of matrix C
+=====   ====================================================================

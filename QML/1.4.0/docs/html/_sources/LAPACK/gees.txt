@@ -1,0 +1,74 @@
+(S|D|C|Z)GEES
+==============
+Single, double, single complex, and double complex GEES.
+
+Description
+-----------
+Computes the eigenvalues, Schur form, and (optionally) Schur vectors of a general matrix.
+
+Given an N by N matrix A, computes the Schur factorization:
+
+.. math::
+
+    \fvar{A} = Z \mult T \mult \herm{Z}
+
+The matrix T is in Schur form, meaning it is upper quasi-triangular with
+blocks of size 1x1 or 2x2. Blocks of size 2x2 are of the form:
+
+.. math::
+
+    \begin{bmatrix}
+        a & b \\
+        c & a
+    \end{bmatrix}
+
+Each 2x2 block corresponds to a pair of eigenvalues :math:`a\pm \sqrt{bc}`.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void sgees(const char *JOBVS, const char *SORT, void *SELECT, const qml_long *N,
+        float *A, const qml_long *LDA, qml_long *SDIM, float *WR, float *WI,
+        float *VS, const qml_long *LDVS, float *WORK, const qml_long *LWORK,
+        qml_int *BWORK, qml_long *INFO);
+    
+    void dgees(const char *JOBVS, const char *SORT, void *SELECT, const qml_long *N,
+        double *A, const qml_long *LDA, qml_long *SDIM, double *WR, double *WI,
+        double *VS, const qml_long *LDVS, double *WORK, const qml_long *LWORK,
+        qml_int *BWORK, qml_long *INFO);
+    
+    void cgees(const char *JOBVS, const char *SORT, void *SELECT, const qml_long *N,
+        qml_single_complex *A, const qml_long *LDA, qml_long *SDIM,
+        qml_single_complex *W, qml_single_complex *VS, const qml_long *LDVS,
+        qml_single_complex *WORK, const qml_long *LWORK, float *RWORK,
+        qml_int *BWORK, qml_long *INFO);
+    
+    void zgees(const char *JOBVS, const char *SORT, void *SELECT, const qml_long *N,
+        qml_double_complex *A, const qml_long *LDA, qml_long *SDIM,
+        qml_double_complex *W, qml_double_complex *VS, const qml_long *LDVS,
+        qml_double_complex *WORK, const qml_long *LWORK, double *RWORK,
+        qml_int *BWORK, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+JOBVS    Compute VS if 'V', otherwise do not compute
+SORT     Sort eigenvalues, only 'N' supported
+SELECT   Function pointers, not supported (pass NULL)
+N        Number of rows and columns of A
+A        Matrix of size N x N, overwritten with T on exit
+LDA      Leading dimension of A
+SDIM     Not used
+W        Array of size N containing eigenvalues on exit
+WR       Real part of W for real versions
+WI       Complex part of W for real version
+VS       On exit contains Schur vectors matrix Z if JOBVS is 'V'
+LDVS     Leading dimension of VS
+WORK     Work space of size at least LWORK
+LWORK    Size of work space, at least 3N but optimally a larger multiple of N (-1 to query)
+RWORK    Work space of size N
+BWORK    Not used
+INFO     0 on success
+======   =====================================================================

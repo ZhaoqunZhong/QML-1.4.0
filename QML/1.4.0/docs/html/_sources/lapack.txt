@@ -1,0 +1,85 @@
+History
+-------
+
+LAPACK is a library of functions for dealing with dense and banded
+matrices. It includes functions for solving systems of equations,
+linear least-squares, eigenvalue problems, singular value problems,
+and matrix factorizations such as QR, LU, Cholesky, SVD, and Schur
+forms. Functions in LAPACK are designed to call optimized BLAS
+functions whenever possible for maximum performance.
+
+The full LAPACK library includes over 1700 functions and remains
+under active development. For compatibility purposes QML contains
+implementations of all public LAPACK functions with limitations and caveats
+discussed below. A subset of higher-level functions is
+documented in the :doc:`API Reference<LAPACK/lapack>`.
+Documentation for other functions can be `found on Netlib <http://www.netlib.org/lapack/explore-html/>`_.
+
+
+Conventions
+-----------
+
+Most functions in LAPACK are named following a similar convention
+to BLAS. The first letter indicates the numerical precision of the
+computation and is one of `SDCZ`. The next two letters indicate the
+storage format of the main matrices involved in the routine.
+Choices include all the formats supported by BLAS along with many
+more specialized formats. The final three letters indicate the operation
+to be performed. For example, `DGEQRF` means a double precision computation
+(`D`) on a general dense matrix (`GE`) performing a QR factorization (`QRF`).
+
+
+Interface
+---------
+
+The LAPACK interface follows the same conventions as the 
+:ref:`BLAS interface<blas-interfacing>`.
+As in the BLAS interface, the interface to LAPACK library functions
+follows Fortran conventions.
+All arguments to functions
+are passed by reference. In the C function prototypes this means
+every argument is a pointer, even simple scalar values.
+Functions that return complex values use a ``void`` return type and
+instead put their output into a ``result`` pointer.
+
+As in the BLAS interface, matrices are stored in column-major order
+and indexing is 1-based. No aliasing of pointers is allowed in the
+LAPACK interface.
+
+
+Function Pointers
+`````````````````
+
+Some LAPACK functions accept functions as arguments. A typical example
+is `DGEES` which accepts an argument `SELECT` that decides which eigenvalues
+should be sorted in the output. QML does not currently support function
+pointers. When interfacing to these functions using C, the type used
+is `void *`. Any values passed as function pointers are ignored and
+never called.
+
+
+Booleans
+````````
+
+Many functions accept or return Boolean values or arrays. In the C
+interface to these functions the type used is `qml_int`. This type is
+4 bytes on 32-bit platforms and 8 bytes on 64-bit platforms. This type
+usually corresponds to the type `LOGICAL` and `INTEGER` in Fortran compilers.
+
+
+Performance Considerations
+--------------------------
+
+Not all LAPACK functions provided by QML are highly optimized. For best
+performance limit calls to the functions documented in this guide. Many
+of the problems solved by LAPACK have significant sequential 
+sections that cannot be easily parallelized so performance will
+necessarily be limited for these problems.
+
+
+References
+----------
+
+The `official homepage of LAPACK <http://www.netlib.org/lapack/>`_ is
+on Netlib. The most convenient way to browse function documentation is
+through the `online explorer <http://www.netlib.org/lapack/explore-html/>`_.

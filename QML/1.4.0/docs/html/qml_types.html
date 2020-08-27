@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>QML &mdash; Qualcomm Math Library</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Qualcomm Math Library" href="index.html"/>
+        <link rel="up" title="Using QML" href="using_qml.html"/>
+        <link rel="next" title="Example Programs" href="example_programs.html"/>
+        <link rel="prev" title="Using QML" href="using_qml.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> QML
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to BLAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction_lapack.html">Introduction to LAPACK</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="using_qml.html">Using QML</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">QML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#openmp">OpenMP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qml-directory-structure">QML Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ilp64-and-lp64">ILP64 and LP64</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-qml-on-android">Using QML on Android</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#environment-variables">Environment Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-linux-x86">Example (Linux x86)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-information">Additional Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#questions-and-problems">Questions and Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="example_programs.html">Example Programs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="blas_index.html">QML API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">QML</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="using_qml.html">Using QML</a> &raquo;</li>
+      
+    <li>QML</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="qml">
+<h1>QML<a class="headerlink" href="#qml" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="openmp">
+<h2>OpenMP<a class="headerlink" href="#openmp" title="Permalink to this headline">¶</a></h2>
+<p>QML uses the OpenMP runtime for parallelism.  More information about OpenMP
+can be found at <a class="reference external" href="http://openmp.org/wp/">http://openmp.org/wp/</a>. In particular, OpenMP environment variables
+will affect the behavior of QML.</p>
+</div>
+<div class="section" id="qml-directory-structure">
+<h2>QML Directory Structure<a class="headerlink" href="#qml-directory-structure" title="Permalink to this headline">¶</a></h2>
+<p>The QML directory structure is organized in the following way:</p>
+<p><code class="docutils literal"><span class="pre">/&lt;plat&gt;/&lt;arch&gt;/&lt;interface&gt;/&lt;toolchain&gt;/</span></code></p>
+<p>Where possible values for each directory are:</p>
+<p><strong>plat:</strong> <code class="docutils literal"><span class="pre">android,</span> <span class="pre">linux,</span> <span class="pre">macos,</span> <span class="pre">windows</span></code></p>
+<p><strong>arch:</strong> <code class="docutils literal"><span class="pre">arm32,</span> <span class="pre">aarch64,</span> <span class="pre">x64</span></code></p>
+<p><strong>interface:</strong> <code class="docutils literal"><span class="pre">lp64,</span> <span class="pre">ilp64</span></code></p>
+<p><strong>toolchain:</strong> <code class="docutils literal"><span class="pre">ndk-r10e,</span> <span class="pre">ndk-r11,</span> <span class="pre">gcc-4.x,</span> <span class="pre">gcc-5.x,</span> <span class="pre">gcc-4.9-ubuntu-12.04,</span> <span class="pre">msvc,</span> <span class="pre">clang</span></code></p>
+<p>Once the platform, architecture, interface, and supported toolchain are selected, the
+final directory will contain the follow subdirectories:</p>
+<p><code class="docutils literal"><span class="pre">/examples</span></code></p>
+<p><code class="docutils literal"><span class="pre">/include</span></code></p>
+<p><code class="docutils literal"><span class="pre">/lib</span></code></p>
+</div>
+<div class="section" id="ilp64-and-lp64">
+<h2>ILP64 and LP64<a class="headerlink" href="#ilp64-and-lp64" title="Permalink to this headline">¶</a></h2>
+<p>The BLAS specification uses 32 bit integers for everything from the dimensions
+of matrices to the stride between elements in a dot product.  This is sufficient
+for most problems and 32 bit architectures, however, certain classes of problem
+require more bits to indicate things like the length of the input vectors when
+calling <a class="reference internal" href="BLAS/BLAS1/axpy.html"><em>AXPY</em></a> or <a class="reference internal" href="BLAS/BLAS1/dot.html"><em>DOT</em></a>.  This has lead the community to support both ILP64 and LP64
+even on 64 bit architectures.  QML also supports both ILP64 and LP64, with the
+appropriate libraries either in the <code class="docutils literal"><span class="pre">ilp64</span></code> or <code class="docutils literal"><span class="pre">lp64</span></code> folder.  To aid
+development on diverse platforms we provide the type <code class="docutils literal"><span class="pre">qml_long</span></code> in
+<code class="docutils literal"><span class="pre">qml_types.h</span></code> which will be 32 bits on 32 bit platforms and 64 bits on
+64 bit platforms if the <code class="docutils literal"><span class="pre">ilp64</span></code> folder header is used.  Otherwise if the <code class="docutils literal"><span class="pre">lp64</span></code>
+folder header is used, <code class="docutils literal"><span class="pre">qml_long</span></code> will be 32 bits on all platforms.</p>
+</div>
+<div class="section" id="using-qml-on-android">
+<h2>Using QML on Android<a class="headerlink" href="#using-qml-on-android" title="Permalink to this headline">¶</a></h2>
+<p>In order to run QML on Android, the appropriate QML shared library will need to be
+copied to the device in addition to the program that uses QML.  If the device is
+rooted, the appropriate place for the 32-bit (armv7-a) version of QML is
+<code class="docutils literal"><span class="pre">/system/vendor/lib/</span></code>.  The 64-bit (aarch64/armv8-a) version of QML belongs in
+<code class="docutils literal"><span class="pre">/system/vendor/lib64/</span></code>.  Additionally, the 32-bit (armv7-a) version of QML is
+compiled for Android API level 19 (Android 4.4), whereas the 64-bit (aarch64/armv8-a)
+version of QML is compiled for Android API level 21 (Android 5.0).</p>
+</div>
+<div class="section" id="environment-variables">
+<span id="id1"></span><h2>Environment Variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline">¶</a></h2>
+<p>Three environment variables are available to control the threadpool used by QML:</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">OMP_NUM_THREADS=&lt;N&gt;</span></code></dt>
+<dd>Controls the number of threads in the OpenMP threadpool at launch time.</dd>
+<dt><code class="docutils literal"><span class="pre">QML_NUM_THREADS=&lt;N&gt;</span></code></dt>
+<dd>Controls the degree of parallelism of QML functions, does not affect the size of the
+OpenMP threadpool.  The number of tasks launched by QML will be the minimum of
+<code class="docutils literal"><span class="pre">QML_NUM_THREADS</span></code> and <code class="docutils literal"><span class="pre">OMP_NUM_THREADS</span></code>.</dd>
+<dt><code class="docutils literal"><span class="pre">QML_HET_RATIO=&lt;little:big[:prime]&gt;</span></code></dt>
+<dd>Controls the work distribution ratio (as percentage) of parallel operations
+like GEMM.  The first number is for the first CPU cluster (e.g. LITTLE cluster),
+then for the big cluster and then prime cluster (if applicable).  The numbers
+should be integers, and sum of all numbers must be 100.  In case of bad
+formatting, the default partitioning is used which may not be optimal for all SOCs.</dd>
+</dl>
+<p>On x86 based systems, over subscription can be a problem for compute bound workloads as
+it causes cache thrashing which destroys performance.  To prevent this it is
+recommended to set the number of threads using one of these two environment
+variables to the number of physical cores present rather than the default number
+of reported cores.</p>
+</div>
+<div class="section" id="example-linux-x86">
+<h2>Example (Linux x86)<a class="headerlink" href="#example-linux-x86" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s assume we are using an x86 based machine that supports hyperthreading.  This
+means there are X real cores, however, the system behaves as if it has 2X cores.
+On modern Linux systems, the first N/2 cores are different cores, the
+next N/2 are duplicates of the first half.  In order to avoid over subscription for
+compute bound workloads (matrix multiply or GEMM), we don&#8217;t want to have a threadpool
+larger than the number of real cores on the machine.  We also don&#8217;t want these threads
+migrating in the middle of computation as that also causes cache thrashing.  To avoid
+this we will employ both a tool that is provided on Linux as well as the environment
+variables used by OpenMP.  For instance, let&#8217;s assume the machine has 4
+real cores.  Then to invoke a program that calls QML GEMM we would do the following:</p>
+<p><code class="docutils literal"><span class="pre">OMP_NUM_THREADS=4</span> <span class="pre">taskset</span> <span class="pre">-c</span> <span class="pre">0-3</span> <span class="pre">&lt;program&gt;</span></code></p>
+</div>
+<div class="section" id="additional-information">
+<h2>Additional Information<a class="headerlink" href="#additional-information" title="Permalink to this headline">¶</a></h2>
+<p>Some additional information can be found in the release notes.</p>
+</div>
+<div class="section" id="questions-and-problems">
+<h2>Questions and Problems<a class="headerlink" href="#questions-and-problems" title="Permalink to this headline">¶</a></h2>
+<p>Please send any suggestions, questions, bugs, or integration issues to <a class="reference external" href="mailto:qml&#37;&#52;&#48;qti&#46;qualcomm&#46;com">qml<span>&#64;</span>qti<span>&#46;</span>qualcomm<span>&#46;</span>com</a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="example_programs.html" class="btn btn-neutral float-right" title="Example Programs" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="using_qml.html" class="btn btn-neutral" title="Using QML" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Qualcomm Technologies, Inc.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

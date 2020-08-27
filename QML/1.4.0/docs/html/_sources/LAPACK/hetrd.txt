@@ -1,0 +1,74 @@
+(C|Z)HETRD
+==============
+Single complex and double complex HETRD.
+
+Description
+-----------
+Reduces a Hermitian matrix to symmetric tridiagonal form using a unitary similarity
+transform.
+
+.. math::
+
+    T = \herm{Q} \mult A \mult Q
+
+The matrix T is symmetric tridiagonal and the matrix Q is unitary.
+
+The matrix Q is not stored explicitly. Instead, the elements above or below
+the diagonal of A together with TAU store Q as the product of scaled
+elementary reflectors.
+
+When UPLO is U:
+
+.. math::
+
+    Q = H_{N-1} \mult \dots \mult H_2 \mult H_1
+    
+.. math::
+
+    H_i = I - \tau_i \mult v \mult \herm{v}
+
+The vector v has components i+1 through n of zero, component i is 1,
+and components 1 through i-1 are stored in the columns of A above the
+superdiagonal.
+
+When UPLO is L:
+
+.. math::
+
+    Q = H_1 \mult H_2 \mult \dots \mult H_{N-1}
+    
+.. math::
+
+    H_i = I - \tau_i \mult v \mult \herm{v}
+
+The vector v has components 1 through i of zero, component i+1 is 1,
+and components i+2 through N are stored in the columns of A below the
+subdiagonal.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void chetrd(const char *UPLO, const qml_long *N, qml_single_complex *A,
+        const qml_long *LDA, float *D, float *E, qml_single_complex *TAU,
+        qml_single_complex *WORK, const qml_long *LWORK, qml_long *INFO);
+
+    void zhetrd(const char *UPLO, const qml_long *N, qml_double_complex *A,
+        const qml_long *LDA, double *D, double *E, qml_double_complex *TAU,
+        qml_double_complex *WORK, const qml_long *LWORK, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+UPLO     Store upper 'U' or lower 'L' triangular part of A
+N        Number of rows and columns of A
+A        Hermitian matrix, overwritten by T and reflector vectors on exit
+LDA      Leading dimension of A
+D        On exit contains diagonal elements of T
+E        On exit contains the off diagonal elements of T
+TAU      On exit contains vector of scale factors for reflectors
+WORK     Work space of size at least LWORK
+LWORK    Size of work space (-1 to query)
+INFO     0 on success
+======   =====================================================================

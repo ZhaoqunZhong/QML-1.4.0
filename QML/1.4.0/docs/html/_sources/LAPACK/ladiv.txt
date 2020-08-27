@@ -1,0 +1,29 @@
+(S|D)LADIV
+==========
+Single and double LADIV.
+
+Description
+-----------
+Performs complex division while avoiding overflow.
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void sladiv(const float *A, const float *B, const float *C, const float *D,
+        float *P, float *Q);
+
+    void dladiv(const double *A, const double *B, const double *C, const double *D,
+        double *P, double *Q);
+
+
+Arguments
+---------
+======   =====================================================================
+A        Real part of numerator
+B        Imaginary part of numerator
+C        Read part of denominator
+D        Imaginary part of denominator
+P        Real part of result
+Q        Imaginary part of result
+======   =====================================================================

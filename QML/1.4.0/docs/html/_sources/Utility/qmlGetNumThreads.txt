@@ -1,0 +1,26 @@
+QMLGetNumThreads
+=================
+QMLGetNumThreads.
+
+Description
+-----------
+Get the number of threads that are being used internally to parallelize
+work in QML.
+
+The number of threads used will normally be set by QML to the number
+of processor cores reported present on the device. The number of threads used can
+be affected by OpenMP environment variables and by QML environment
+variables set when the library is loaded (see :ref:`environment-variables`).
+The number of threads may also be changed by calls to :doc:`qmlSetNumThreads`.
+
+Extension Interface
+-------------------
+.. code-block:: c
+
+    qml_int QMLGetNumThreads(void);
+
+Arguments
+---------
+==========   ==================================================================
+Result       The number of threads being used
+==========   ==================================================================

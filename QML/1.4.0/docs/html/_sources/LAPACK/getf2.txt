@@ -1,0 +1,48 @@
+(S|D|C|Z)GETF2
+==============
+Single, double, single complex, and double complex GETF2.
+
+Description
+-----------
+Computes the LU decomposition of a matrix using partial pivoting and an
+unblocked algorithm.
+
+The matrix A is factored as:
+
+.. math::
+
+    A = P \mult L \mult U
+    
+where P is a permutation matrix, L is unit lower triangular and U is
+upper triangular. On exit, L and U overwrite A (the unit diagonal is not
+stored), the locations of pivots are stored in IPIV, and the solution
+matrix X overwrites B.
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void sgetf2(const qml_long *M, const qml_long *N, float *A, const qml_long *LDA,
+        qml_long *IPIV, qml_long *INFO);
+
+    void dgetf2(const qml_long *M, const qml_long *N, double *A, const qml_long *LDA,
+        qml_long *IPIV, qml_long *INFO);
+
+    void cgetf2(const qml_long *M, const qml_long *N, qml_single_complex *A,
+        const qml_long *LDA, qml_long *IPIV, qml_long *INFO);
+
+    void zgetf2(const qml_long *M, const qml_long *N, qml_double_complex *A,
+        const qml_long *LDA, qml_long *IPIV, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+M        Number of rows of A
+N        Number of columns of A
+A        Matrix of size M x N
+LDA      Leading dimension of A
+IPIV     Pivot indices indicating rows to interchange
+INFO     0 on success, <0 for illegal arguments, >0 for singular decomposition
+======   =====================================================================

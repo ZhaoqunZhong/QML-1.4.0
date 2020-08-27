@@ -1,0 +1,71 @@
+(S|D|C|Z)LARFT
+==============
+Single, double, single complex, and double complex LARFT.
+
+Description
+-----------
+Generates the triangular factor T of a block reflector.
+
+The block reflector matrix H is formed as a product of elementary reflectors.
+
+When DIRECT is 'F':
+
+.. math::
+
+    H = H_1 \mult H_2 \mult \dots \mult H_k
+
+When DIRECT is 'B':
+
+.. math::
+
+    H = H_k \mult H_{k-1} \mult \dots \mult H_1
+
+If STOREV is 'C', the vectors that define each elementary reflector
+are stored as columns of V and:
+
+.. math::
+
+    H = I - V \mult T \mult \herm{V}
+
+If STOREV is 'R', the vectors that define each elementary reflector
+are stored as rows of V and:
+
+.. math::
+
+    H = I - \herm{V} \mult T \mult V
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void slarft(const char *DIRECT, const char *STOREV, const qml_long *N,
+        const qml_long *K, const float *V, const qml_long *LDV, const float *TAU,
+        float *T, const qml_long *LDT);
+
+    void dlarft(const char *DIRECT, const char *STOREV, const qml_long *N,
+        const qml_long *K, const double *V, const qml_long *LDV, const double *TAU,
+        double *T, const qml_long *LDT);
+
+    void clarft(const char *DIRECT, const char *STOREV, const qml_long *N,
+        const qml_long *K, const qml_single_complex *V, const qml_long *LDV,
+        const qml_single_complex *TAU, qml_single_complex *T, const qml_long *LDT);
+
+    void zlarft(const char *DIRECT, const char *STOREV, const qml_long *N,
+        const qml_long *K, const qml_double_complex *V, const qml_long *LDV,
+        const qml_double_complex *TAU, qml_double_complex *T, const qml_long *LDT);
+
+
+Arguments
+---------
+======   =====================================================================
+DIRECT   Direction to apply elementary reflectors
+STOREV   Storage format of elementary reflector vectors
+N        Order of the block reflector H
+K        The number of elementary reflectors in the block
+V        Matrix storing reflector vectors
+LDV      Leading dimension of V
+TAU      Vector of scale factors :math:`\tau_i`
+T        Triangular K x K matrix storing reflectors
+LDT      Leading dimension of T
+======   =====================================================================

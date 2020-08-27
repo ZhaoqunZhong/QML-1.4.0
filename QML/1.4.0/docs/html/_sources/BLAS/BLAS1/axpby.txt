@@ -1,0 +1,67 @@
+(S|D|C|Z)AXPBY
+==============
+Single, double, single complex, and double complex AXPBY.
+
+Description
+-----------
+Extension of :doc:`AXPY<axpy>` that also scales the vector Y.
+
+.. math::
+
+  y \assign \alpha x + \beta y
+
+BLAS Interface
+---------------
+.. code-block:: c
+
+    void saxpby(const qml_long *N, const float *ALPHA, const float *X,
+                const qml_long *INCX, const float *BETA, float *Y,
+                const qml_long *INCY);
+
+    void daxpby(const qml_long *N, const double *ALPHA, const double *X,
+                const qml_long *INCX, const double *BETA, double *Y,
+                const qml_long *INCY);
+
+    void caxpby(const qml_long *N, const qml_single_complex *ALPHA,
+                const qml_single_complex *X, const qml_long *INCX,
+                const qml_single_complex *BETA, qml_single_complex *Y,
+                const qml_long *INCY);
+
+    void zaxpby(const qml_long *N, const qml_double_complex *ALPHA,
+                const qml_double_complex *X, const qml_long *INCX,
+                const qml_double_complex *BETA, qml_double_complex *Y,
+                const qml_long *INCY);
+
+CBLAS Interface
+---------------
+.. code-block:: c
+
+    void cblas_saxpby(const qml_long N, const float ALPHA, const float *X,
+                      const qml_long INCX, const float BETA, float *Y,
+                      const qml_long INCY);
+
+    void cblas_daxpby(const qml_long N, const double ALPHA, const double *X,
+                      const qml_long INCX, const double BETA, double *Y,
+                      const qml_long INCY);
+
+    void cblas_caxpby(const qml_long N, const qml_single_complex *ALPHA,
+                      const qml_single_complex *X, const qml_long INCX,
+                      const qml_single_complex *BETA, qml_single_complex *Y,
+                      const qml_long INCY);
+
+    void cblas_zaxpby(const qml_long N, const qml_double_complex *ALPHA,
+                      const qml_double_complex *X, const qml_long INCX,
+                      const qml_double_complex *BETA, qml_double_complex *Y,
+                      const qml_long INCY);
+
+Arguments
+-----------
+=====   =================================================
+N       Number of elements in X and Y
+ALPHA   Scalar to scale vector X by
+X       First input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCX}} + 1`
+INCX    Distance between individual elements in X
+BETA    Scalar to scale vector Y by
+Y       Second input vector, must be at least: :math:`(\fvar{N}-1)\mult\abs{\fvar{INCY}} + 1`
+INCY    Distance between individual elements in Y
+=====   =================================================

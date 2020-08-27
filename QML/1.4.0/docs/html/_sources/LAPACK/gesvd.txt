@@ -1,0 +1,69 @@
+(S|D|C|Z)GESVD
+==============
+Single, double, single complex, and double complex GESVD.
+
+Description
+-----------
+Computes the singular value decomposition (SVD) of a general matrix,
+and optionally the right/left singular vectors.
+
+The matrix A is decomposed:
+
+.. math::
+
+    A = U \mult \Sigma \mult \herm{V}
+
+The matrix :math:`\Sigma` is an MxN matrix that is zero except on
+the diagonal. U is an MxM unitary matrix, and V is an NxN unitary
+matrix. The diagonal elements of :math:`\Sigma` are the singular
+values, ordered from largest to smallest in magnitude.
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+    
+    void sgesvd(const char *JOBU, const char *JOBVT, const qml_long *M,
+        const qml_long *N, float *A, const qml_long *LDA, float *S, float *U,
+        const qml_long *LDU, float *VT, const qml_long *LDVT, float *WORK,
+        const qml_long *LWORK, qml_long *INFO);
+    
+    void dgesvd(const char *JOBU, const char *JOBVT, const qml_long *M,
+        const qml_long *N, double *A, const qml_long *LDA, double *S,
+        double *U, const qml_long *LDU, double *VT, const qml_long *LDVT,
+        double *WORK, const qml_long *LWORK, qml_long *INFO);
+    
+    void cgesvd(const char *JOBU, const char *JOBVT, const qml_long *M,
+        const qml_long *N, qml_single_complex *A, const qml_long *LDA,
+        float *S, qml_single_complex *U, const qml_long *LDU,
+        qml_single_complex *VT, const qml_long *LDVT,
+        qml_single_complex *WORK, const qml_long *LWORK, float *RWORK,
+        qml_long *INFO);
+    
+    void zgesvd(const char *JOBU, const char *JOBVT, const qml_long *M,
+        const qml_long *N, qml_double_complex *A, const qml_long *LDA,
+        double *S, qml_double_complex *U, const qml_long *LDU,
+        qml_double_complex *VT, const qml_long *LDVT,
+        qml_double_complex *WORK, const qml_long *LWORK, double *RWORK,
+        qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+JOBU     What to compute for U, 'A' (all), 'S' (left singular vectors), 'O' (overwrite A), 'N' (none)
+JOBVT    What to compute for VT, 'A' (all), 'S' (right singular vectors), 'O' (overwrite A), 'N' (none)
+M        Number of rows of A
+N        Number of columns of A
+A        Matrix of size M x N, overwritten on exit
+LDA      Leading dimension of A
+S        Array of size min(M, N), singular values in decreasing order
+U        Matrix containing left singular vectors as columns
+LDU      Leading dimension of U
+VT       Matrix containing right singular vectors as rows
+LDVT     Leading dimension of VT
+WORK     Workspace of size at least LWORK
+LWORK    Size of workspace (-1 to query)
+RWORK    Workspace of size 5*min(M, N)
+INFO     0 on success, <0 for bad arguments, >0 if no convergence
+======   =====================================================================

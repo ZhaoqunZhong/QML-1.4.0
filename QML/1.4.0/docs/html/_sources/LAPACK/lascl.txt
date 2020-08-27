@@ -1,0 +1,69 @@
+(S|D|C|Z)LASCL
+==============
+Single, double, single complex, and double complex LASCL.
+
+Description
+-----------
+Scales part of a matrix taking care to avoid over/underflow.
+
+.. math::
+
+    A \assign \frac{\fvar{CTO}}{\fvar{CFROM}} A
+
+
+Supports matrices stored in the following formats:
+
++---------+---------------------------------------+
+| TYPE    | Storage format                        |
++=========+=======================================+
+| G       | Full matrix                           |
++---------+---------------------------------------+
+| L       | Lower triangular                      |
++---------+---------------------------------------+
+| U       | Upper triangular                      |
++---------+---------------------------------------+
+| H       | Upper Hessenberg                      |
++---------+---------------------------------------+
+| B       | Symmetric band with lower band stored |
++---------+---------------------------------------+
+| Q       | Symmetric band with upper band stored |
++---------+---------------------------------------+
+| Z       | Band matrix                           |
++---------+---------------------------------------+
+
+
+LAPACK Interface
+----------------
+.. code-block:: c
+
+    void slascl(const char *TYPE, const qml_long *KL, const qml_long *KU,
+        const float *CFROM, const float *CTO, const qml_long *M, const qml_long *N,
+        float *A, const qml_long *LDA, qml_long *INFO);
+
+    void dlascl(const char *TYPE, const qml_long *KL, const qml_long *KU,
+        const double *CFROM, const double *CTO, const qml_long *M, const qml_long *N,
+        double *A, const qml_long *LDA, qml_long *INFO);
+
+    void clascl(const char *TYPE, const qml_long *KL, const qml_long *KU,
+        const float *CFROM, const float *CTO, const qml_long *M, const qml_long *N, 
+        qml_single_complex *A, const qml_long *LDA, qml_long *INFO);
+
+    void zlascl(const char *TYPE, const qml_long *KL, const qml_long *KU,
+        const double *CFROM, const double *CTO, const qml_long *M, const qml_long *N, 
+        qml_double_complex *A, const qml_long *LDA, qml_long *INFO);
+
+
+Arguments
+---------
+======   =====================================================================
+TYPE     Specifies storage format of A
+KL       Lower bandwidth for banded storage formats
+KU       Upper bandwidth for banded storage formats
+CFROM    Scaling factor
+CTO      Scaling factor
+M        Number of rows of A
+N        Number of columns of A
+A        Source matrix
+LDA      Leading dimension of A
+INFO     0 on success
+======   =====================================================================

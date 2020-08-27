@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>(S|D)ROTMG &mdash; Qualcomm Math Library</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Qualcomm Math Library" href="../../index.html"/>
+        <link rel="up" title="BLAS 1 Functions" href="../blas1.html"/>
+        <link rel="next" title="(S|D|C|Z|CS|ZD)SCAL" href="scal.html"/>
+        <link rel="prev" title="(S|D)ROTM" href="rotm.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> QML
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction to BLAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction_lapack.html">Introduction to LAPACK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using_qml.html">Using QML</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../blas_index.html">QML API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../blas1.html">BLAS 1 Functions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="amax.html">(IS|ID|IC|IZ)AMAX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="amin.html">(IS|ID|IC|IZ)AMIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asum.html">(S|D|SC|DZ)ASUM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="axpby.html">(S|D|C|Z)AXPBY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="axpy.html">(S|D|C|Z)AXPY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cabs1.html">(S|D)CABS1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="copy.html">(S|D|C|Z)COPY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dot.html">(S|D)DOT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotc.html">(C|Z)DOTC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotu.html">(C|Z)DOTU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nrm2.html">(S|D|SC|DZ)NRM2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rot.html">(S|D|C|CS|Z|ZD)ROT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rotg.html">(S|D|C|Z)ROTG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rotm.html">(S|D)ROTM</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">(S|D)ROTMG</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#blas-interface">BLAS Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cblas-interface">CBLAS Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arguments">Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scal.html">(S|D|C|Z|CS|ZD)SCAL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsdot.html">(D)SDOT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sdsdot.html">(SD)SDOT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="swap.html">(S|D|C|Z)SWAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blas2.html">BLAS 2 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas3.html">BLAS 3 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../LAPACK/lapack.html">LAPACK Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Extensions/extensions.html">QML Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Utility/utility.html">QML Utility Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">QML</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../blas_index.html">QML API Reference</a> &raquo;</li>
+      
+          <li><a href="../blas1.html">BLAS 1 Functions</a> &raquo;</li>
+      
+    <li>(S|D)ROTMG</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-d-rotmg">
+<h1>(S|D)ROTMG<a class="headerlink" href="#s-d-rotmg" title="Permalink to this headline">¶</a></h1>
+<p>Single and double ROTMG.</p>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Generate a single modified plane rotation.</p>
+<div class="math">
+<p><img src="../../_images/math/21193b6d8a9ba83c96efee39b5ada04f09fdb10f.png" alt="H *
+\left[
+    \begin{array}{c}
+        \sqrt{D_1}\mult X_1 \\
+        \sqrt{D_2}\mult Y_1
+    \end{array}
+\right]
+=
+\left[
+    \begin{array}{c}
+        R \\
+        0
+    \end{array}
+\right]"/></p>
+</div><p>The form of the generated rotation matrix <cite>H</cite> will depend on <cite>FLAG</cite> which
+is the first element of the <cite>PARAM</cite> input array.</p>
+<div class="math">
+<p><img src="../../_images/math/03438f91e7799b5c497fee9acb474375bf3babea.png" alt="\fvar{PARAM} =
+\left[
+    \begin{array}{c}
+        \fvar{FLAG} \\
+        \fvar{H11} \\
+        \fvar{H21} \\
+        \fvar{H12} \\
+        \fvar{H22}
+    \end{array}
+\right]"/></p>
+</div><p>If <img class="math" src="../../_images/math/dba8c17acbcf03f5114764c5c7097d6449019753.png" alt="\fvar{FLAG}=-1"/>:</p>
+<div class="math">
+<p><img src="../../_images/math/94142020e5de34fbb25eb4fe274c41de7297ec35.png" alt="H =
+\left[
+    \begin{array}{ll}
+        \fvar{H11} &amp; \fvar{H12} \\
+        \fvar{H21} &amp; \fvar{H22} \\
+    \end{array}
+\right]"/></p>
+</div><p>If <img class="math" src="../../_images/math/30864ffd1462919deced048556e6684ee90bb547.png" alt="\fvar{FLAG}=0"/>:</p>
+<div class="math">
+<p><img src="../../_images/math/bf1552b8d4b5ae21434004da663f4042fe24af14.png" alt="H =
+\left[
+    \begin{array}{ll}
+        1 &amp; \fvar{H12} \\
+        \fvar{H21} &amp; 1 \\
+    \end{array}
+\right]"/></p>
+</div><p>If <img class="math" src="../../_images/math/190d1991cbb97129f262d882b7096e5ae02c7dc1.png" alt="\fvar{FLAG}=1"/>:</p>
+<div class="math">
+<p><img src="../../_images/math/f9c2d455bced60729d900e343ea6c5ad312195e5.png" alt="H =
+\left[
+    \begin{array}{ll}
+        \fvar{H11} &amp; 1 \\
+        -1 &amp; \fvar{H22} \\
+    \end{array}
+\right]"/></p>
+</div><p>If <img class="math" src="../../_images/math/a49799b5d1698527deeb1a61b29bafd5033f0f41.png" alt="\fvar{FLAG}=-2"/>:</p>
+<div class="math">
+<p><img src="../../_images/math/d1723f9bad9c93aa9343af8e2d0b1149b9b7ec99.png" alt="H =
+\left[
+    \begin{array}{ll}
+        1 &amp; 0 \\
+        0 &amp; 1 \\
+    \end{array}
+\right]"/></p>
+</div></div>
+<div class="section" id="blas-interface">
+<h2>BLAS Interface<a class="headerlink" href="#blas-interface" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">srotmg</span><span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="n">D1</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">D2</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">X1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">Y1</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">PARAM</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">drotmg</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span><span class="n">D1</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span><span class="n">D2</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span><span class="n">X1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">Y1</span><span class="p">,</span>
+            <span class="kt">double</span> <span class="o">*</span><span class="n">PARAM</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cblas-interface">
+<h2>CBLAS Interface<a class="headerlink" href="#cblas-interface" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">cblas_srotmg</span><span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="n">D1</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">D2</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">X1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">Y1</span><span class="p">,</span>
+                  <span class="kt">float</span> <span class="o">*</span><span class="n">PARAM</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">cblas_drotmg</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span><span class="n">D1</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span><span class="n">D2</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span><span class="n">X1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">Y1</span><span class="p">,</span>
+                  <span class="kt">double</span> <span class="o">*</span><span class="n">PARAM</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="arguments">
+<h2>Arguments<a class="headerlink" href="#arguments" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="94%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>D1</td>
+<td>First scaling factor</td>
+</tr>
+<tr class="row-even"><td>D2</td>
+<td>Second scaling factor</td>
+</tr>
+<tr class="row-odd"><td>X1</td>
+<td>First component of vector to rotate</td>
+</tr>
+<tr class="row-even"><td>Y1</td>
+<td>Second component of vector to rotate</td>
+</tr>
+<tr class="row-odd"><td>PARAM</td>
+<td>Rotation parameter array of length 5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="scal.html" class="btn btn-neutral float-right" title="(S|D|C|Z|CS|ZD)SCAL" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rotm.html" class="btn btn-neutral" title="(S|D)ROTM" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Qualcomm Technologies, Inc.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.4.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
